@@ -14,6 +14,15 @@
 		C23FCFDA1FDAC31400972238 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C23FCFD81FDAC31400972238 /* LaunchScreen.storyboard */; };
 		C23FCFE51FDAC31400972238 /* PaperSynthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FCFE41FDAC31400972238 /* PaperSynthTests.swift */; };
 		C23FCFF01FDAC31400972238 /* PaperSynthUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FCFEF1FDAC31400972238 /* PaperSynthUITests.swift */; };
+		C23FCFFE1FDAC33C00972238 /* ImageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FCFFD1FDAC33C00972238 /* ImageUtils.swift */; };
+		C23FD0001FDAC36F00972238 /* chars74k5.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C23FCFFF1FDAC36F00972238 /* chars74k5.mlmodel */; };
+		C23FD0021FDAC43700972238 /* placeholder-image4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C23FD0011FDAC43700972238 /* placeholder-image4.jpg */; };
+		C23FD0041FDBE7F900972238 /* TextCleaner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FD0031FDBE7F900972238 /* TextCleaner.swift */; };
+		C23FD0061FDBF3EB00972238 /* Levenshtein.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FD0051FDBF3EB00972238 /* Levenshtein.swift */; };
+		C23FD0081FDBFEDB00972238 /* AudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FD0071FDBFEDB00972238 /* AudioView.swift */; };
+		C23FD00A1FDC019600972238 /* AudioWidgetFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FD0091FDC019600972238 /* AudioWidgetFactory.swift */; };
+		C23FD0111FDC0ACE00972238 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23FD00B1FDC021B00972238 /* AudioKit.framework */; };
+		C23FD0121FDC0ACE00972238 /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C23FD00B1FDC021B00972238 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +42,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C23FD0131FDC0ACE00972238 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C23FD0121FDC0ACE00972238 /* AudioKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		C23FCFCC1FDAC31400972238 /* PaperSynth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperSynth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23FCFCF1FDAC31400972238 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +70,14 @@
 		C23FCFEB1FDAC31400972238 /* PaperSynthUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PaperSynthUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23FCFEF1FDAC31400972238 /* PaperSynthUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperSynthUITests.swift; sourceTree = "<group>"; };
 		C23FCFF11FDAC31400972238 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C23FCFFD1FDAC33C00972238 /* ImageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtils.swift; sourceTree = "<group>"; };
+		C23FCFFF1FDAC36F00972238 /* chars74k5.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = chars74k5.mlmodel; sourceTree = "<group>"; };
+		C23FD0011FDAC43700972238 /* placeholder-image4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "placeholder-image4.jpg"; sourceTree = "<group>"; };
+		C23FD0031FDBE7F900972238 /* TextCleaner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCleaner.swift; sourceTree = "<group>"; };
+		C23FD0051FDBF3EB00972238 /* Levenshtein.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Levenshtein.swift; sourceTree = "<group>"; };
+		C23FD0071FDBFEDB00972238 /* AudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioView.swift; sourceTree = "<group>"; };
+		C23FD0091FDC019600972238 /* AudioWidgetFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioWidgetFactory.swift; sourceTree = "<group>"; };
+		C23FD00B1FDC021B00972238 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C23FD0111FDC0ACE00972238 /* AudioKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +109,7 @@
 		C23FCFC31FDAC31400972238 = {
 			isa = PBXGroup;
 			children = (
+				C23FD00B1FDC021B00972238 /* AudioKit.framework */,
 				C23FCFCE1FDAC31400972238 /* PaperSynth */,
 				C23FCFE31FDAC31400972238 /* PaperSynthTests */,
 				C23FCFEE1FDAC31400972238 /* PaperSynthUITests */,
@@ -97,8 +130,15 @@
 		C23FCFCE1FDAC31400972238 /* PaperSynth */ = {
 			isa = PBXGroup;
 			children = (
+				C23FD0011FDAC43700972238 /* placeholder-image4.jpg */,
+				C23FCFFF1FDAC36F00972238 /* chars74k5.mlmodel */,
 				C23FCFCF1FDAC31400972238 /* AppDelegate.swift */,
 				C23FCFD11FDAC31400972238 /* ViewController.swift */,
+				C23FD0071FDBFEDB00972238 /* AudioView.swift */,
+				C23FD0091FDC019600972238 /* AudioWidgetFactory.swift */,
+				C23FD0031FDBE7F900972238 /* TextCleaner.swift */,
+				C23FD0051FDBF3EB00972238 /* Levenshtein.swift */,
+				C23FCFFD1FDAC33C00972238 /* ImageUtils.swift */,
 				C23FCFD31FDAC31400972238 /* Main.storyboard */,
 				C23FCFD61FDAC31400972238 /* Assets.xcassets */,
 				C23FCFD81FDAC31400972238 /* LaunchScreen.storyboard */,
@@ -135,6 +175,8 @@
 				C23FCFC81FDAC31400972238 /* Sources */,
 				C23FCFC91FDAC31400972238 /* Frameworks */,
 				C23FCFCA1FDAC31400972238 /* Resources */,
+				C23FD0131FDC0ACE00972238 /* Embed Frameworks */,
+				C23FD00D1FDC0A8700972238 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -232,6 +274,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C23FD0021FDAC43700972238 /* placeholder-image4.jpg in Resources */,
 				C23FCFDA1FDAC31400972238 /* LaunchScreen.storyboard in Resources */,
 				C23FCFD71FDAC31400972238 /* Assets.xcassets in Resources */,
 				C23FCFD51FDAC31400972238 /* Main.storyboard in Resources */,
@@ -254,13 +297,35 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C23FD00D1FDC0A8700972238 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/AudioKit.framework/fix-framework.sh";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C23FCFC81FDAC31400972238 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C23FCFD21FDAC31400972238 /* ViewController.swift in Sources */,
+				C23FD00A1FDC019600972238 /* AudioWidgetFactory.swift in Sources */,
+				C23FD0061FDBF3EB00972238 /* Levenshtein.swift in Sources */,
+				C23FD0001FDAC36F00972238 /* chars74k5.mlmodel in Sources */,
 				C23FCFD01FDAC31400972238 /* AppDelegate.swift in Sources */,
+				C23FD0041FDBE7F900972238 /* TextCleaner.swift in Sources */,
+				C23FCFFE1FDAC33C00972238 /* ImageUtils.swift in Sources */,
+				C23FD0081FDBFEDB00972238 /* AudioView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +493,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G5Q3E798ZG;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = PaperSynth/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.LinearizeLabs.PaperSynth;
@@ -443,6 +512,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G5Q3E798ZG;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = PaperSynth/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.LinearizeLabs.PaperSynth;
