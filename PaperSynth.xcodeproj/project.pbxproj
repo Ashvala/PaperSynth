@@ -20,7 +20,6 @@
 		C23FD0041FDBE7F900972238 /* TextCleaner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FD0031FDBE7F900972238 /* TextCleaner.swift */; };
 		C23FD0061FDBF3EB00972238 /* Levenshtein.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FD0051FDBF3EB00972238 /* Levenshtein.swift */; };
 		C23FD0081FDBFEDB00972238 /* AudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FD0071FDBFEDB00972238 /* AudioView.swift */; };
-		C23FD00A1FDC019600972238 /* AudioWidgetFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FD0091FDC019600972238 /* AudioWidgetFactory.swift */; };
 		C23FD0111FDC0ACE00972238 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23FD00B1FDC021B00972238 /* AudioKit.framework */; };
 		C23FD0121FDC0ACE00972238 /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C23FD00B1FDC021B00972238 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C2D13B811FDDB75B00574DF1 /* AudioKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */; };
@@ -80,7 +79,6 @@
 		C23FD0031FDBE7F900972238 /* TextCleaner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCleaner.swift; sourceTree = "<group>"; };
 		C23FD0051FDBF3EB00972238 /* Levenshtein.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Levenshtein.swift; sourceTree = "<group>"; };
 		C23FD0071FDBFEDB00972238 /* AudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioView.swift; sourceTree = "<group>"; };
-		C23FD0091FDC019600972238 /* AudioWidgetFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioWidgetFactory.swift; sourceTree = "<group>"; };
 		C23FD00B1FDC021B00972238 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKit.framework; sourceTree = "<group>"; };
 		C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKitUI.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,7 +141,6 @@
 				C23FCFCF1FDAC31400972238 /* AppDelegate.swift */,
 				C23FCFD11FDAC31400972238 /* ViewController.swift */,
 				C23FD0071FDBFEDB00972238 /* AudioView.swift */,
-				C23FD0091FDC019600972238 /* AudioWidgetFactory.swift */,
 				C23FD0031FDBE7F900972238 /* TextCleaner.swift */,
 				C23FD0051FDBF3EB00972238 /* Levenshtein.swift */,
 				C23FCFFD1FDAC33C00972238 /* ImageUtils.swift */,
@@ -327,7 +324,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C23FCFD21FDAC31400972238 /* ViewController.swift in Sources */,
-				C23FD00A1FDC019600972238 /* AudioWidgetFactory.swift in Sources */,
 				C23FD0061FDBF3EB00972238 /* Levenshtein.swift in Sources */,
 				C23FD0001FDAC36F00972238 /* chars74k5.mlmodel in Sources */,
 				C23FCFD01FDAC31400972238 /* AppDelegate.swift in Sources */,

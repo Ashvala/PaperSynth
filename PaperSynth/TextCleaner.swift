@@ -20,7 +20,9 @@ let keywords: [Keyword]  = [
     Keyword(PrimaryExpression: "output", Alternatives: ["out"]),
     Keyword(PrimaryExpression: "adsr", Alternatives: ["adsr", "dsr"]),
     Keyword(PrimaryExpression: "del", Alternatives:["delay"]),
-    Keyword(PrimaryExpression: "rev", Alternatives:["reverb"])
+    Keyword(PrimaryExpression: "rev", Alternatives:["reverb"]),
+    Keyword(PrimaryExpression: "mic", Alternatives:["microphone"]),
+    Keyword(PrimaryExpression: "eq", Alternatives:["para-eq"])
 ]
 
 class TextCleaner{
