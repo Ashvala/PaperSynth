@@ -8,22 +8,19 @@
 
 import Foundation
 
-// we implement levenshtein to calculate edit distances between two strings.
+
 
 struct Keyword{
     var PrimaryExpression: String
     var Alternatives: [String]
 }
 
-struct EditDistance{
-    var word: String
-    var distance: Int
-}
-
 let keywords: [Keyword]  = [
     Keyword(PrimaryExpression: "osc", Alternatives: ["osc", "oscillator", "oscillation", "osci"]),
     Keyword(PrimaryExpression: "output", Alternatives: ["out"]),
     Keyword(PrimaryExpression: "adsr", Alternatives: ["adsr", "dsr"]),
+    Keyword(PrimaryExpression: "del", Alternatives:["delay"]),
+    Keyword(PrimaryExpression: "rev", Alternatives:["reverb"])
 ]
 
 class TextCleaner{

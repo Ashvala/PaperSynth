@@ -8,15 +8,8 @@
 
 import Foundation
 
-//
-//  LevenshteinExtensions.swift
-//
-//  Created by Mark Hamilton on 3/31/16.
-//  Copyright © 2016 dryverless. All rights reserved.
-//
-import Foundation
+// Credit to a Github gist for this. 
 
-// Minimize 3
 public func min3(a: Int, b: Int, c: Int) -> Int {
     
     return min( min(a, c), min(b, c))

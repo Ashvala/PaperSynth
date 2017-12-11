@@ -23,6 +23,9 @@
 		C23FD00A1FDC019600972238 /* AudioWidgetFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FD0091FDC019600972238 /* AudioWidgetFactory.swift */; };
 		C23FD0111FDC0ACE00972238 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23FD00B1FDC021B00972238 /* AudioKit.framework */; };
 		C23FD0121FDC0ACE00972238 /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C23FD00B1FDC021B00972238 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C2D13B811FDDB75B00574DF1 /* AudioKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */; };
+		C2D13B821FDDB76600574DF1 /* AudioKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */; };
+		C2D13B831FDDB76600574DF1 /* AudioKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				C2D13B831FDDB76600574DF1 /* AudioKitUI.framework in Embed Frameworks */,
 				C23FD0121FDC0ACE00972238 /* AudioKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -78,6 +82,7 @@
 		C23FD0071FDBFEDB00972238 /* AudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioView.swift; sourceTree = "<group>"; };
 		C23FD0091FDC019600972238 /* AudioWidgetFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioWidgetFactory.swift; sourceTree = "<group>"; };
 		C23FD00B1FDC021B00972238 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKit.framework; sourceTree = "<group>"; };
+		C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKitUI.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +90,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2D13B821FDDB76600574DF1 /* AudioKitUI.framework in Frameworks */,
+				C2D13B811FDDB75B00574DF1 /* AudioKitUI.framework in Frameworks */,
 				C23FD0111FDC0ACE00972238 /* AudioKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,6 +116,7 @@
 		C23FCFC31FDAC31400972238 = {
 			isa = PBXGroup;
 			children = (
+				C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */,
 				C23FD00B1FDC021B00972238 /* AudioKit.framework */,
 				C23FCFCE1FDAC31400972238 /* PaperSynth */,
 				C23FCFE31FDAC31400972238 /* PaperSynthTests */,

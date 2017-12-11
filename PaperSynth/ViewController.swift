@@ -26,6 +26,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         loadModel()
+//        self.showImagePicker(withType: .camera)
         let twoFingerTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
         twoFingerTapRecognizer.numberOfTouchesRequired = 2
         view.addGestureRecognizer(twoFingerTapRecognizer)
