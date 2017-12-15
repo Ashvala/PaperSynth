@@ -1,7 +1,7 @@
 # PaperSynth
 ---
 
-![Imgur](https://i.imgur.com/fm57yfn.gif |  width=100)
+![Imgur](https://i.imgur.com/fm57yfn.gif)
 
 PaperSynth is a project that aims to read keywords you've written on a piece of paper and covert it into synthesizers you can play on the phone.
 
