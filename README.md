@@ -1,6 +1,8 @@
 # PaperSynth
 ---
 
+![Imgur](https://i.imgur.com/fm57yfn.gif)
+
 PaperSynth is a project that aims to read keywords you've written on a piece of paper and covert it into synthesizers you can play on the phone.
 
 It uses a convolutional neural network model to do handwriting recognition in photos.
@@ -70,3 +72,17 @@ scikit
 In order to allow you to tool around with the dataset, a Jupyter notebook named `MNIST_Chars74k_Jupyter.ipynb` has been included.
 
 ---
+
+### Resource credits: 
+
+- [Vision/coreml tutorial By Martin Mitrevski](https://martinmitrevski.com/2017/10/19/text-recognition-using-vision-and-coreml/)
+- [MNIST on Keras] (https://github.com/fchollet/keras/blob/master/examples/mnist_cnn.py)
+- [Levenshtein Distance] (https://gist.github.com/TheDarkCode/341ec5b84c078a0be1887c2c58f6d929)
+
+
+
+
+
+
+
+
