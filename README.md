@@ -76,9 +76,8 @@ In order to allow you to tool around with the dataset, a Jupyter notebook named 
 ### Resource credits: 
 
 - [Vision/coreml tutorial By Martin Mitrevski](https://martinmitrevski.com/2017/10/19/text-recognition-using-vision-and-coreml/)
-- [MNIST on Keras] (https://github.com/fchollet/keras/blob/master/examples/mnist_cnn.py)
-- [Levenshtein Distance] (https://gist.github.com/TheDarkCode/341ec5b84c078a0be1887c2c58f6d929)
-
+- [MNIST on Keras](https://github.com/fchollet/keras/blob/master/examples/mnist_cnn.py)
+- [Levenshtein Distance](https://gist.github.com/TheDarkCode/341ec5b84c078a0be1887c2c58f6d929)
 
 
 
