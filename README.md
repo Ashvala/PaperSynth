@@ -1,9 +1,7 @@
 # PaperSynth
 ---
 
-<!--![Imgur](https://i.imgur.com/fm57yfn.gif)-->
-
-<iframe src='https://gfycat.com/ifr/BareCompleteGreatargus' frameborder='0' scrolling='no' width='406' height='720' allowfullscreen></iframe>
+![Imgur](https://thumbs.gfycat.com/BareCompleteGreatargus-size_restricted.gif)
 
 PaperSynth is a project that aims to read keywords you've written on a piece of paper and covert it into synthesizers you can play on the phone.
 
