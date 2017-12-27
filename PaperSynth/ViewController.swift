@@ -9,22 +9,30 @@
 import UIKit
 import CoreML
 import Vision
+import AVFoundation
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
 
-    
+    // Storyboard Outlets
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var detectedText: UILabel!
-//    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var imageButt: UIButton!
+    let photoOutput = AVCapturePhotoOutput()
+    
+    // Mutables
     
     var model: VNCoreMLModel!
-    
     var textMetadata = [Int: [Int: String]]()
+    
+    //Immutables
+    let session = AVCaptureSession()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.startLiveVideo()
         loadModel()
 //        self.showImagePicker(withType: .camera)
         let twoFingerTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
@@ -55,6 +63,38 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             controller.addAction(action)
         }
     }
+    func startLiveVideo() {
+        // this generates the session
+        session.sessionPreset = AVCaptureSession.Preset.photo
+        let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
+        
+        //IO
+        let deviceInput = try! AVCaptureDeviceInput(device: captureDevice!)
+        let deviceOutput = AVCaptureVideoDataOutput()
+        deviceOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)]
+        deviceOutput.setSampleBufferDelegate(self, queue: DispatchQueue.global(qos: DispatchQoS.QoSClass.default))
+        session.addInput(deviceInput)
+        session.addOutput(deviceOutput)
+        
+        //render this out.
+        let imageLayer = AVCaptureVideoPreviewLayer(session: session)
+        imageLayer.videoGravity = .resizeAspectFill
+        imageLayer.connection?.videoOrientation = .portrait
+        imageLayer.frame = imageView.bounds
+        imageView.layer.addSublayer(imageLayer)
+        
+        if session.canAddOutput(photoOutput) {
+            session.addOutput(photoOutput)
+            photoOutput.isHighResolutionCaptureEnabled = true
+        } else {
+            print("Could not add photo output to the session")
+            session.commitConfiguration()
+            return
+        }
+        session.commitConfiguration()
+        session.startRunning()
+    }
+    
     @objc func handleTap(){
         print("tapped!")
         let components = self.detectedText.text!.components(separatedBy: " ")
@@ -70,17 +110,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.view.addSubview(nV)
     }
     
-    // MARK: IBAction
-    
     
     @IBAction func pickImageClicked(_ sender: UIButton) {
-        self.showImagePicker(withType: .camera)
+//        self.showImagePicker(withType: .camera)
+        print("save the contents of ImageView to UIImage and process")
+        // Of course, it won't be ruddy trivial, now will it?
+        clearOldData()
+        let photoSettings = AVCapturePhotoSettings()
+        photoSettings.isHighResolutionPhotoEnabled = true    
+        photoOutput.capturePhoto(with: photoSettings, delegate: self)
+        
+    
     }
     
     @IBAction func galleryImageClicked(_ sender: Any) {
         self.showImagePicker(withType: .photoLibrary)
     }
-    // MARK: image picker
+    
     
     func showImagePicker(withType type: UIImagePickerControllerSourceType) {
         let pickerController = UIImagePickerController()
@@ -235,13 +281,69 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     private func showActivityIndicator() {
-//        activityIndicator.startAnimating()
     }
     
     private func hideActivityIndicator() {
-//        activityIndicator.stopAnimating()
     }
 
-
+    func configureButton()
+    {
+        imageButt.layer.cornerRadius = 0.4 * imageButt.bounds.size.width
+        imageButt.clipsToBounds = true
+    }
+    override func viewDidLayoutSubviews() {
+        configureButton()
+    }
     
 }
+
+extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate, AVCapturePhotoCaptureDelegate {
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+            return
+        }
+        
+        var requestOptions:[VNImageOption : Any] = [:]
+        
+        if let camData = CMGetAttachment(sampleBuffer, kCMSampleBufferAttachmentKey_CameraIntrinsicMatrix, nil) {
+            requestOptions = [.cameraIntrinsics:camData]
+        }
+        
+    }
+    public func photoOutput(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?){
+        print("yay?!?!?!")
+        if let error = error {
+            print("Error capturing photo: \(error)")
+        } else {
+            print("ok, should be here?")
+//            if let sampleBuffer = photoSampleBuffer,
+//                let previewBuffer = previewPhotoSampleBuffer,
+//                let dataImage = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: sampleBuffer, previewPhotoSampleBuffer: previewBuffer)
+//            {
+//                print("We made it this far?!")
+//                if let image = UIImage(data: dataImage) {
+//                    print("Yay?")
+//                    DispatchQueue.global(qos: .userInteractive).async {
+//                        self.detectText(image: image)
+//                    }
+//                }
+//            }
+            let sampleBuffer = photoSampleBuffer
+            if sampleBuffer != nil{
+                let ImageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: sampleBuffer!, previewPhotoSampleBuffer: previewPhotoSampleBuffer)
+                let dataProvider = CGDataProvider(data: ImageData! as CFData)
+                let cgImageRef = CGImage(jpegDataProviderSource: dataProvider!, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
+                let image = UIImage.init(cgImage: cgImageRef!, scale: 1.0, orientation: .right)
+                UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+                let newImage = fixOrientation(image: image)
+                DispatchQueue.global(qos: .userInteractive).async {
+                UIImageWriteToSavedPhotosAlbum(newImage, nil, nil, nil)
+                        self.detectText(image: newImage)
+                    
+                }
+            }
+        }
+    }
+
+}
+
