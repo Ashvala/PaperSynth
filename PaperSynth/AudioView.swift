@@ -14,6 +14,7 @@ import AudioKitUI
 
 
 class AudioView{
+    
     var widgetList:[String]
     var obj_list:[AnyObject]
     let Triangle = AKTable(.triangle)
@@ -127,7 +128,7 @@ class AudioView{
         let view_size = UIScreen.main.bounds
         let view = UIView(frame: CGRect(x: 0, y: 0, width: view_size.width, height: view_size.height))
         view.backgroundColor = .black
-        view.alpha = 0.9
+        view.alpha = 0.7
         self.createObjects()
         self.compileModel()
         self.setupUI(view: view)
