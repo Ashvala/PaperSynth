@@ -14,6 +14,9 @@
         <array key="AvenirNext.ttc">
             <string>AvenirNext-Regular</string>
         </array>
+        <array key="Menlo.ttc">
+            <string>Menlo-Regular</string>
+        </array>
     </customFonts>
     <scenes>
         <!--View Controller-->
@@ -28,12 +31,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggz-wo-CTK">
-                                <rect key="frame" x="172" y="550" width="33" height="67"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9X-Ux-u1v">
                                 <rect key="frame" x="40" y="613" width="95" height="37"/>
                                 <color key="backgroundColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -63,18 +60,26 @@
                                     <action selector="pickImageClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="R5h-Tp-Dy4"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggz-wo-CTK">
+                                <rect key="frame" x="16" y="511" width="343" height="67"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="8DC-eJ-ss1" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="3hz-vx-ZUy"/>
                             <constraint firstItem="8j1-YI-qBH" firstAttribute="leading" secondItem="N9X-Ux-u1v" secondAttribute="trailing" constant="20" id="3tn-HY-rhx"/>
                             <constraint firstAttribute="trailing" secondItem="8DC-eJ-ss1" secondAttribute="trailing" id="6he-rf-q70"/>
+                            <constraint firstItem="8j1-YI-qBH" firstAttribute="top" secondItem="ggz-wo-CTK" secondAttribute="bottom" constant="4" id="9y6-OF-yOm"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="N9X-Ux-u1v" secondAttribute="bottom" constant="17" id="Ewa-XU-BIK"/>
                             <constraint firstItem="8j1-YI-qBH" firstAttribute="centerX" secondItem="8DC-eJ-ss1" secondAttribute="centerX" id="JMi-kt-mas"/>
-                            <constraint firstAttribute="bottom" secondItem="ggz-wo-CTK" secondAttribute="bottom" constant="48" id="P0j-Nv-ZXe"/>
+                            <constraint firstItem="ggz-wo-CTK" firstAttribute="centerX" secondItem="8j1-YI-qBH" secondAttribute="centerX" id="LIz-ZA-QIb"/>
                             <constraint firstItem="8j1-YI-qBH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="562" id="Rc9-6J-ZNw"/>
-                            <constraint firstItem="8DC-eJ-ss1" firstAttribute="centerX" secondItem="ggz-wo-CTK" secondAttribute="centerX" constant="-2" id="gUU-ju-cUv"/>
+                            <constraint firstItem="ggz-wo-CTK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="491" id="Yiy-iy-GfP"/>
                             <constraint firstItem="N9X-Ux-u1v" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="593" id="nuo-VS-2Hf"/>
+                            <constraint firstItem="ggz-wo-CTK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="quL-CF-csF"/>
                             <constraint firstAttribute="bottom" secondItem="8j1-YI-qBH" secondAttribute="bottom" constant="20" symbolic="YES" id="xOM-q4-gak"/>
                             <constraint firstItem="8DC-eJ-ss1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="yS9-Mz-b3w"/>
                             <constraint firstItem="8DC-eJ-ss1" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="z8Y-Vt-LXa"/>
