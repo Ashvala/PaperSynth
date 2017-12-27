@@ -10,6 +10,7 @@ import UIKit
 import CoreML
 import Vision
 import AVFoundation
+import Photos
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     /**
@@ -32,14 +33,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var detectedText: UILabel!
     @IBOutlet weak var imageButt: UIButton!
-    let photoOutput = AVCapturePhotoOutput()
+    @IBOutlet weak var lastGallImage: UIImageView!
+    
+   
     
     //MARK:  Mutables
     
     var model: VNCoreMLModel!
     var textMetadata = [Int: [Int: String]]()
     var showing = false
+    
     //MARK: Immutables
+    let photoOutput = AVCapturePhotoOutput()
     let session = AVCaptureSession()
     
 
@@ -48,6 +53,28 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.startLiveVideo()
         loadModel()
         
+        // set last image:
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+        
+        let fetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+        
+        let last = fetchResult.lastObject
+        
+        if let lastAsset = last {
+            let options = PHImageRequestOptions()
+            options.version = .current
+            
+            PHImageManager.default().requestImage(
+                for: lastAsset,
+                targetSize: lastGallImage.bounds.size,
+                contentMode: .aspectFit,
+                options: options,
+                resultHandler: { image, _ in
+                    self.lastGallImage.image = image
+            }
+            )
+        }
         // Add a two finger tap recognizer to run when you are ready to roll.
         
         let twoFingerTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
