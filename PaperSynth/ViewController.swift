@@ -74,21 +74,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     
     @IBAction func pickImageClicked(_ sender: UIButton) {
-        let alertController = createActionSheet()
-        let action1 = UIAlertAction(title: "Camera", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            self.showImagePicker(withType: .camera)
-        })
-        let action2 = UIAlertAction(title: "Photos", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            self.showImagePicker(withType: .photoLibrary)
-        })
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        addActionsToAlertController(controller: alertController,
-                                    actions: [action1, action2, cancelAction])
-        self.present(alertController, animated: true, completion: nil)
+        self.showImagePicker(withType: .camera)
     }
     
+    @IBAction func galleryImageClicked(_ sender: Any) {
+        self.showImagePicker(withType: .photoLibrary)
+    }
     // MARK: image picker
     
     func showImagePicker(withType type: UIImagePickerControllerSourceType) {
@@ -171,6 +162,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     fatalError("Unexpected result type from VNCoreMLRequest")
             }
             let result = topResult.identifier
+            print(result)
             let classificationInfo: [String: Any] = ["wordNumber" : wordNumber,
                                                      "characterNumber" : characterNumber,
                                                      "class" : result]

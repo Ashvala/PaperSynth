@@ -16,8 +16,11 @@ import AudioKitUI
 class AudioView{
     var widgetList:[String]
     var obj_list:[AnyObject]
-    
+    let Triangle = AKTable(.triangle)
+    let Square = AKTable(.square)
+    let sawtooth = AKTable(.sawtooth)
     func constructOscil()->AKOscillator{
+
         let oscil = AKOscillator()
         oscil.frequency = 440.0
         oscil.amplitude = 1.0
