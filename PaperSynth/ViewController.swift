@@ -9,22 +9,29 @@
 import UIKit
 import CoreML
 import Vision
+import AVFoundation
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
 
-    
+    // Storyboard Outlets
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var detectedText: UILabel!
-//    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var imageButt: UIButton!
     
-    var model: VNCoreMLModel!
+    // Mutables
     
+    var model: VNCoreMLModel!
     var textMetadata = [Int: [Int: String]]()
+    
+    //Immutables
+    let session = AVCaptureSession()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.startLiveVideo()
         loadModel()
 //        self.showImagePicker(withType: .camera)
         let twoFingerTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
@@ -55,6 +62,29 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             controller.addAction(action)
         }
     }
+    func startLiveVideo() {
+        // this generates the session
+        session.sessionPreset = AVCaptureSession.Preset.photo
+        let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
+        
+        //IO
+        let deviceInput = try! AVCaptureDeviceInput(device: captureDevice!)
+        let deviceOutput = AVCaptureVideoDataOutput()
+        deviceOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)]
+        deviceOutput.setSampleBufferDelegate(self, queue: DispatchQueue.global(qos: DispatchQoS.QoSClass.default))
+        session.addInput(deviceInput)
+        session.addOutput(deviceOutput)
+        
+        //render this out.
+        let imageLayer = AVCaptureVideoPreviewLayer(session: session)
+        imageLayer.videoGravity = .resizeAspectFill
+        imageLayer.connection?.videoOrientation = .portrait
+        imageLayer.frame = imageView.bounds
+        imageView.layer.addSublayer(imageLayer)
+        
+        session.startRunning()
+    }
+    
     @objc func handleTap(){
         print("tapped!")
         let components = self.detectedText.text!.components(separatedBy: " ")
@@ -70,17 +100,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.view.addSubview(nV)
     }
     
-    // MARK: IBAction
-    
     
     @IBAction func pickImageClicked(_ sender: UIButton) {
-        self.showImagePicker(withType: .camera)
+//        self.showImagePicker(withType: .camera)
+        print("save the contents of ImageView to UIImage and process")
+        let image = self.imageView.image
+        DispatchQueue.global(qos: .userInteractive).async {
+            self.detectText(image: image!)
+        }
+        
     }
     
     @IBAction func galleryImageClicked(_ sender: Any) {
         self.showImagePicker(withType: .photoLibrary)
     }
-    // MARK: image picker
+    
     
     func showImagePicker(withType type: UIImagePickerControllerSourceType) {
         let pickerController = UIImagePickerController()
@@ -235,13 +269,36 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     private func showActivityIndicator() {
-//        activityIndicator.startAnimating()
     }
     
     private func hideActivityIndicator() {
-//        activityIndicator.stopAnimating()
     }
 
-
+    func configureButton()
+    {
+        imageButt.layer.cornerRadius = 0.4 * imageButt.bounds.size.width
+        imageButt.layer.borderColor = UIColor(red:0.0/255.0, green:0.0/255.0, blue:0.0/255.0, alpha:1).cgColor as CGColor
+        imageButt.layer.borderWidth = 2.0
+        imageButt.clipsToBounds = true
+    }
+    override func viewDidLayoutSubviews() {
+        configureButton()
+    }
     
 }
+
+extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+            return
+        }
+        
+        var requestOptions:[VNImageOption : Any] = [:]
+        
+        if let camData = CMGetAttachment(sampleBuffer, kCMSampleBufferAttachmentKey_CameraIntrinsicMatrix, nil) {
+            requestOptions = [.cameraIntrinsics:camData]
+        }
+        
+    }
+}
+
