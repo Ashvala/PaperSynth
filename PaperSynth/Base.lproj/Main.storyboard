@@ -27,20 +27,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8j1-YI-qBH">
-                                <rect key="frame" x="2" y="627" width="182" height="40"/>
-                                <color key="backgroundColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="20"/>
-                                <state key="normal" title="Camera">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="pickImageClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="R5h-Tp-Dy4"/>
-                                </connections>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggz-wo-CTK">
+                                <rect key="frame" x="172" y="550" width="33" height="67"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9X-Ux-u1v">
-                                <rect key="frame" x="192" y="626" width="182" height="40"/>
+                                <rect key="frame" x="191" y="624" width="182" height="40"/>
                                 <color key="backgroundColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="182" id="4Bi-nG-BWN"/>
@@ -55,12 +49,18 @@
                                     <action selector="pickImageClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kuO-Rz-ahB"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggz-wo-CTK">
-                                <rect key="frame" x="173" y="552" width="33" height="67"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8j1-YI-qBH">
+                                <rect key="frame" x="4" y="624" width="179" height="40"/>
+                                <color key="backgroundColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="20"/>
+                                <state key="normal" title="Camera">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="pickImageClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="R5h-Tp-Dy4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -68,9 +68,9 @@
                             <constraint firstAttribute="trailing" secondItem="8DC-eJ-ss1" secondAttribute="trailing" id="6he-rf-q70"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="N9X-Ux-u1v" secondAttribute="trailing" constant="1" id="Bbe-KK-LlL"/>
                             <constraint firstItem="8DC-eJ-ss1" firstAttribute="centerX" secondItem="8j1-YI-qBH" secondAttribute="centerX" constant="94.5" id="Jgn-5M-T5s"/>
-                            <constraint firstItem="8DC-eJ-ss1" firstAttribute="centerY" secondItem="8j1-YI-qBH" secondAttribute="centerY" constant="-313.5" id="LCj-tc-YiB"/>
+                            <constraint firstItem="8DC-eJ-ss1" firstAttribute="centerY" secondItem="8j1-YI-qBH" secondAttribute="centerY" constant="-312.5" id="LCj-tc-YiB"/>
                             <constraint firstAttribute="bottom" secondItem="ggz-wo-CTK" secondAttribute="bottom" constant="48" id="P0j-Nv-ZXe"/>
-                            <constraint firstItem="N9X-Ux-u1v" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="607" id="bvR-wQ-5pR"/>
+                            <constraint firstItem="N9X-Ux-u1v" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="606" id="bvR-wQ-5pR"/>
                             <constraint firstItem="N9X-Ux-u1v" firstAttribute="leading" secondItem="8j1-YI-qBH" secondAttribute="trailing" constant="8" id="fiB-qg-jNE"/>
                             <constraint firstItem="8DC-eJ-ss1" firstAttribute="centerX" secondItem="ggz-wo-CTK" secondAttribute="centerX" constant="-2" id="gUU-ju-cUv"/>
                             <constraint firstItem="8DC-eJ-ss1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="yS9-Mz-b3w"/>
