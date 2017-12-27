@@ -18,6 +18,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override var prefersStatusBarHidden: Bool {
         return true
     }
+    
+    func configureButton(){
+        imageButt.layer.cornerRadius = 0.5 * imageButt.bounds.size.width
+        imageButt.layer.masksToBounds = true
+        imageButt.clipsToBounds = true
+    }
+    override func viewDidLayoutSubviews() {
+        configureButton()
+    }
 
     //MARK:  Storyboard Outlets
     @IBOutlet weak var imageView: UIImageView!
@@ -29,7 +38,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     var model: VNCoreMLModel!
     var textMetadata = [Int: [Int: String]]()
-    
+    var showing = false
     //MARK: Immutables
     let session = AVCaptureSession()
     
@@ -102,18 +111,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
      */
     
     @objc func handleTap(){
-        print("tapped!")
-        let components = self.detectedText.text!.components(separatedBy: " ")
-        print("Components: \(components)")
-        let filteredComponents = components.filter{$0 != ""}
-        let parsedWords = filteredComponents.map{
-            TextCleaner(text:$0).ReturnLevens()
+        if showing == false{
+            let components = self.detectedText.text!.components(separatedBy: " ")
+            print("Components: \(components)")
+            let filteredComponents = components.filter{$0 != ""}
+            let parsedWords = filteredComponents.map{
+                TextCleaner(text:$0).ReturnLevens()
+            }
+            print(parsedWords)
+            self.detectedText.text = parsedWords.joined(separator: " ")
+            let view = AudioView(widgetNames: parsedWords)
+            let nV = view.renderView()
+            self.view.addSubview(nV)
+            showing = true
+        }else{
+            print(self.view.subviews)
         }
-        print(parsedWords)
-        self.detectedText.text = parsedWords.joined(separator: " ")
-        let view = AudioView(widgetNames: parsedWords)
-        let nV = view.renderView()
-        self.view.addSubview(nV)
     }
     
     /**
