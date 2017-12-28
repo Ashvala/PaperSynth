@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // UIWindow
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = router.appRootViewController
+        window?.rootViewController = router.RootController
         window?.makeKeyAndVisible()
         return true
     }

@@ -65,8 +65,8 @@
 
 /* Begin PBXFileReference section */
 		C206AB8A1FF511EE008EE364 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
-		C206AB8C1FF513E4008EE364 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		C206AB911FF514B3008EE364 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		C206AB8C1FF513E4008EE364 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Router.swift; path = ../Routing/Router.swift; sourceTree = "<group>"; };
+		C206AB911FF514B3008EE364 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RootView.swift; path = ../Routing/RootView.swift; sourceTree = "<group>"; };
 		C206AB931FF516B2008EE364 /* LandingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LandingViewController.storyboard; sourceTree = "<group>"; };
 		C23FCFCC1FDAC31400972238 /* PaperSynth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperSynth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23FCFCF1FDAC31400972238 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };

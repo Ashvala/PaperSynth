@@ -14,7 +14,7 @@ class Router {
     let RootController: RootViewController
     
     init() {
-        self.appRootViewController = RootController()
+        self.RootController = RootViewController()
     }
     
     func showFirstViewController() {
@@ -23,7 +23,7 @@ class Router {
     
     func showLandingPage() {
         let landingView = UIStoryboard(name: String(describing: LandingViewController.self), bundle: nil).instantiateInitialViewController() as! LandingViewController
-        appRootViewController.set(viewController: landingView)
+        RootController.set(viewController: landingView)
     }
 }
 
