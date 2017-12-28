@@ -13,7 +13,7 @@ import AudioKitUI
 
 
 
-class AudioView{
+class AudioView: UIViewController{
     
     var widgetList:[String]
     var obj_list:[AnyObject]
@@ -119,19 +119,27 @@ class AudioView{
     }
     
     
+    override func viewDidLoad() {
+        print("oh, here we are!")
+    }
+    
     init(widgetNames:[String]){
         self.widgetList = widgetNames
         self.obj_list = []
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func renderView()-> UIView{
         let view_size = UIScreen.main.bounds
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: view_size.width, height: view_size.height))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: view_size.width, height: view_size.height))  
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(blurEffectView)
+        self.view.addSubview(blurEffectView)
         self.createObjects()
         self.compileModel()
         self.setupUI(view: view)
@@ -285,7 +293,7 @@ class AudioView{
             }
         }
         
-        view.addSubview(stackView)
+        self.view.addSubview(stackView)
         stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
         stackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.9).isActive = true
         
