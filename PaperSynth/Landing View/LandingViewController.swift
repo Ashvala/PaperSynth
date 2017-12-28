@@ -130,7 +130,7 @@ class LandingViewController: UIViewController, UIImagePickerControllerDelegate, 
      */
 
     @objc func handleTap() {
-        if showing == false {
+        if self.showing == false {
             let components = detectedText.text!.components(separatedBy: " ")
             print("Components: \(components)")
             let filteredComponents = components.filter { $0 != "" }
@@ -142,7 +142,7 @@ class LandingViewController: UIViewController, UIImagePickerControllerDelegate, 
             let view = AudioView(widgetNames: parsedWords)
             let nV = view.renderView()
             self.view.addSubview(nV)
-            showing = true
+            self.showing = true
         } else {
             print(view.subviews)
         }
