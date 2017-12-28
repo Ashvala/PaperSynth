@@ -6,11 +6,11 @@
 //  Copyright © 2017 Ashvala Vinay. All rights reserved.
 //
 
-import UIKit
-import CoreML
-import Vision
 import AVFoundation
+import CoreML
 import Photos
+import UIKit
+import Vision
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     /**
@@ -19,52 +19,52 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override var prefersStatusBarHidden: Bool {
         return true
     }
-    
-    func configureButton(){
+
+    func configureButton() {
         imageButt.layer.cornerRadius = 0.5 * imageButt.bounds.size.width
         imageButt.layer.masksToBounds = true
         imageButt.clipsToBounds = true
     }
+
     override func viewDidLayoutSubviews() {
         configureButton()
     }
 
-    //MARK:  Storyboard Outlets
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var detectedText: UILabel!
-    @IBOutlet weak var imageButt: UIButton!
-    @IBOutlet weak var lastGallImage: UIImageView!
-    
-   
-    
-    //MARK:  Mutables
-    
+    // MARK: Storyboard Outlets
+
+    @IBOutlet var imageView: UIImageView!
+    @IBOutlet var detectedText: UILabel!
+    @IBOutlet var imageButt: UIButton!
+    @IBOutlet var lastGallImage: UIImageView!
+
+    // MARK: Mutables
+
     var model: VNCoreMLModel!
     var textMetadata = [Int: [Int: String]]()
     var showing = false
-    
-    //MARK: Immutables
+
+    // MARK: Immutables
+
     let photoOutput = AVCapturePhotoOutput()
     let session = AVCaptureSession()
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.startLiveVideo()
+        startLiveVideo()
         loadModel()
-        
+
         // set last image:
         let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
-        
+
         let fetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
-        
+
         let last = fetchResult.lastObject
-        
+
         if let lastAsset = last {
             let options = PHImageRequestOptions()
             options.version = .current
-            
+
             PHImageManager.default().requestImage(
                 for: lastAsset,
                 targetSize: lastGallImage.bounds.size,
@@ -72,44 +72,43 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 options: options,
                 resultHandler: { image, _ in
                     self.lastGallImage.image = image
-            }
+                }
             )
         }
         // Add a two finger tap recognizer to run when you are ready to roll.
-        
-        let twoFingerTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
+
+        let twoFingerTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         twoFingerTapRecognizer.numberOfTouchesRequired = 2
         view.addGestureRecognizer(twoFingerTapRecognizer)
-        
     }
-    
+
     /**
      Load a core ML Model
-    */
-    
+     */
+
     private func loadModel() {
         model = try? VNCoreMLModel(for: chars74k5().model)
     }
-    
+
     /**
- 
-    Configure session!
-     
-    */
+
+     Configure session!
+
+     */
     func startLiveVideo() {
         // this generates the session
         session.sessionPreset = AVCaptureSession.Preset.photo
         let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
-        
-        //IO
+
+        // IO
         let deviceInput = try! AVCaptureDeviceInput(device: captureDevice!)
         let deviceOutput = AVCaptureVideoDataOutput()
         deviceOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)]
         deviceOutput.setSampleBufferDelegate(self, queue: DispatchQueue.global(qos: DispatchQoS.QoSClass.default))
         session.addInput(deviceInput)
         session.addOutput(deviceOutput)
-        
-        //render this out.
+
+        // render this out.
         let imageLayer = AVCaptureVideoPreviewLayer(session: session)
         imageLayer.videoGravity = .resizeAspectFill
         imageLayer.connection?.videoOrientation = .portrait
@@ -117,7 +116,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imageView.layer.addSublayer(imageLayer)
 
         // Add an output. Like, a photo output?
-        
+
         if session.canAddOutput(photoOutput) {
             session.addOutput(photoOutput)
             photoOutput.isHighResolutionCaptureEnabled = true
@@ -129,101 +128,97 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         session.commitConfiguration()
         session.startRunning()
     }
-    
-    
+
     // MARK: Interactions
-    
+
     /**
      Handle a tap. The old school way.
      */
-    
-    @objc func handleTap(){
-        if showing == false{
-            let components = self.detectedText.text!.components(separatedBy: " ")
+
+    @objc func handleTap() {
+        if showing == false {
+            let components = detectedText.text!.components(separatedBy: " ")
             print("Components: \(components)")
-            let filteredComponents = components.filter{$0 != ""}
-            let parsedWords = filteredComponents.map{
-                TextCleaner(text:$0).ReturnLevens()
+            let filteredComponents = components.filter { $0 != "" }
+            let parsedWords = filteredComponents.map {
+                TextCleaner(text: $0).ReturnLevens()
             }
             print(parsedWords)
-            self.detectedText.text = parsedWords.joined(separator: " ")
+            detectedText.text = parsedWords.joined(separator: " ")
             let view = AudioView(widgetNames: parsedWords)
             let nV = view.renderView()
             self.view.addSubview(nV)
             showing = true
-        }else{
-            print(self.view.subviews)
+        } else {
+            print(view.subviews)
         }
     }
-    
+
     /**
      Click on the camera button in the app to trigger this.
      */
-    
-    @IBAction func pickImageClicked(_ sender: UIButton) {
+
+    @IBAction func pickImageClicked(_: UIButton) {
         print("save the contents of ImageView to UIImage and process")
         clearOldData()
         let photoSettings = AVCapturePhotoSettings()
-        photoSettings.isHighResolutionPhotoEnabled = true    
+        photoSettings.isHighResolutionPhotoEnabled = true
         photoOutput.capturePhoto(with: photoSettings, delegate: self)
-        
-    
     }
-    
+
     /**
      This is when the Gallery button is clicked.
      */
-    
-    @IBAction func galleryImageClicked(_ sender: Any) {
-        self.showImagePicker(withType: .photoLibrary)
+
+    @IBAction func galleryImageClicked(_: Any) {
+        showImagePicker(withType: .photoLibrary)
     }
-    
+
     /**
      Show the image picker. This would work with camera and gallery.
-     
+
      The camera image picker has since gone onto greener pastures.
      */
-    
+
     func showImagePicker(withType type: UIImagePickerControllerSourceType) {
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         pickerController.sourceType = type
         present(pickerController, animated: true)
     }
-    
+
     /**
      This will fix the orientation of the image, send it to the Vision CoreML parser.
      */
-    
-    func imagePickerController(_ picker: UIImagePickerController,
-                               didFinishPickingMediaWithInfo info: [String : Any]) {
+
+    func imagePickerController(_: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [String: Any]) {
         dismiss(animated: true)
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
             fatalError("Couldn't load image")
         }
         let newImage = fixOrientation(image: image)
-        self.imageView.image = newImage
+        imageView.image = newImage
         clearOldData()
         DispatchQueue.global(qos: .userInteractive).async {
             self.detectText(image: newImage)
         }
     }
-    
-    
+
     // MARK: text detection
-    
+
     func detectText(image: UIImage) {
         let convertedImage = image |> adjustColors |> convertToGrayscale
         let handler = VNImageRequestHandler(cgImage: convertedImage.cgImage!)
         let request: VNDetectTextRectanglesRequest =
-            VNDetectTextRectanglesRequest(completionHandler: { [unowned self] (request, error) in
-                if (error != nil) {
+            VNDetectTextRectanglesRequest(completionHandler: { [unowned self] request, error in
+                if error != nil {
                     print("Got Error In Run Text Dectect Request :(")
                 } else {
                     guard let results = request.results as? Array<VNTextObservation> else {
                         fatalError("Unexpected result type from VNDetectTextRectanglesRequest")
                     }
-                    if (results.count == 0) {
+                    if results.count == 0 {
                         self.handleEmptyResults()
                         return
                     }
@@ -251,25 +246,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             print(error)
         }
     }
-    
+
     func handleEmptyResults() {
         DispatchQueue.main.async {
             self.detectedText.text = "The image does not contain any text."
         }
-        
     }
-    
+
     func classifyImage(image: UIImage, wordNumber: Int, characterNumber: Int) {
-        let request = VNCoreMLRequest(model: model) { [weak self] request, error in
+        let request = VNCoreMLRequest(model: model) { [weak self] request, _ in
             guard let results = request.results as? [VNClassificationObservation],
                 let topResult = results.first else {
-                    fatalError("Unexpected result type from VNCoreMLRequest")
+                fatalError("Unexpected result type from VNCoreMLRequest")
             }
             let result = topResult.identifier
             print(result)
-            let classificationInfo: [String: Any] = ["wordNumber" : wordNumber,
-                                                     "characterNumber" : characterNumber,
-                                                     "class" : result]
+            let classificationInfo: [String: Any] = [
+                "wordNumber": wordNumber,
+                "characterNumber": characterNumber,
+                "class": result,
+            ]
             self?.handleResult(classificationInfo)
         }
         guard let ciImage = CIImage(image: image) else {
@@ -279,13 +275,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         DispatchQueue.global(qos: .userInteractive).async {
             do {
                 try handler.perform([request])
-            }
-            catch {
+            } catch {
                 print(error)
             }
         }
     }
-    
+
     func handleResult(_ result: [String: Any]) {
         objc_sync_enter(self)
         guard let wordNumber = result["wordNumber"] as? Int else {
@@ -297,7 +292,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         guard let characterClass = result["class"] as? String else {
             return
         }
-        if (textMetadata[wordNumber] == nil) {
+        if textMetadata[wordNumber] == nil {
             let tmp: [Int: String] = [characterNumber: characterClass]
             textMetadata[wordNumber] = tmp
         } else {
@@ -310,21 +305,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             self.showDetectedText()
         }
     }
-    
+
     func showDetectedText() {
         var result: String = ""
-        if (textMetadata.isEmpty) {
+        if textMetadata.isEmpty {
             detectedText.text = "The image does not contain any text."
             return
         }
         let sortedKeys = textMetadata.keys.sorted()
         for sortedKey in sortedKeys {
-            result +=  word(fromDictionary: textMetadata[sortedKey]!) + " "
+            result += word(fromDictionary: textMetadata[sortedKey]!) + " "
         }
         detectedText.text = result
     }
-    
-    func word(fromDictionary dictionary: [Int : String]) -> String {
+
+    func word(fromDictionary dictionary: [Int: String]) -> String {
         let sortedKeys = dictionary.keys.sorted()
         var word: String = ""
         for sortedKey in sortedKeys {
@@ -333,35 +328,30 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         return word
     }
-    
+
     private func clearOldData() {
         detectedText.text = ""
         textMetadata = [:]
     }
-    
-
- 
-    
 }
 
 // MARK: Delegate extensions
 
 extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate, AVCapturePhotoCaptureDelegate {
-    
-    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+
+    func captureOutput(_: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from _: AVCaptureConnection) {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             return
         }
-        
-        var requestOptions:[VNImageOption : Any] = [:]
-        
+
+        var requestOptions: [VNImageOption: Any] = [:]
+
         if let camData = CMGetAttachment(sampleBuffer, kCMSampleBufferAttachmentKey_CameraIntrinsicMatrix, nil) {
-            requestOptions = [.cameraIntrinsics:camData]
+            requestOptions = [.cameraIntrinsics: camData]
         }
-        
     }
-    
-    public func photoOutput(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?){
+
+    public func photoOutput(_: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings _: AVCaptureResolvedPhotoSettings, bracketSettings _: AVCaptureBracketedStillImageSettings?, error: Error?) {
         print("yay?!?!?!")
         if let error = error {
             print("Error capturing photo: \(error)")
@@ -369,22 +359,19 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptur
             print("ok, should be here?")
 
             let sampleBuffer = photoSampleBuffer
-            
-            if sampleBuffer != nil{
+
+            if sampleBuffer != nil {
                 let ImageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: sampleBuffer!, previewPhotoSampleBuffer: previewPhotoSampleBuffer)
                 let dataProvider = CGDataProvider(data: ImageData! as CFData)
                 let cgImageRef = CGImage(jpegDataProviderSource: dataProvider!, decode: nil, shouldInterpolate: true, intent: .defaultIntent)
-                let image = UIImage.init(cgImage: cgImageRef!, scale: 1.0, orientation: .right)
+                let image = UIImage(cgImage: cgImageRef!, scale: 1.0, orientation: .right)
                 UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
                 let newImage = fixOrientation(image: image)
                 DispatchQueue.global(qos: .userInteractive).async {
-                UIImageWriteToSavedPhotosAlbum(newImage, nil, nil, nil)
-                        self.detectText(image: newImage)
-                    
+                    UIImageWriteToSavedPhotosAlbum(newImage, nil, nil, nil)
+                    self.detectText(image: newImage)
                 }
             }
         }
     }
-
 }
-
