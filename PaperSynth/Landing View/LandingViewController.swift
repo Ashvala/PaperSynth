@@ -12,14 +12,9 @@ import Photos
 import UIKit
 import Vision
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    /**
-     Make sure the status bar is hidden.
-     */
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-
+class LandingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+ 
     func configureButton() {
         imageButt.layer.cornerRadius = 0.5 * imageButt.bounds.size.width
         imageButt.layer.masksToBounds = true
@@ -337,7 +332,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
 // MARK: Delegate extensions
 
-extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate, AVCapturePhotoCaptureDelegate {
+extension LandingViewController: AVCaptureVideoDataOutputSampleBufferDelegate, AVCapturePhotoCaptureDelegate {
 
     func captureOutput(_: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from _: AVCaptureConnection) {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {

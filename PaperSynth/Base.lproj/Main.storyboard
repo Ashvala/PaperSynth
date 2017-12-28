@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13770" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13770" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,102 +9,21 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="AvenirNext.ttc">
-            <string>AvenirNext-Regular</string>
-        </array>
-        <array key="Menlo.ttc">
-            <string>Menlo-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <scene sceneID="f1X-jh-iXF">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PaperSynth" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController id="32R-i6-I2f" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UU8-HF-7lh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8DC-eJ-ss1">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9X-Ux-u1v">
-                                <rect key="frame" x="16" y="552" width="70" height="99"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="19"/>
-                                <state key="normal">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="galleryImageClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Frd-Yn-fjw"/>
-                                    <action selector="pickImageClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kuO-Rz-ahB"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="unI-gi-JAb" userLabel="GalleryImage">
-                                <rect key="frame" x="21" y="557" width="60" height="90"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggz-wo-CTK">
-                                <rect key="frame" x="16" y="477" width="343" height="67"/>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8j1-YI-qBH">
-                                <rect key="frame" x="155" y="569" width="65" height="65"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.18100792253521128" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="65" id="2Yo-2F-Q4R"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                <state key="normal" image="Image">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="pickImageClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="R5h-Tp-Dy4"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="8j1-YI-qBH" firstAttribute="centerX" secondItem="ggz-wo-CTK" secondAttribute="centerX" id="2nm-6i-gi7"/>
-                            <constraint firstItem="8DC-eJ-ss1" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="3hz-vx-ZUy"/>
-                            <constraint firstItem="unI-gi-JAb" firstAttribute="bottom" secondItem="8j1-YI-qBH" secondAttribute="bottom" constant="13" id="4g7-MV-4We"/>
-                            <constraint firstAttribute="trailing" secondItem="8DC-eJ-ss1" secondAttribute="trailing" id="6he-rf-q70"/>
-                            <constraint firstItem="N9X-Ux-u1v" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="8B1-cb-I1M"/>
-                            <constraint firstItem="N9X-Ux-u1v" firstAttribute="centerX" secondItem="unI-gi-JAb" secondAttribute="centerX" id="BVI-tg-zPk"/>
-                            <constraint firstItem="N9X-Ux-u1v" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="532" id="MLX-Ts-aGL"/>
-                            <constraint firstItem="8j1-YI-qBH" firstAttribute="top" secondItem="ggz-wo-CTK" secondAttribute="bottom" constant="25" id="PjE-u8-9zt"/>
-                            <constraint firstItem="ggz-wo-CTK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="457" id="Yiy-iy-GfP"/>
-                            <constraint firstItem="unI-gi-JAb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="537" id="imo-BT-Y1T"/>
-                            <constraint firstItem="8j1-YI-qBH" firstAttribute="leading" secondItem="N9X-Ux-u1v" secondAttribute="trailing" constant="69" id="itW-01-9zR"/>
-                            <constraint firstItem="8j1-YI-qBH" firstAttribute="centerX" secondItem="8DC-eJ-ss1" secondAttribute="centerX" id="kaJ-sT-DyY"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8j1-YI-qBH" secondAttribute="trailing" constant="155" id="oJL-rC-lKS"/>
-                            <constraint firstItem="unI-gi-JAb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="21" id="pHd-fZ-jdM"/>
-                            <constraint firstAttribute="bottom" secondItem="8j1-YI-qBH" secondAttribute="bottom" constant="33" id="q6V-Rf-mUH"/>
-                            <constraint firstItem="ggz-wo-CTK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="quL-CF-csF"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="N9X-Ux-u1v" secondAttribute="bottom" constant="16" id="utz-EA-Xnn"/>
-                            <constraint firstItem="8DC-eJ-ss1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="yS9-Mz-b3w"/>
-                            <constraint firstItem="8DC-eJ-ss1" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="z8Y-Vt-LXa"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="r3R-5K-1rI"/>
                     </view>
-                    <connections>
-                        <outlet property="detectedText" destination="ggz-wo-CTK" id="PdJ-51-rSf"/>
-                        <outlet property="imageButt" destination="8j1-YI-qBH" id="6PW-oM-0LG"/>
-                        <outlet property="imageView" destination="8DC-eJ-ss1" id="akK-Py-FK1"/>
-                        <outlet property="lastGallImage" destination="unI-gi-JAb" id="F2a-ej-fFo"/>
-                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kZ1-OE-Hf4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
+            <point key="canvasLocation" x="-533" y="111"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Image" width="32" height="27"/>
-    </resources>
 </document>

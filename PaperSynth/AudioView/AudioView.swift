@@ -1,17 +1,9 @@
-//
-//  AudioView.swift
-//  PaperSynth
-//
-//  Created by Ashvala Vinay on 12/9/17.
-//  Copyright © 2017 Ashvala Vinay. All rights reserved.
-//
-
 import AudioKit
 import AudioKitUI
 import Foundation
 import UIKit
 
-class AudioView: UIViewController {
+class AudioView {
 
     var widgetList: [String]
     var obj_list: [AnyObject]
@@ -114,18 +106,10 @@ class AudioView: UIViewController {
         generator.start()
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print("oh, here we are!")
-    }
-
+  
     init(widgetNames: [String]) {
         widgetList = widgetNames
         obj_list = []
-    }
-
-    required init?(coder _: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 
     func renderView() -> UIView {
@@ -135,7 +119,7 @@ class AudioView: UIViewController {
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.view.addSubview(blurEffectView)
+        view.addSubview(blurEffectView)
         createObjects()
         compileModel()
         setupUI(view: view)
@@ -288,7 +272,7 @@ class AudioView: UIViewController {
             }
         }
 
-        self.view.addSubview(stackView)
+        view.addSubview(stackView)
         stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
         stackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.9).isActive = true
 
