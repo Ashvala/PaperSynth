@@ -127,8 +127,11 @@ class AudioView{
     func renderView()-> UIView{
         let view_size = UIScreen.main.bounds
         let view = UIView(frame: CGRect(x: 0, y: 0, width: view_size.width, height: view_size.height))
-        view.backgroundColor = .black
-        view.alpha = 0.7
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(blurEffectView)
         self.createObjects()
         self.compileModel()
         self.setupUI(view: view)
@@ -136,6 +139,7 @@ class AudioView{
     }
     
     func setupUI(view: UIView){
+        // Create a stack view.
         
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -144,12 +148,14 @@ class AudioView{
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = 10
 
+        // Create title label, which contains the signal path.
         let titleLabel = UILabel()
         titleLabel.text = widgetList.joined(separator: "->")
         titleLabel.font = UIFont(name: "Menlo", size: 18.0)
         titleLabel.textColor = .white
         stackView.addArrangedSubview(titleLabel)
         
+        // Oscillator
         if (type(of: self.obj_list[0]) == AKOscillator.self){
             let Label = UILabel()
             Label.text = "Oscillator"
@@ -157,6 +163,7 @@ class AudioView{
             stackView.addArrangedSubview(Label)
             Label.textColor = .white
             let oscil = self.obj_list[0] as! AKOscillator
+            
             stackView.addArrangedSubview(AKSlider(
                 property: "Frequency",
                 value: oscil.frequency,
@@ -164,8 +171,16 @@ class AudioView{
                 format: "%f Hz") { sliderValue in
                     oscil.frequency = sliderValue
             })
+            stackView.addArrangedSubview(AKSlider(
+                property: "Amplitude",
+                value: oscil.amplitude,
+                range: 0.0...1.0,
+                format: "%f Hz") { sliderValue in
+                    oscil.amplitude = sliderValue
+            })
         }
         
+        // Microphone
         if (type(of: self.obj_list[0]) == AKMicrophone.self){
             let Label = UILabel()
             Label.text = "Microphone Input"
@@ -183,51 +198,67 @@ class AudioView{
                 Label.font = UIFont(name: "Avenir", size: 14.0)
                 Label.textColor = .white
                 stackView.addArrangedSubview(Label)
+                let nstackView = UIStackView()
+                nstackView.axis = .horizontal
+                nstackView.distribution = .fillEqually
+                nstackView.alignment = .fill
+                nstackView.translatesAutoresizingMaskIntoConstraints = false
+                nstackView.spacing = 10
+                
                 let eq_obj = (curr_obj as! AKEqualizerFilter)
-                stackView.addArrangedSubview(AKSlider(
-                    property: "Center frequency",
+                nstackView.addArrangedSubview(AKRotaryKnob(
+                    property: "Frequency",
                     value: eq_obj.centerFrequency,
                     range: 20.0...22000.0,
                     format:"%f Hz"){rotaryValue in
                         eq_obj.centerFrequency = rotaryValue
                 })
-                stackView.addArrangedSubview(AKSlider(
-                    property: "gain",
+                nstackView.addArrangedSubview(AKRotaryKnob(
+                    property: "Gain",
                     value: eq_obj.gain,
                     range: -12.0...12.0,
                     format:"%f dB"){rotaryValue in
                         eq_obj.gain = rotaryValue
                 })
-                stackView.addArrangedSubview(AKSlider(
+                nstackView.addArrangedSubview(AKRotaryKnob(
                     property: "Bandwidth",
                     value: eq_obj.bandwidth,
                     range: 10.0...100.0,
                     format:"%f"){rotaryValue in
                         eq_obj.bandwidth = rotaryValue
                 })
+                stackView.addArrangedSubview(nstackView)
+                
             }
             
             if (type(of:curr_obj) == AKDelay.self){
                 let Label = UILabel()
                 Label.text = "Delay"
-                Label.font = UIFont(name: "Avenir", size: 14.0)
+                Label.font = UIFont(name: "Avenir", size: 13.0)
                 Label.textColor = .white
-                stackView.addArrangedSubview(Label)
+                let nstackView = UIStackView()
+                nstackView.axis = .horizontal
+                nstackView.distribution = .fillEqually
+                nstackView.alignment = .fill
+                nstackView.translatesAutoresizingMaskIntoConstraints = false
+                nstackView.spacing = 10
+                nstackView.addArrangedSubview(Label)
                 let delay_obj = (curr_obj as! AKDelay)
-                stackView.addArrangedSubview(AKRotaryKnob(
-                    property: "delay mix",
+                nstackView.addArrangedSubview(AKRotaryKnob(
+                    property: "Mix",
                     value: delay_obj.dryWetMix,
                     range: 0.0...1.0,
                     format:"%f%"){rotaryValue in
                         delay_obj.dryWetMix = rotaryValue
                 })
-                stackView.addArrangedSubview(AKRotaryKnob(
-                    property: "delayTime",
+                nstackView.addArrangedSubview(AKRotaryKnob(
+                    property: "Time",
                     value: delay_obj.time,
                     range: 1...1.5,
                     format:"%f seconds"){rotaryValue in
                         delay_obj.time = rotaryValue
                 })
+                stackView.addArrangedSubview(nstackView)
             }
             
             if (type(of:curr_obj) == AKCostelloReverb.self){
@@ -238,7 +269,7 @@ class AudioView{
                 stackView.addArrangedSubview(Label)
                 let reverb_obj = (curr_obj as! AKCostelloReverb)
                 stackView.addArrangedSubview(AKSlider(
-                    property: "Cutoff frequency",
+                    property: "Cutoff",
                     value: reverb_obj.cutoffFrequency,
                     range: 0.0...22000.0,
                     format:"%f Hz"){rotaryValue in
