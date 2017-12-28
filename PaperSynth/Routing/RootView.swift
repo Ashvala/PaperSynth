@@ -10,18 +10,17 @@
 import Foundation
 import UIKit
 
-
 class RootViewController: UIViewController {
-    
+
     /**
      Make sure the status bar is hidden.
      */
-    
+
     override var prefersStatusBarHidden: Bool {
         return true
     }
 
-    func set(viewController: UIViewController, completion: (() -> ())? = nil) {
+    func set(viewController: UIViewController, completion: (() -> Void)? = nil) {
 
         if let childViewController = self.childViewControllers.first {
             childViewController.willMove(toParentViewController: nil)
@@ -33,28 +32,27 @@ class RootViewController: UIViewController {
         view.addSubview(viewController.view)
         viewController.view.frame = view.frame
         viewController.didMove(toParentViewController: self)
-        self.viewController = viewController    
+        self.viewController = viewController
         completion?()
     }
-    
+
     private var viewController: UIViewController!
-    
+
     init() {
         super.init(nibName: nil, bundle: nil)
         definesPresentationContext = true
     }
-    
-    required init?(coder aDecoder: NSCoder) {
+
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.frame = UIScreen.main.bounds
     }
-    
+
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return self.viewController.supportedInterfaceOrientations
+        return viewController.supportedInterfaceOrientations
     }
-    
 }

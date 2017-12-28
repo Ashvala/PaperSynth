@@ -106,7 +106,6 @@ class AudioView {
         generator.start()
     }
 
-  
     init(widgetNames: [String]) {
         widgetList = widgetNames
         obj_list = []

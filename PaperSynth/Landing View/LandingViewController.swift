@@ -13,8 +13,7 @@ import UIKit
 import Vision
 
 class LandingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
- 
+
     func configureButton() {
         imageButt.layer.cornerRadius = 0.5 * imageButt.bounds.size.width
         imageButt.layer.masksToBounds = true

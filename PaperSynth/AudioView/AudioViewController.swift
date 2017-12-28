@@ -14,17 +14,18 @@ class AudioViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-    init(widgetNames:[String]){
+
+    init(widgetNames: [String]) {
         self.widgetNames = widgetNames
         super.init(nibName: nil, bundle: nil)
     }
-    
-    required init?(coder aDecoder: NSCoder) {
+
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 }
