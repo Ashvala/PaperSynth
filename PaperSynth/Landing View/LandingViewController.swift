@@ -93,7 +93,6 @@ class LandingViewController: UIViewController, UIImagePickerControllerDelegate, 
         // this generates the session
         session.sessionPreset = AVCaptureSession.Preset.photo
         let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
-        print(captureDevice)
         // IO
         if captureDevice != nil {
             let deviceInput = try! AVCaptureDeviceInput(device: captureDevice!)
@@ -144,6 +143,7 @@ class LandingViewController: UIViewController, UIImagePickerControllerDelegate, 
             }
             print(parsedWords)
             detectedText.text = parsedWords.joined(separator: " ")
+
             let view = AudioView(widgetNames: parsedWords)
             let nV = view.renderView()
             self.view.addSubview(nV)

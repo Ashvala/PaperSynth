@@ -129,8 +129,7 @@
 				C206AB8C1FF513E4008EE364 /* Router.swift */,
 				C206AB911FF514B3008EE364 /* RootView.swift */,
 			);
-			name = Routing;
-			path = "New Group";
+			path = Routing;
 			sourceTree = "<group>";
 		};
 		C206AB8F1FF51424008EE364 /* Landing View */ = {

@@ -46,8 +46,8 @@ class AudioView {
         // Oscillator
         if type(of: obj_list[0]) == AKOscillator.self {
             let returnedView = AudioBubble().oscBubble(oscil: obj_list[0] as! AKOscillator)
-            returnedView.frame.size.width = 314
-            returnedView.frame.size.height = 314
+            returnedView.frame.size.width = 157
+            returnedView.frame.size.height = 157
             stackView.addArrangedSubview(returnedView)
         }
 
@@ -62,7 +62,7 @@ class AudioView {
 
 //        for i in 1 ... (obj_list.count - 1) {
 //            let curr_obj = obj_list[i]
-//
+        //
 //            if type(of: curr_obj) == AKEqualizerFilter.self {
 //                let Label = UILabel()
 //                Label.text = "Equalizer"
@@ -75,7 +75,7 @@ class AudioView {
 //                nstackView.alignment = .fill
 //                nstackView.translatesAutoresizingMaskIntoConstraints = false
 //                nstackView.spacing = 10
-//
+        //
 //                let eq_obj = (curr_obj as! AKEqualizerFilter)
 //                nstackView.addArrangedSubview(AKRotaryKnob(
 //                    property: "Frequency",
@@ -100,7 +100,7 @@ class AudioView {
 //                })
 //                stackView.addArrangedSubview(nstackView)
 //            }
-//
+        //
 //            if type(of: curr_obj) == AKDelay.self {
 //                let Label = UILabel()
 //                Label.text = "Delay"
@@ -130,7 +130,7 @@ class AudioView {
 //                })
 //                stackView.addArrangedSubview(nstackView)
 //            }
-//
+        //
 //            if type(of: curr_obj) == AKCostelloReverb.self {
 //                let Label = UILabel()
 //                Label.text = "Reverb"
