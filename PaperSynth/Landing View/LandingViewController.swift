@@ -122,7 +122,7 @@ class LandingViewController: UIViewController, UIImagePickerControllerDelegate, 
             }
             session.commitConfiguration()
             session.startRunning()
-            
+
         } else {
             return
         }

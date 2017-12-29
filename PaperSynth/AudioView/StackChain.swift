@@ -6,18 +6,18 @@ import UIKit
 class StackChain {
 
     func constructOscil() -> AKOscillator {
-        
+
         let oscil = AKOscillator()
         oscil.frequency = 440.0
         oscil.amplitude = 1.0
         return oscil
     }
-    
+
     func constructMic() -> AKMicrophone {
         let microphone = AKMicrophone()
         return microphone
     }
-    
+
     func constructADSR() -> AKAmplitudeEnvelope {
         let ADSR = AKAmplitudeEnvelope()
         ADSR.attackDuration = 1
@@ -26,26 +26,26 @@ class StackChain {
         ADSR.releaseDuration = 100
         return ADSR
     }
-    
+
     func constructDelay() -> AKDelay {
         let delay = AKDelay()
         delay.dryWetMix = 0.66
         return delay
     }
-    
+
     func constructReverb() -> AKCostelloReverb {
         let reverb = AKCostelloReverb()
         reverb.feedback = 0.66
         return reverb
     }
-    
+
     func constructParaEQ() -> AKEqualizerFilter {
         let eq = AKEqualizerFilter()
         eq.centerFrequency = 300.0
         eq.gain = 2.0
         return eq
     }
-    
+
     func createObjects(widgetList: [String]) -> [AnyObject] {
         // From this point onwards, we assume that the first point in any list is just a node and everything else is an output.
         var NodesList: [AnyObject] = []
@@ -81,7 +81,7 @@ class StackChain {
         }
         return NodesList
     }
-    
+
     func compileModel(NodesList: [AnyObject]) {
         var obj_list = NodesList
         obj_list.append(AKMixer())
@@ -102,4 +102,3 @@ class StackChain {
         generator.start()
     }
 }
-
