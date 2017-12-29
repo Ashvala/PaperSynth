@@ -11,6 +11,8 @@
 		C206AB8D1FF513E4008EE364 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206AB8C1FF513E4008EE364 /* Router.swift */; };
 		C206AB921FF514B3008EE364 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206AB911FF514B3008EE364 /* RootView.swift */; };
 		C206AB941FF516B2008EE364 /* LandingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C206AB931FF516B2008EE364 /* LandingViewController.storyboard */; };
+		C206AB981FF6440C008EE364 /* StackChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206AB971FF6440C008EE364 /* StackChain.swift */; };
+		C206AB9A1FF64A8A008EE364 /* AudioBubbles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206AB991FF64A8A008EE364 /* AudioBubbles.swift */; };
 		C23FCFD01FDAC31400972238 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FCFCF1FDAC31400972238 /* AppDelegate.swift */; };
 		C23FCFD21FDAC31400972238 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FCFD11FDAC31400972238 /* LandingViewController.swift */; };
 		C23FCFD51FDAC31400972238 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C23FCFD31FDAC31400972238 /* Main.storyboard */; };
@@ -68,6 +70,8 @@
 		C206AB8C1FF513E4008EE364 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Router.swift; path = ../Routing/Router.swift; sourceTree = "<group>"; };
 		C206AB911FF514B3008EE364 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RootView.swift; path = ../Routing/RootView.swift; sourceTree = "<group>"; };
 		C206AB931FF516B2008EE364 /* LandingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LandingViewController.storyboard; sourceTree = "<group>"; };
+		C206AB971FF6440C008EE364 /* StackChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackChain.swift; sourceTree = "<group>"; };
+		C206AB991FF64A8A008EE364 /* AudioBubbles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBubbles.swift; sourceTree = "<group>"; };
 		C23FCFCC1FDAC31400972238 /* PaperSynth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperSynth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23FCFCF1FDAC31400972238 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C23FCFD11FDAC31400972238 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +149,8 @@
 			isa = PBXGroup;
 			children = (
 				C23FD0071FDBFEDB00972238 /* AudioView.swift */,
+				C206AB991FF64A8A008EE364 /* AudioBubbles.swift */,
+				C206AB971FF6440C008EE364 /* StackChain.swift */,
 				C206AB8A1FF511EE008EE364 /* AudioViewController.swift */,
 			);
 			path = AudioView;
@@ -363,6 +369,7 @@
 			files = (
 				C23FCFD21FDAC31400972238 /* LandingViewController.swift in Sources */,
 				C23FD0061FDBF3EB00972238 /* Levenshtein.swift in Sources */,
+				C206AB981FF6440C008EE364 /* StackChain.swift in Sources */,
 				C23FD0001FDAC36F00972238 /* chars74k5.mlmodel in Sources */,
 				C23FCFD01FDAC31400972238 /* AppDelegate.swift in Sources */,
 				C206AB921FF514B3008EE364 /* RootView.swift in Sources */,
@@ -370,6 +377,7 @@
 				C206AB8B1FF511EE008EE364 /* AudioViewController.swift in Sources */,
 				C23FCFFE1FDAC33C00972238 /* ImageUtils.swift in Sources */,
 				C206AB8D1FF513E4008EE364 /* Router.swift in Sources */,
+				C206AB9A1FF64A8A008EE364 /* AudioBubbles.swift in Sources */,
 				C23FD0081FDBFEDB00972238 /* AudioView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
