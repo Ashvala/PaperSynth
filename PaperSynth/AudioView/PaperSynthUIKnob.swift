@@ -19,7 +19,7 @@ public enum PSRotaryKnobStyle {
 @IBDesignable open class PSRotaryKnob: AKView {
     
     // Default margin size
-    static var marginSize: CGFloat = 30.0
+    static var marginSize: CGFloat = 10.0
     
     // Indicator point radius
     static var indicatorPointRadius: CGFloat = 3.0
@@ -94,10 +94,10 @@ public enum PSRotaryKnobStyle {
     @IBInspectable open var bubbleFontSize: CGFloat = 12
     
     // Slider style. Curvature is a value between -1.0 and 1.0, where 0.0 indicates no curves
-    open var knobStyle: PSRotaryKnobStyle = PSRotaryKnobStyle.polygon(numberOfSides: 9, curvature: 0.0)
+    open var knobStyle: PSRotaryKnobStyle = PSRotaryKnobStyle.round
     
     // Border width
-    @IBInspectable open var knobBorderWidth: CGFloat = 8.0
+    @IBInspectable open var knobBorderWidth: CGFloat = 1.0
     
     // Value bubble border width
     @IBInspectable open var valueBubbleBorderWidth: CGFloat = 1.0

@@ -79,6 +79,9 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
         // Dispose of any resources that can be recreated.
     }
     
+    
+    // Needs to be refactored.
+    
     func getKnobs(forObject: AnyObject) -> [PSRotaryKnob]{
         var knobsView: [PSRotaryKnob] = []
         let operatingObject = forObject
