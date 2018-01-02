@@ -113,26 +113,26 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
             let delayed = operatingObject as! AKDelay
 
             let mixKnob = PSRotaryKnob(
-                    property: "Mix",
-                    value: delayed.dryWetMix,
-                    range: 0.0 ... 1.0,
-                    format: "%f Hz") { sliderValue in
+                property: "Mix",
+                value: delayed.dryWetMix,
+                range: 0.0 ... 1.0,
+                format: "%f Hz") { sliderValue in
                 delayed.dryWetMix = sliderValue
             }
 
             let timeKnob = PSRotaryKnob(
-                    property: "Time",
-                    value: delayed.time,
-                    range: 1 ... 4,
-                    format: "%f") { sliderValue in
+                property: "Time",
+                value: delayed.time,
+                range: 1 ... 4,
+                format: "%f") { sliderValue in
                 delayed.time = sliderValue
             }
 
             let feedBackKnob = PSRotaryKnob(
-                    property: "Fdbk",
-                    value: delayed.feedback,
-                    range: 0.0 ... 1.0,
-                    format: "%f") { sliderValue in
+                property: "Fdbk",
+                value: delayed.feedback,
+                range: 0.0 ... 1.0,
+                format: "%f") { sliderValue in
                 delayed.feedback = sliderValue
             }
 
@@ -168,29 +168,28 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
             let eq = operatingObject as! AKEqualizerFilter
 
             let freqKnob = PSRotaryKnob(
-                    property: "Freq",
-                    value: eq.centerFrequency,
-                    range: 20.0 ... 2200.0,
-                    format: "%f Hz") { sliderValue in
+                property: "Freq",
+                value: eq.centerFrequency,
+                range: 20.0 ... 2200.0,
+                format: "%f Hz") { sliderValue in
                 eq.centerFrequency = sliderValue
             }
 
             let timeKnob = PSRotaryKnob(
-                    property: "Gain",
-                    value: eq.gain,
-                    range: 0.0 ... 1.0,
-                    format: "%f") { sliderValue in
+                property: "Gain",
+                value: eq.gain,
+                range: 0.0 ... 1.0,
+                format: "%f") { sliderValue in
                 eq.gain = sliderValue
             }
 
             let feedBackKnob = PSRotaryKnob(
-                    property: "q",
-                    value: eq.bandwidth,
-                    range: 0.0 ... 5.0,
-                    format: "%f") { sliderValue in
+                property: "q",
+                value: eq.bandwidth,
+                range: 0.0 ... 5.0,
+                format: "%f") { sliderValue in
                 eq.bandwidth = sliderValue
             }
-
 
             knobsView.append(freqKnob)
             knobsView.append(feedBackKnob)

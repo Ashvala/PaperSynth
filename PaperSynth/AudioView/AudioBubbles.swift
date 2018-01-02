@@ -12,7 +12,7 @@ import Foundation
 import UIKit
 
 /**
- The audiobubble class handles construction of the control center-esque bubbles for controls
+ The AudioBubble class handles construction of the control center-esque bubbles for controls
  */
 
 class AudioBubble: UICollectionViewCell {
