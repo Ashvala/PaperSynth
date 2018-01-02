@@ -4,7 +4,7 @@
 //
 //  Created by Ashvala Vinay on 1/2/18.
 //  Copyright © 2018 Ashvala Vinay. All rights reserved.
-//
+//  Borrowed and modified from AudioKit's AKRotaryKnob.
 
 import AudioKitUI
 import Foundation
