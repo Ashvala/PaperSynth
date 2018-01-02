@@ -25,4 +25,10 @@ class Router {
         let landingView = UIStoryboard(name: String(describing: LandingViewController.self), bundle: nil).instantiateInitialViewController() as! LandingViewController
         RootController.set(viewController: landingView)
     }
+
+    func showCompiledPage(widgets: [String]) {
+        let audioView = UIStoryboard(name: String(describing: AudioViewController.self), bundle: nil).instantiateInitialViewController() as! AudioViewController
+        audioView.configure(widgetNames: widgets)
+        RootController.set(viewController: audioView)
+    }
 }

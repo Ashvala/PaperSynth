@@ -143,10 +143,25 @@ class LandingViewController: UIViewController, UIImagePickerControllerDelegate, 
             }
             print(parsedWords)
             detectedText.text = parsedWords.joined(separator: " ")
-
-            let view = AudioView(widgetNames: parsedWords)
-            let nV = view.renderView()
-            self.view.addSubview(nV)
+            // this failed me. :(
+//            Router().showCompiledPage(widgets: parsedWords)
+//            var presenterStoryBoard:UIStoryboard = UIStoryboard(name: "MiniAppPanel", bundle: frameworkBundle)
+            //
+//            var vc = presenterStoryBoard.instantiateInitialViewController() as MiniAppPanelViewController
+            //
+//            vc.view.frame = CGRectMake(0, vc.view.frame.size.height - 120, vc.view.frame.size.width, 120)
+            //
+//            publisherViewController.addChildViewController(vc)
+//            publisherViewController.view.addSubview(vc.view)
+            let presentBoard: UIStoryboard = UIStoryboard(name: "AudioViewController", bundle: nil)
+            let vc = presentBoard.instantiateInitialViewController() as! AudioViewController
+            vc.configure(widgetNames: parsedWords)
+            addChildViewController(vc)
+            view.addSubview(vc.view)
+            //
+//            let view = AudioView(widgetNames: parsedWords)
+//            let nV = view.renderView()
+//            self.view.addSubview(nV)
             showing = true
         } else {
             print(view.subviews)

@@ -15,42 +15,25 @@ import UIKit
  The audiobubble class handles construction of the control center-esque bubbles for controls
  */
 
-class AudioBubble {
+class AudioBubble: UICollectionViewCell {
 
-    func oscBubble(oscil: AKOscillator) -> UIView {
-        // Create View
-        let view = UIView()
-        // Create Label
-        let Label = UILabel()
-        Label.text = "Oscillator"
+    var Label: UILabel = {
+        let objLabel = UILabel(frame: CGRect(x: 17, y: 10, width: 123, height: 40))
+        objLabel.font = UIFont(name: "AvenirNext-Bold", size: 14.0)
+        objLabel.textColor = .white
+        objLabel.textAlignment = .left
+        objLabel.lineBreakMode = .byWordWrapping
+        objLabel.numberOfLines = 0
+        return objLabel
+    }()
 
-        // Create the stack view
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        Label.font = UIFont(name: "Avenir", size: 14.0)
-        Label.textColor = .white
+    var stackData: UIStackView!
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(Label)
+    }
 
-        let horizontalStack = UIStackView()
-        horizontalStack.axis = .horizontal
-        horizontalStack.distribution = .fillEqually
-        horizontalStack.alignment = .fill
-        horizontalStack.translatesAutoresizingMaskIntoConstraints = true
-        horizontalStack.addArrangedSubview(Label)
-        let fKnob = AKRotaryKnob(
-            property: "Freq",
-            value: oscil.frequency,
-            range: 220.0 ... 2200.0,
-            format: "%f Hz") { sliderValue in
-            oscil.frequency = sliderValue
-        }
-        fKnob.knobBorderWidth = 2
-        fKnob.indicatorColor = UIColor(red: 51 / 255.0, green: 51 / 255.0, blue: 51 / 255.0, alpha: 1)
-        fKnob.knobBorderColor = UIColor(red: 51 / 255.0, green: 51 / 255.0, blue: 51 / 255.0, alpha: 1)
-        fKnob.knobColor = UIColor(red: 51 / 255.0, green: 51 / 255.0, blue: 51 / 255.0, alpha: 0)
-        fKnob.knobStyle = AKRotaryKnobStyle.round
-        horizontalStack.addArrangedSubview(fKnob)
-        view.addSubview(horizontalStack)
-        view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
-        return view
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

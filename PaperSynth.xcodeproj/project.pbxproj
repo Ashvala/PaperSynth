@@ -31,6 +31,7 @@
 		C2D13B811FDDB75B00574DF1 /* AudioKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */; };
 		C2D13B821FDDB76600574DF1 /* AudioKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */; };
 		C2D13B831FDDB76600574DF1 /* AudioKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C2E224FD1FFB9C630050B370 /* AudioViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2E224FC1FFB9C630050B370 /* AudioViewController.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		C23FD0071FDBFEDB00972238 /* AudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioView.swift; sourceTree = "<group>"; };
 		C23FD00B1FDC021B00972238 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKit.framework; sourceTree = "<group>"; };
 		C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKitUI.framework; sourceTree = "<group>"; };
+		C2E224FC1FFB9C630050B370 /* AudioViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AudioViewController.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 				C206AB991FF64A8A008EE364 /* AudioBubbles.swift */,
 				C206AB971FF6440C008EE364 /* StackChain.swift */,
 				C206AB8A1FF511EE008EE364 /* AudioViewController.swift */,
+				C2E224FC1FFB9C630050B370 /* AudioViewController.storyboard */,
 			);
 			path = AudioView;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 			files = (
 				C206AB941FF516B2008EE364 /* LandingViewController.storyboard in Resources */,
 				C23FD0021FDAC43700972238 /* placeholder-image4.jpg in Resources */,
+				C2E224FD1FFB9C630050B370 /* AudioViewController.storyboard in Resources */,
 				C23FCFDA1FDAC31400972238 /* LaunchScreen.storyboard in Resources */,
 				C23FCFD71FDAC31400972238 /* Assets.xcassets in Resources */,
 				C23FCFD51FDAC31400972238 /* Main.storyboard in Resources */,
