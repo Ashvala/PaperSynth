@@ -96,13 +96,7 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
                 format: "%f Hz") { sliderValue in
                     oscil.frequency = sliderValue
             }
-            
-            freqKnob.knobBorderWidth = 1
-            freqKnob.indicatorColor = UIColor(red: 151 / 255.0, green: 151 / 255.0, blue: 151 / 255.0, alpha: 1)
-            freqKnob.knobBorderColor = UIColor(red: 151 / 255.0, green: 151 / 255.0, blue: 151 / 255.0, alpha: 1)
-            freqKnob.knobColor = UIColor(red: 51 / 255.0, green: 51 / 255.0, blue: 51 / 255.0, alpha: 0)
-            freqKnob.knobStyle = PSRotaryKnobStyle.round
-            freqKnob.fontSize = 12.0
+
             let ampKnob = PSRotaryKnob(
                 property: "Amp",
                 value: oscil.amplitude,
@@ -110,13 +104,7 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
                 format: "%f") { sliderValue in
                     oscil.amplitude = sliderValue
             }
-            
-            ampKnob.knobBorderWidth = 1
-            ampKnob.indicatorColor = UIColor(red: 151 / 255.0, green: 151 / 255.0, blue: 151 / 255.0, alpha: 1)
-            ampKnob.knobBorderColor = UIColor(red: 151 / 255.0, green: 151 / 255.0, blue: 151 / 255.0, alpha: 1)
-            ampKnob.knobColor = UIColor(red: 51 / 255.0, green: 51 / 255.0, blue: 51 / 255.0, alpha: 0)
-            ampKnob.knobStyle = PSRotaryKnobStyle.round
-            ampKnob.fontSize = 12.0
+
             knobsView.append(freqKnob)
             knobsView.append(ampKnob)
 

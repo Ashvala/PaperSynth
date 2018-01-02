@@ -76,19 +76,21 @@ public enum PSRotaryKnobStyle {
     @IBInspectable open var bgColor: UIColor?
     
     /// Knob border color
+    // UIColor(red: 151 / 255.0, green: 151 / 255.0, blue: 151 / 255.0, alpha: 1)
     @IBInspectable open var knobBorderColor: UIColor?
-    
     /// Knob indicator color
+    // UIColor(red: 151 / 255.0, green: 151 / 255.0, blue: 151 / 255.0, alpha: 1)
     @IBInspectable open var indicatorColor: UIColor?
     
     /// Knob overlay color
-    @IBInspectable open var knobColor: UIColor = AKStylist.sharedInstance.nextColor
+    // UIColor(red: 51 / 255.0, green: 51 / 255.0, blue: 51 / 255.0, alpha: 0)
+    @IBInspectable open var knobColor: UIColor = UIColor(red: 51 / 255.0, green: 51 / 255.0, blue: 51 / 255.0, alpha: 0)
     
     /// Text color
     @IBInspectable open var textColor: UIColor?
     
     /// Font size
-    @IBInspectable open var fontSize: CGFloat = 20
+    @IBInspectable open var fontSize: CGFloat = 12.0
     
     /// Bubble font size
     @IBInspectable open var bubbleFontSize: CGFloat = 12
@@ -121,7 +123,7 @@ public enum PSRotaryKnobStyle {
                 range: ClosedRange<Double> = 0 ... 1,
                 taper: Double = 1,
                 format: String = "%0.3f",
-                color: AKColor = AKColor.red,
+                color: AKColor = UIColor(red: 51 / 255.0, green: 51 / 255.0, blue: 51 / 255.0, alpha: 0),
                 frame: CGRect = CGRect(x: 0, y: 0, width: 150, height: 170),
                 callback: @escaping (_ x: Double) -> Void) {
         self.value = value
@@ -234,21 +236,18 @@ public enum PSRotaryKnobStyle {
     }
     
     open func indicatorColorForTheme() -> AKColor {
-        if let indicatorColor = indicatorColor { return indicatorColor }
-        
-        switch AKStylist.sharedInstance.theme {
-        case .basic: return AKColor(white: 0.3, alpha: 1.0)
-        case .midnight: return AKColor.white
+        if let indicatorColor = indicatorColor {
+            return indicatorColor
         }
+        return AKColor(red: 151 / 255.0, green: 151 / 255.0, blue: 151 / 255.0, alpha: 1)
+
+
     }
     
     open func knobBorderColorForTheme() -> AKColor {
         if let knobBorderColor = knobBorderColor { return knobBorderColor }
         
-        switch AKStylist.sharedInstance.theme {
-        case .basic: return AKColor(white: 0.2, alpha: 1.0)
-        case .midnight: return AKColor(white: 1.0, alpha: 1.0)
-        }
+        return AKColor(red: 151 / 255.0, green: 151 / 255.0, blue: 151 / 255.0, alpha: 1)
     }
     
     open func textColorForTheme() -> AKColor {
