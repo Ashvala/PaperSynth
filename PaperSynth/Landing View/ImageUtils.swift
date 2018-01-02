@@ -5,7 +5,7 @@
 //  Created by Ashvala Vinay on 12/8/17.
 //  Copyright © 2017 Ashvala Vinay. All rights reserved.
 //
-// Borrowed from Martin Mitrevski's article on CoreML and vision. 
+// Borrowed from Martin Mitrevski's article on CoreML and vision.
 
 import Foundation
 import UIKit
@@ -16,7 +16,7 @@ precedencegroup ForwardPipe {
     higherThan: LogicalConjunctionPrecedence
 }
 
-infix operator |> : ForwardPipe
+infix operator |>: ForwardPipe
 
 /// Swift implementation of the forward pipe operator from F#.
 ///
@@ -54,37 +54,37 @@ func convertToGrayscale(image: UIImage) -> UIImage {
 
 func insertInsets(image: UIImage, insetWidthDimension: CGFloat, insetHeightDimension: CGFloat)
     -> UIImage {
-        let adjustedImage = adjustColors(image: image)
-        let upperLeftPoint: CGPoint = CGPoint(x: 0, y: 0)
-        let lowerLeftPoint: CGPoint = CGPoint(x: 0, y: adjustedImage.size.height - 1)
-        let upperRightPoint: CGPoint = CGPoint(x: adjustedImage.size.width - 1, y: 0)
-        let lowerRightPoint: CGPoint = CGPoint(x: adjustedImage.size.width - 1,
-                                               y: adjustedImage.size.height - 1)
-        let upperLeftColor: UIColor = getPixelColor(fromImage: adjustedImage, pixel: upperLeftPoint)
-        let lowerLeftColor: UIColor = getPixelColor(fromImage: adjustedImage, pixel: lowerLeftPoint)
-        let upperRightColor: UIColor = getPixelColor(fromImage: adjustedImage, pixel: upperRightPoint)
-        let lowerRightColor: UIColor = getPixelColor(fromImage: adjustedImage, pixel: lowerRightPoint)
-        let color =
-            averageColor(fromColors: [upperLeftColor, lowerLeftColor, upperRightColor, lowerRightColor])
-        let insets = UIEdgeInsets(top: insetHeightDimension,
-                                  left: insetWidthDimension,
-                                  bottom: insetHeightDimension,
-                                  right: insetWidthDimension)
-        let size = CGSize(width: adjustedImage.size.width + insets.left + insets.right,
-                          height: adjustedImage.size.height + insets.top + insets.bottom)
-        UIGraphicsBeginImageContextWithOptions(size, false, adjustedImage.scale)
-        let origin = CGPoint(x: insets.left, y: insets.top)
-        adjustedImage.draw(at: origin)
-        let imageWithInsets = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return convertTransparent(image: imageWithInsets!, color: color)
+    let adjustedImage = adjustColors(image: image)
+    let upperLeftPoint: CGPoint = CGPoint(x: 0, y: 0)
+    let lowerLeftPoint: CGPoint = CGPoint(x: 0, y: adjustedImage.size.height - 1)
+    let upperRightPoint: CGPoint = CGPoint(x: adjustedImage.size.width - 1, y: 0)
+    let lowerRightPoint: CGPoint = CGPoint(x: adjustedImage.size.width - 1,
+                                           y: adjustedImage.size.height - 1)
+    let upperLeftColor: UIColor = getPixelColor(fromImage: adjustedImage, pixel: upperLeftPoint)
+    let lowerLeftColor: UIColor = getPixelColor(fromImage: adjustedImage, pixel: lowerLeftPoint)
+    let upperRightColor: UIColor = getPixelColor(fromImage: adjustedImage, pixel: upperRightPoint)
+    let lowerRightColor: UIColor = getPixelColor(fromImage: adjustedImage, pixel: lowerRightPoint)
+    let color =
+        averageColor(fromColors: [upperLeftColor, lowerLeftColor, upperRightColor, lowerRightColor])
+    let insets = UIEdgeInsets(top: insetHeightDimension,
+                              left: insetWidthDimension,
+                              bottom: insetHeightDimension,
+                              right: insetWidthDimension)
+    let size = CGSize(width: adjustedImage.size.width + insets.left + insets.right,
+                      height: adjustedImage.size.height + insets.top + insets.bottom)
+    UIGraphicsBeginImageContextWithOptions(size, false, adjustedImage.scale)
+    let origin = CGPoint(x: insets.left, y: insets.top)
+    adjustedImage.draw(at: origin)
+    let imageWithInsets = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    return convertTransparent(image: imageWithInsets!, color: color)
 }
 
 func averageColor(fromColors colors: [UIColor]) -> UIColor {
     var averages = [CGFloat]()
-    for i in 0..<4 {
+    for i in 0 ..< 4 {
         var total: CGFloat = 0
-        for j in 0..<colors.count {
+        for j in 0 ..< colors.count {
             let current = colors[j]
             let value = CGFloat(current.cgColor.components![i])
             total += value
@@ -101,7 +101,7 @@ func adjustColors(image: UIImage) -> UIImage {
         let beginImage = CIImage(image: image)
         currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
         currentFilter.setValue(0, forKey: kCIInputSaturationKey)
-        currentFilter.setValue(1.45, forKey: kCIInputContrastKey) //previous 1.5
+        currentFilter.setValue(1.45, forKey: kCIInputContrastKey) // previous 1.5
         if let output = currentFilter.outputImage {
             if let cgimg = context.createCGImage(output, from: output.extent) {
                 let processedImage = UIImage(cgImage: cgimg)
@@ -156,9 +156,9 @@ func getPixelColor(fromImage image: UIImage, pixel: CGPoint) -> UIColor {
 }
 
 func crop(image: UIImage, rectangle: VNRectangleObservation) -> UIImage? {
-    var t: CGAffineTransform = CGAffineTransform.identity;
-    t = t.scaledBy(x: image.size.width, y: -image.size.height);
-    t = t.translatedBy(x: 0, y: -1 );
+    var t: CGAffineTransform = CGAffineTransform.identity
+    t = t.scaledBy(x: image.size.width, y: -image.size.height)
+    t = t.translatedBy(x: 0, y: -1)
     let x = rectangle.boundingBox.applying(t).origin.x
     let y = rectangle.boundingBox.applying(t).origin.y
     let width = rectangle.boundingBox.applying(t).width
@@ -185,4 +185,3 @@ func preProcess(image: UIImage) -> UIImage {
     let grayScaleImage = convertToGrayscale(image: resizedImage)
     return grayScaleImage
 }
-

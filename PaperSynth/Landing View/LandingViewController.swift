@@ -12,13 +12,7 @@ import Photos
 import UIKit
 import Vision
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    /**
-     Make sure the status bar is hidden.
-     */
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
+class LandingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     func configureButton() {
         imageButt.layer.cornerRadius = 0.5 * imageButt.bounds.size.width
@@ -99,34 +93,38 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // this generates the session
         session.sessionPreset = AVCaptureSession.Preset.photo
         let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
-
         // IO
-        let deviceInput = try! AVCaptureDeviceInput(device: captureDevice!)
-        let deviceOutput = AVCaptureVideoDataOutput()
-        deviceOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)]
-        deviceOutput.setSampleBufferDelegate(self, queue: DispatchQueue.global(qos: DispatchQoS.QoSClass.default))
-        session.addInput(deviceInput)
-        session.addOutput(deviceOutput)
+        if captureDevice != nil {
+            let deviceInput = try! AVCaptureDeviceInput(device: captureDevice!)
+            let deviceOutput = AVCaptureVideoDataOutput()
+            deviceOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)]
+            deviceOutput.setSampleBufferDelegate(self, queue: DispatchQueue.global(qos: DispatchQoS.QoSClass.default))
+            session.addInput(deviceInput)
+            session.addOutput(deviceOutput)
 
-        // render this out.
-        let imageLayer = AVCaptureVideoPreviewLayer(session: session)
-        imageLayer.videoGravity = .resizeAspectFill
-        imageLayer.connection?.videoOrientation = .portrait
-        imageLayer.frame = imageView.bounds
-        imageView.layer.addSublayer(imageLayer)
+            // render this out.
+            let imageLayer = AVCaptureVideoPreviewLayer(session: session)
+            imageLayer.videoGravity = .resizeAspectFill
+            imageLayer.connection?.videoOrientation = .portrait
+            imageLayer.frame = imageView.bounds
+            imageView.layer.addSublayer(imageLayer)
 
-        // Add an output. Like, a photo output?
+            // Add an output. Like, a photo output?
 
-        if session.canAddOutput(photoOutput) {
-            session.addOutput(photoOutput)
-            photoOutput.isHighResolutionCaptureEnabled = true
-        } else {
-            print("Could not add photo output to the session")
+            if session.canAddOutput(photoOutput) {
+                session.addOutput(photoOutput)
+                photoOutput.isHighResolutionCaptureEnabled = true
+            } else {
+                print("Could not add photo output to the session")
+                session.commitConfiguration()
+                return
+            }
             session.commitConfiguration()
+            session.startRunning()
+
+        } else {
             return
         }
-        session.commitConfiguration()
-        session.startRunning()
     }
 
     // MARK: Interactions
@@ -137,18 +135,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     @objc func handleTap() {
         if showing == false {
-            let components = detectedText.text!.components(separatedBy: " ")
-            print("Components: \(components)")
-            let filteredComponents = components.filter { $0 != "" }
-            let parsedWords = filteredComponents.map {
-                TextCleaner(text: $0).ReturnLevens()
+            if detectedText != nil || detectedText.text! != "The image does not contain any text." {
+                let components = detectedText.text!.components(separatedBy: " ")
+                print("Components: \(components)")
+                let filteredComponents = components.filter { $0 != "" }
+                let parsedWords = filteredComponents.map {
+                    TextCleaner(text: $0).ReturnLevens()
+                }
+                print(parsedWords)
+                detectedText.text = parsedWords.joined(separator: " ")
+                let presentBoard: UIStoryboard = UIStoryboard(name: "AudioViewController", bundle: nil)
+                let vc = presentBoard.instantiateInitialViewController() as! AudioViewController
+                vc.configure(widgetNames: parsedWords)
+                addChildViewController(vc)
+                view.addSubview(vc.view)
+                showing = true
             }
-            print(parsedWords)
-            detectedText.text = parsedWords.joined(separator: " ")
-            let view = AudioView(widgetNames: parsedWords)
-            let nV = view.renderView()
-            self.view.addSubview(nV)
-            showing = true
         } else {
             print(view.subviews)
         }
@@ -337,7 +339,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
 // MARK: Delegate extensions
 
-extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate, AVCapturePhotoCaptureDelegate {
+extension LandingViewController: AVCaptureVideoDataOutputSampleBufferDelegate, AVCapturePhotoCaptureDelegate {
 
     func captureOutput(_: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from _: AVCaptureConnection) {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {

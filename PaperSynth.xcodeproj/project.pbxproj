@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C206AB8B1FF511EE008EE364 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206AB8A1FF511EE008EE364 /* AudioViewController.swift */; };
+		C206AB8D1FF513E4008EE364 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206AB8C1FF513E4008EE364 /* Router.swift */; };
+		C206AB921FF514B3008EE364 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206AB911FF514B3008EE364 /* RootView.swift */; };
+		C206AB941FF516B2008EE364 /* LandingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C206AB931FF516B2008EE364 /* LandingViewController.storyboard */; };
+		C206AB981FF6440C008EE364 /* StackChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206AB971FF6440C008EE364 /* StackChain.swift */; };
+		C206AB9A1FF64A8A008EE364 /* AudioBubbles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206AB991FF64A8A008EE364 /* AudioBubbles.swift */; };
 		C23FCFD01FDAC31400972238 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FCFCF1FDAC31400972238 /* AppDelegate.swift */; };
-		C23FCFD21FDAC31400972238 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FCFD11FDAC31400972238 /* ViewController.swift */; };
+		C23FCFD21FDAC31400972238 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FCFD11FDAC31400972238 /* LandingViewController.swift */; };
 		C23FCFD51FDAC31400972238 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C23FCFD31FDAC31400972238 /* Main.storyboard */; };
 		C23FCFD71FDAC31400972238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C23FCFD61FDAC31400972238 /* Assets.xcassets */; };
 		C23FCFDA1FDAC31400972238 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C23FCFD81FDAC31400972238 /* LaunchScreen.storyboard */; };
@@ -22,9 +28,11 @@
 		C23FD0081FDBFEDB00972238 /* AudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FD0071FDBFEDB00972238 /* AudioView.swift */; };
 		C23FD0111FDC0ACE00972238 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23FD00B1FDC021B00972238 /* AudioKit.framework */; };
 		C23FD0121FDC0ACE00972238 /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C23FD00B1FDC021B00972238 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C2600B381FFBD70B003E46E3 /* PaperSynthUIKnob.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2600B371FFBD70B003E46E3 /* PaperSynthUIKnob.swift */; };
 		C2D13B811FDDB75B00574DF1 /* AudioKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */; };
 		C2D13B821FDDB76600574DF1 /* AudioKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */; };
 		C2D13B831FDDB76600574DF1 /* AudioKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C2E224FD1FFB9C630050B370 /* AudioViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2E224FC1FFB9C630050B370 /* AudioViewController.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,9 +68,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C206AB8A1FF511EE008EE364 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
+		C206AB8C1FF513E4008EE364 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Router.swift; path = ../Routing/Router.swift; sourceTree = "<group>"; };
+		C206AB911FF514B3008EE364 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RootView.swift; path = ../Routing/RootView.swift; sourceTree = "<group>"; };
+		C206AB931FF516B2008EE364 /* LandingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LandingViewController.storyboard; sourceTree = "<group>"; };
+		C206AB971FF6440C008EE364 /* StackChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackChain.swift; sourceTree = "<group>"; };
+		C206AB991FF64A8A008EE364 /* AudioBubbles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBubbles.swift; sourceTree = "<group>"; };
 		C23FCFCC1FDAC31400972238 /* PaperSynth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperSynth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23FCFCF1FDAC31400972238 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C23FCFD11FDAC31400972238 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C23FCFD11FDAC31400972238 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		C23FCFD41FDAC31400972238 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C23FCFD61FDAC31400972238 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C23FCFD91FDAC31400972238 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -80,7 +94,9 @@
 		C23FD0051FDBF3EB00972238 /* Levenshtein.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Levenshtein.swift; sourceTree = "<group>"; };
 		C23FD0071FDBFEDB00972238 /* AudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioView.swift; sourceTree = "<group>"; };
 		C23FD00B1FDC021B00972238 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKit.framework; sourceTree = "<group>"; };
+		C2600B371FFBD70B003E46E3 /* PaperSynthUIKnob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperSynthUIKnob.swift; sourceTree = "<group>"; };
 		C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKitUI.framework; sourceTree = "<group>"; };
+		C2E224FC1FFB9C630050B370 /* AudioViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AudioViewController.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +127,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C206AB8E1FF5140D008EE364 /* Routing */ = {
+			isa = PBXGroup;
+			children = (
+				C206AB8C1FF513E4008EE364 /* Router.swift */,
+				C206AB911FF514B3008EE364 /* RootView.swift */,
+			);
+			path = Routing;
+			sourceTree = "<group>";
+		};
+		C206AB8F1FF51424008EE364 /* Landing View */ = {
+			isa = PBXGroup;
+			children = (
+				C23FCFD11FDAC31400972238 /* LandingViewController.swift */,
+				C206AB931FF516B2008EE364 /* LandingViewController.storyboard */,
+				C23FD0031FDBE7F900972238 /* TextCleaner.swift */,
+				C23FD0051FDBF3EB00972238 /* Levenshtein.swift */,
+				C23FCFFD1FDAC33C00972238 /* ImageUtils.swift */,
+			);
+			path = "Landing View";
+			sourceTree = "<group>";
+		};
+		C206AB901FF5145F008EE364 /* AudioView */ = {
+			isa = PBXGroup;
+			children = (
+				C2600B371FFBD70B003E46E3 /* PaperSynthUIKnob.swift */,
+				C23FD0071FDBFEDB00972238 /* AudioView.swift */,
+				C206AB991FF64A8A008EE364 /* AudioBubbles.swift */,
+				C206AB971FF6440C008EE364 /* StackChain.swift */,
+				C206AB8A1FF511EE008EE364 /* AudioViewController.swift */,
+				C2E224FC1FFB9C630050B370 /* AudioViewController.storyboard */,
+			);
+			path = AudioView;
+			sourceTree = "<group>";
+		};
 		C23FCFC31FDAC31400972238 = {
 			isa = PBXGroup;
 			children = (
@@ -136,15 +186,13 @@
 		C23FCFCE1FDAC31400972238 /* PaperSynth */ = {
 			isa = PBXGroup;
 			children = (
-				C23FD0011FDAC43700972238 /* placeholder-image4.jpg */,
-				C23FCFFF1FDAC36F00972238 /* chars74k5.mlmodel */,
 				C23FCFCF1FDAC31400972238 /* AppDelegate.swift */,
-				C23FCFD11FDAC31400972238 /* ViewController.swift */,
-				C23FD0071FDBFEDB00972238 /* AudioView.swift */,
-				C23FD0031FDBE7F900972238 /* TextCleaner.swift */,
-				C23FD0051FDBF3EB00972238 /* Levenshtein.swift */,
-				C23FCFFD1FDAC33C00972238 /* ImageUtils.swift */,
+				C206AB8E1FF5140D008EE364 /* Routing */,
+				C206AB901FF5145F008EE364 /* AudioView */,
+				C206AB8F1FF51424008EE364 /* Landing View */,
+				C23FD0011FDAC43700972238 /* placeholder-image4.jpg */,
 				C23FCFD31FDAC31400972238 /* Main.storyboard */,
+				C23FCFFF1FDAC36F00972238 /* chars74k5.mlmodel */,
 				C23FCFD61FDAC31400972238 /* Assets.xcassets */,
 				C23FCFD81FDAC31400972238 /* LaunchScreen.storyboard */,
 				C23FCFDB1FDAC31400972238 /* Info.plist */,
@@ -279,7 +327,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C206AB941FF516B2008EE364 /* LandingViewController.storyboard in Resources */,
 				C23FD0021FDAC43700972238 /* placeholder-image4.jpg in Resources */,
+				C2E224FD1FFB9C630050B370 /* AudioViewController.storyboard in Resources */,
 				C23FCFDA1FDAC31400972238 /* LaunchScreen.storyboard in Resources */,
 				C23FCFD71FDAC31400972238 /* Assets.xcassets in Resources */,
 				C23FCFD51FDAC31400972238 /* Main.storyboard in Resources */,
@@ -323,12 +373,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C23FCFD21FDAC31400972238 /* ViewController.swift in Sources */,
+				C23FCFD21FDAC31400972238 /* LandingViewController.swift in Sources */,
 				C23FD0061FDBF3EB00972238 /* Levenshtein.swift in Sources */,
+				C206AB981FF6440C008EE364 /* StackChain.swift in Sources */,
 				C23FD0001FDAC36F00972238 /* chars74k5.mlmodel in Sources */,
 				C23FCFD01FDAC31400972238 /* AppDelegate.swift in Sources */,
+				C206AB921FF514B3008EE364 /* RootView.swift in Sources */,
 				C23FD0041FDBE7F900972238 /* TextCleaner.swift in Sources */,
+				C2600B381FFBD70B003E46E3 /* PaperSynthUIKnob.swift in Sources */,
+				C206AB8B1FF511EE008EE364 /* AudioViewController.swift in Sources */,
 				C23FCFFE1FDAC33C00972238 /* ImageUtils.swift in Sources */,
+				C206AB8D1FF513E4008EE364 /* Router.swift in Sources */,
+				C206AB9A1FF64A8A008EE364 /* AudioBubbles.swift in Sources */,
 				C23FD0081FDBFEDB00972238 /* AudioView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,33 +8,31 @@
 
 import Foundation
 
-
-
-struct Keyword{
+struct Keyword {
     var PrimaryExpression: String
     var Alternatives: [String]
 }
 
-let keywords: [Keyword]  = [
+let keywords: [Keyword] = [
     Keyword(PrimaryExpression: "osc", Alternatives: ["osc", "oscillator", "oscillation", "osci"]),
     Keyword(PrimaryExpression: "output", Alternatives: ["out"]),
     Keyword(PrimaryExpression: "adsr", Alternatives: ["adsr", "dsr"]),
-    Keyword(PrimaryExpression: "del", Alternatives:["delay"]),
-    Keyword(PrimaryExpression: "rev", Alternatives:["reverb"]),
-    Keyword(PrimaryExpression: "mic", Alternatives:["microphone"]),
-    Keyword(PrimaryExpression: "eq", Alternatives:["para-eq"])
+    Keyword(PrimaryExpression: "del", Alternatives: ["delay"]),
+    Keyword(PrimaryExpression: "rev", Alternatives: ["reverb"]),
+    Keyword(PrimaryExpression: "mic", Alternatives: ["microphone"]),
+    Keyword(PrimaryExpression: "eq", Alternatives: ["para-eq"]),
 ]
 
-class TextCleaner{
+class TextCleaner {
     var text: String!
-    init(text: String!){
+    init(text: String!) {
         self.text = text
-     
     }
-    func ReturnLevens() -> String{
-        var array:[Int] = []
-        for i in keywords{
-            let score = self.text.getLevenshtein(target: i.PrimaryExpression)
+
+    func ReturnLevens() -> String {
+        var array: [Int] = []
+        for i in keywords {
+            let score = text.getLevenshtein(target: i.PrimaryExpression)
             array.append(score)
         }
         let lowest_score = array.min()
@@ -42,7 +40,4 @@ class TextCleaner{
         print("Cloest keyword is: \(keywords[position!].PrimaryExpression)")
         return keywords[position!].PrimaryExpression
     }
-    
-    
-    
 }

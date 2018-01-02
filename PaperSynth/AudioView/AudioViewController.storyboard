@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13770" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dxL-hR-kv3">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13770"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Menlo.ttc">
+            <string>Menlo-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--AudioViewController-->
+        <scene sceneID="z17-BW-WSY">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GOk-fA-s22" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController title="AudioViewController" id="dxL-hR-kv3" customClass="AudioViewController" customModule="PaperSynth" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oYk-E1-74M">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QwJ-PU-I6O">
+                                <rect key="frame" x="23" y="29" width="54.5" height="21"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.62" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="QwJ-PU-I6O" firstAttribute="leading" secondItem="iRH-3B-bm0" secondAttribute="leading" constant="23" id="JsV-Sf-IDN"/>
+                            <constraint firstItem="QwJ-PU-I6O" firstAttribute="top" secondItem="iRH-3B-bm0" secondAttribute="top" constant="9" id="mMk-x4-jGx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="iRH-3B-bm0"/>
+                    </view>
+                    <connections>
+                        <outlet property="synthStack" destination="QwJ-PU-I6O" id="P2G-7G-ucv"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-262" y="-225"/>
+        </scene>
+    </scenes>
+</document>
