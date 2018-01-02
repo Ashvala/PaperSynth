@@ -27,10 +27,21 @@ class AudioBubble: UICollectionViewCell {
         return objLabel
     }()
 
-    var stackData: UIStackView!
+    var stackData: UIStackView = {
+        let knobsView = UIStackView()
+        knobsView.frame = CGRect(x: 0, y: 36, width: 157, height: 107)
+        knobsView.axis = .horizontal
+        knobsView.distribution = .fillProportionally
+        knobsView.spacing = 1
+        knobsView.alignment = .fill
+        knobsView.backgroundColor = .white
+        return knobsView
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(Label)
+        addSubview(stackData)
     }
 
     required init?(coder _: NSCoder) {

@@ -28,6 +28,7 @@
 		C23FD0081FDBFEDB00972238 /* AudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FD0071FDBFEDB00972238 /* AudioView.swift */; };
 		C23FD0111FDC0ACE00972238 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23FD00B1FDC021B00972238 /* AudioKit.framework */; };
 		C23FD0121FDC0ACE00972238 /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C23FD00B1FDC021B00972238 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C2600B381FFBD70B003E46E3 /* PaperSynthUIKnob.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2600B371FFBD70B003E46E3 /* PaperSynthUIKnob.swift */; };
 		C2D13B811FDDB75B00574DF1 /* AudioKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */; };
 		C2D13B821FDDB76600574DF1 /* AudioKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */; };
 		C2D13B831FDDB76600574DF1 /* AudioKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -93,6 +94,7 @@
 		C23FD0051FDBF3EB00972238 /* Levenshtein.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Levenshtein.swift; sourceTree = "<group>"; };
 		C23FD0071FDBFEDB00972238 /* AudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioView.swift; sourceTree = "<group>"; };
 		C23FD00B1FDC021B00972238 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKit.framework; sourceTree = "<group>"; };
+		C2600B371FFBD70B003E46E3 /* PaperSynthUIKnob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperSynthUIKnob.swift; sourceTree = "<group>"; };
 		C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKitUI.framework; sourceTree = "<group>"; };
 		C2E224FC1FFB9C630050B370 /* AudioViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AudioViewController.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,6 +151,7 @@
 		C206AB901FF5145F008EE364 /* AudioView */ = {
 			isa = PBXGroup;
 			children = (
+				C2600B371FFBD70B003E46E3 /* PaperSynthUIKnob.swift */,
 				C23FD0071FDBFEDB00972238 /* AudioView.swift */,
 				C206AB991FF64A8A008EE364 /* AudioBubbles.swift */,
 				C206AB971FF6440C008EE364 /* StackChain.swift */,
@@ -377,6 +380,7 @@
 				C23FCFD01FDAC31400972238 /* AppDelegate.swift in Sources */,
 				C206AB921FF514B3008EE364 /* RootView.swift in Sources */,
 				C23FD0041FDBE7F900972238 /* TextCleaner.swift in Sources */,
+				C2600B381FFBD70B003E46E3 /* PaperSynthUIKnob.swift in Sources */,
 				C206AB8B1FF511EE008EE364 /* AudioViewController.swift in Sources */,
 				C23FCFFE1FDAC33C00972238 /* ImageUtils.swift in Sources */,
 				C206AB8D1FF513E4008EE364 /* Router.swift in Sources */,

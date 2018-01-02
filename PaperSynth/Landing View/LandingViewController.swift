@@ -135,34 +135,22 @@ class LandingViewController: UIViewController, UIImagePickerControllerDelegate, 
 
     @objc func handleTap() {
         if showing == false {
-            let components = detectedText.text!.components(separatedBy: " ")
-            print("Components: \(components)")
-            let filteredComponents = components.filter { $0 != "" }
-            let parsedWords = filteredComponents.map {
-                TextCleaner(text: $0).ReturnLevens()
+            if detectedText != nil || detectedText.text! != "The image does not contain any text." {
+                let components = detectedText.text!.components(separatedBy: " ")
+                print("Components: \(components)")
+                let filteredComponents = components.filter { $0 != "" }
+                let parsedWords = filteredComponents.map {
+                    TextCleaner(text: $0).ReturnLevens()
+                }
+                print(parsedWords)
+                detectedText.text = parsedWords.joined(separator: " ")
+                let presentBoard: UIStoryboard = UIStoryboard(name: "AudioViewController", bundle: nil)
+                let vc = presentBoard.instantiateInitialViewController() as! AudioViewController
+                vc.configure(widgetNames: parsedWords)
+                addChildViewController(vc)
+                view.addSubview(vc.view)
+                showing = true
             }
-            print(parsedWords)
-            detectedText.text = parsedWords.joined(separator: " ")
-            // this failed me. :(
-//            Router().showCompiledPage(widgets: parsedWords)
-//            var presenterStoryBoard:UIStoryboard = UIStoryboard(name: "MiniAppPanel", bundle: frameworkBundle)
-            //
-//            var vc = presenterStoryBoard.instantiateInitialViewController() as MiniAppPanelViewController
-            //
-//            vc.view.frame = CGRectMake(0, vc.view.frame.size.height - 120, vc.view.frame.size.width, 120)
-            //
-//            publisherViewController.addChildViewController(vc)
-//            publisherViewController.view.addSubview(vc.view)
-            let presentBoard: UIStoryboard = UIStoryboard(name: "AudioViewController", bundle: nil)
-            let vc = presentBoard.instantiateInitialViewController() as! AudioViewController
-            vc.configure(widgetNames: parsedWords)
-            addChildViewController(vc)
-            view.addSubview(vc.view)
-            //
-//            let view = AudioView(widgetNames: parsedWords)
-//            let nV = view.renderView()
-//            self.view.addSubview(nV)
-            showing = true
         } else {
             print(view.subviews)
         }
