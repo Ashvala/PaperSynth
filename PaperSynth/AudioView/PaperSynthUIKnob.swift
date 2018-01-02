@@ -6,10 +6,9 @@
 //  Copyright © 2018 Ashvala Vinay. All rights reserved.
 //
 
+import AudioKitUI
 import Foundation
 import UIKit
-import AudioKitUI
-
 
 public enum PSRotaryKnobStyle {
     case round
@@ -17,106 +16,106 @@ public enum PSRotaryKnobStyle {
 }
 
 @IBDesignable open class PSRotaryKnob: AKView {
-    
+
     // Default margin size
     static var marginSize: CGFloat = 10.0
-    
+
     // Indicator point radius
     static var indicatorPointRadius: CGFloat = 3.0
-    
+
     // Padding surrounding the text inside the value bubble
     static var bubblePadding: CGSize = CGSize(width: 10.0, height: 2.0)
-    
+
     // Margin between the top of the tap and the value bubble
     static var bubbleMargin: CGFloat = 3.0
-    
+
     // Corner radius for the value bubble
     static var bubbleCornerRadius: CGFloat = 2.0
-    
+
     // Maximum curvature value for polygon style knob
     static var maximumPolygonCurvature = 1.0
-    
+
     /// Current value of the slider
     @IBInspectable open var value: Double = 0 {
         didSet {
             value = range.clamp(value)
             value = usesDiscreteValues ? round(value) : value
-            
+
             val = value.normalized(from: range, taper: taper)
         }
     }
-    
+
     private var val: Double = 0 {
         didSet {
             setNeedsDisplay()
         }
     }
-    
+
     /// Range of output value
     open var range: ClosedRange<Double> = 0 ... 1 {
         didSet {
             val = value.normalized(from: range, taper: taper)
         }
     }
-    
+
     open var taper: Double = 1 // Default Linear
     // Should the knob uses discrete values
     @IBInspectable open var usesDiscreteValues: Bool = false
-    
+
     // The step for each discrete value
     @IBInspectable open var discreteValueStep: Double = 0.1
-    
+
     /// Text shown on the knob
     @IBInspectable open var property: String = "Property"
-    
+
     /// Format for the number shown on the knob
     @IBInspectable open var format: String = "%0.3f"
-    
+
     /// Background color
     @IBInspectable open var bgColor: UIColor?
-    
+
     /// Knob border color
     // UIColor(red: 151 / 255.0, green: 151 / 255.0, blue: 151 / 255.0, alpha: 1)
     @IBInspectable open var knobBorderColor: UIColor?
     /// Knob indicator color
     // UIColor(red: 151 / 255.0, green: 151 / 255.0, blue: 151 / 255.0, alpha: 1)
     @IBInspectable open var indicatorColor: UIColor?
-    
+
     /// Knob overlay color
     // UIColor(red: 51 / 255.0, green: 51 / 255.0, blue: 51 / 255.0, alpha: 0)
     @IBInspectable open var knobColor: UIColor = UIColor(red: 51 / 255.0, green: 51 / 255.0, blue: 51 / 255.0, alpha: 0)
-    
+
     /// Text color
     @IBInspectable open var textColor: UIColor?
-    
+
     /// Font size
     @IBInspectable open var fontSize: CGFloat = 12.0
-    
+
     /// Bubble font size
     @IBInspectable open var bubbleFontSize: CGFloat = 12
-    
+
     // Slider style. Curvature is a value between -1.0 and 1.0, where 0.0 indicates no curves
     open var knobStyle: PSRotaryKnobStyle = PSRotaryKnobStyle.round
-    
+
     // Border width
     @IBInspectable open var knobBorderWidth: CGFloat = 1.0
-    
+
     // Value bubble border width
     @IBInspectable open var valueBubbleBorderWidth: CGFloat = 1.0
-    
+
     // Number of indicator points
     @IBInspectable open var numberOfIndicatorPoints: Int = 11
-    
+
     // Current dragging state, used to show/hide the value bubble
     private var isDragging: Bool = false
-    
+
     // Calculate knob center
     private var knobCenter: CGPoint = CGPoint.zero
-    
+
     /// Function to call when value changes
     open var callback: ((Double) -> Void)?
     fileprivate var lastTouch = CGPoint.zero
-    
+
     /// Initialize the slider
     public init(property: String,
                 value: Double,
@@ -131,46 +130,46 @@ public enum PSRotaryKnobStyle {
         self.taper = taper
         self.property = property
         self.format = format
-        self.knobColor = color
-        
+        knobColor = color
+
         self.callback = callback
         super.init(frame: frame)
-        
-        self.backgroundColor = AKColor.clear
-        
+
+        backgroundColor = AKColor.clear
+
         setNeedsDisplay()
     }
-    
+
     /// Initialization with no details
-    override public init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        self.backgroundColor = AKColor.clear
+
+        backgroundColor = AKColor.clear
         contentMode = .redraw
     }
-    
+
     /// Initialization within Interface Builder
-    required public init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
-        self.isUserInteractionEnabled = true
-        self.backgroundColor = AKColor.clear
+
+        isUserInteractionEnabled = true
+        backgroundColor = AKColor.clear
         contentMode = .redraw
     }
-    
+
     /// Actions to perform to make sure the view is renderable in Interface Builder
-    override open func prepareForInterfaceBuilder() {
+    open override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         clipsToBounds = true
     }
-    
+
     /// Give the slider a random value
     open func randomize() -> Double {
         value = random(in: range)
         setNeedsDisplay()
         return value
     }
-    
+
     func angleBetween(pointA: CGPoint, pointB: CGPoint) -> Double {
         let dx = Double(pointB.x - pointA.x)
         let dy = Double(pointB.y - pointA.y)
@@ -178,9 +177,9 @@ public enum PSRotaryKnobStyle {
         let degrees = radians * 180 / Double.pi
         return degrees
     }
-    
+
     /// Handle new touches
-    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    open override func touchesBegan(_ touches: Set<UITouch>, with _: UIEvent?) {
         if let touch = touches.first {
             isDragging = true
             let touchLocation = touch.location(in: self)
@@ -189,12 +188,12 @@ public enum PSRotaryKnobStyle {
             if angle < 0.0 {
                 val = (0.5 + (180.0 + angle) / 260.0)
             } else {
-                val =  ((angle - 50.0) / 130.0) * 0.5
+                val = ((angle - 50.0) / 130.0) * 0.5
             }
             if usesDiscreteValues && discreteValueStep > 0.0 {
                 let step = Int(value / discreteValueStep)
                 let lowerValue = step * discreteValueStep
-                let higherValue = (step + 1) * (discreteValueStep)
+                let higherValue = (step + 1) * discreteValueStep
                 val = abs(val - lowerValue) < abs(higherValue - val) ? lowerValue : higherValue
             }
             value = val.denormalized(to: range, taper: taper)
@@ -202,9 +201,9 @@ public enum PSRotaryKnobStyle {
             callback?(value)
         }
     }
-    
+
     /// Handle moved touches
-    override open func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    open override func touchesMoved(_ touches: Set<UITouch>, with _: UIEvent?) {
         if let touch = touches.first {
             let touchLocation = touch.location(in: self)
             if lastTouch.x != touchLocation.x {
@@ -217,7 +216,7 @@ public enum PSRotaryKnobStyle {
                 if usesDiscreteValues && discreteValueStep > 0.0 {
                     let step = Int(value / discreteValueStep)
                     let lowerValue = step * discreteValueStep
-                    let higherValue = (step + 1) * (discreteValueStep)
+                    let higherValue = (step + 1) * discreteValueStep
                     val = abs(val - lowerValue) < abs(higherValue - val) ? lowerValue : higherValue
                 }
                 value = val.denormalized(to: range, taper: taper)
@@ -227,72 +226,72 @@ public enum PSRotaryKnobStyle {
             }
         }
     }
-    
-    open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+
+    open override func touchesEnded(_ touches: Set<UITouch>, with _: UIEvent?) {
         if touches.first != nil {
             isDragging = false
             setNeedsDisplay()
         }
     }
-    
+
     open func indicatorColorForTheme() -> AKColor {
         if let indicatorColor = indicatorColor {
             return indicatorColor
         }
         return AKColor(red: 151 / 255.0, green: 151 / 255.0, blue: 151 / 255.0, alpha: 1)
-
-
     }
-    
+
     open func knobBorderColorForTheme() -> AKColor {
         if let knobBorderColor = knobBorderColor { return knobBorderColor }
-        
+
         return AKColor(red: 151 / 255.0, green: 151 / 255.0, blue: 151 / 255.0, alpha: 1)
     }
-    
+
     open func textColorForTheme() -> AKColor {
         if let textColor = textColor { return textColor }
-        
+
         switch AKStylist.sharedInstance.theme {
         case .basic: return AKColor(white: 0.3, alpha: 1.0)
         case .midnight: return AKColor.white
         }
     }
-    
-    override open func draw(_ rect: CGRect) {
+
+    open override func draw(_: CGRect) {
         drawKnob(currentValue: CGFloat(val),
                  propertyName: property,
                  currentValueText: String(format: format, value))
     }
-    
-    func drawKnob(currentValue: CGFloat = 0,
-                  initialValue: CGFloat = 0,
+
+    func drawKnob(currentValue _: CGFloat = 0,
+                  initialValue _: CGFloat = 0,
                   propertyName: String = "Property Name",
                   currentValueText: String = "0.0") {
-        
+
         //// General Declarations
         guard let context = UIGraphicsGetCurrentContext() else { return }
-        
-        let width = self.frame.width
-        let height = self.frame.height
-        
+
+        let width = frame.width
+        let height = frame.height
+
         let nameLabelRect = CGRect(x: 0, y: 0, width: width, height: height)
         let nameLabelStyle = NSMutableParagraphStyle()
         nameLabelStyle.alignment = .center
-        
+
         let textColor = textColorForTheme()
-        
+
         let nameLabelTextHeight: CGFloat = NSString(string: propertyName).boundingRect(
             with: CGSize(width: width, height: CGFloat.infinity),
             options: NSStringDrawingOptions.usesLineFragmentOrigin,
-            attributes: [NSAttributedStringKey.font: UIFont(name: "Avenir", size: fontSize),
-                         NSAttributedStringKey.foregroundColor: textColor,
-                         NSAttributedStringKey.paragraphStyle: nameLabelStyle],
+            attributes: [
+                NSAttributedStringKey.font: UIFont(name: "Avenir", size: fontSize),
+                NSAttributedStringKey.foregroundColor: textColor,
+                NSAttributedStringKey.paragraphStyle: nameLabelStyle,
+            ],
             context: nil).size.height
         context.saveGState()
-        
+
         let knobHeight = height - nameLabelTextHeight
-        
+
         // Draw name label
         let nameLabelInset: CGRect = nameLabelRect.insetBy(dx: 0.0, dy: 0)
         context.clip(to: nameLabelInset)
@@ -301,24 +300,26 @@ public enum PSRotaryKnobStyle {
                        y: nameLabelInset.minY + knobHeight,
                        width: nameLabelInset.width,
                        height: nameLabelTextHeight),
-            withAttributes: [NSAttributedStringKey.font: UIFont(name: "Avenir", size: fontSize),
-                             NSAttributedStringKey.foregroundColor: textColor,
-                             NSAttributedStringKey.paragraphStyle: nameLabelStyle])
+            withAttributes: [
+                NSAttributedStringKey.font: UIFont(name: "Avenir", size: fontSize),
+                NSAttributedStringKey.foregroundColor: textColor,
+                NSAttributedStringKey.paragraphStyle: nameLabelStyle,
+        ])
         context.restoreGState()
-        
+
         // Calculate knob size
         let knobDiameter = min(width, height) - PSRotaryKnob.marginSize * 2.0
         knobCenter = CGPoint(x: PSRotaryKnob.marginSize + knobDiameter / 2.0,
                              y: PSRotaryKnob.marginSize + knobDiameter / 2.0)
-        
+
         // Setup indicator
         let valuePercent = val
-        let angle = Double.pi * ( 0.75 + valuePercent * 1.5)
+        let angle = Double.pi * (0.75 + valuePercent * 1.5)
         let indicatorStart = CGPoint(x: (knobDiameter / 5.0) * CGFloat(cos(angle)),
                                      y: (knobDiameter / 5.0) * CGFloat(sin(angle)))
         let indicatorEnd = CGPoint(x: (knobDiameter / 2.0) * CGFloat(cos(angle)),
                                    y: (knobDiameter / 2.0) * CGFloat(sin(angle)))
-        
+
         // Draw knob
         let knobRect = CGRect(x: PSRotaryKnob.marginSize,
                               y: PSRotaryKnob.marginSize,
@@ -331,7 +332,7 @@ public enum PSRotaryKnobStyle {
                                     byRoundingCorners: .allCorners,
                                     cornerRadii: CGSize(width: knobDiameter / 2.0,
                                                         height: knobDiameter / 2.0))
-            case .polygon (let numberOfSides, let curvature):
+            case let .polygon(numberOfSides, curvature):
                 return bezierPathWithPolygonInRect(
                     knobRect,
                     numberOfSides: numberOfSides,
@@ -341,13 +342,13 @@ public enum PSRotaryKnobStyle {
                     offsetAngle: angle)
             }
         }()
-        
+
         knobPath.lineWidth = knobBorderWidth
         knobBorderColorForTheme().setStroke()
         knobPath.stroke()
         knobColor.setFill()
         knobPath.fill()
-        
+
         // Draw indicator
         let indicatorPath = UIBezierPath()
         indicatorPath.move(to: CGPoint(x: PSRotaryKnob.marginSize + knobDiameter / 2.0 + indicatorStart.x,
@@ -357,38 +358,39 @@ public enum PSRotaryKnobStyle {
         indicatorPath.lineWidth = knobBorderWidth / 2.0
         indicatorColorForTheme().setStroke()
         indicatorPath.stroke()
-    
+
         //// valueLabel Drawing
         if isDragging {
             let valueLabelRect = CGRect(x: 0, y: 0, width: width, height: height)
             let valueLabelStyle = NSMutableParagraphStyle()
             valueLabelStyle.alignment = .center
-            
 
             let valueLabelInset: CGRect = valueLabelRect.insetBy(dx: 0, dy: 0)
             let valueLabelTextSize = NSString(string: currentValueText).boundingRect(
                 with: CGSize(width: valueLabelInset.width, height: CGFloat.infinity),
                 options: NSStringDrawingOptions.usesLineFragmentOrigin,
-                attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: bubbleFontSize),
-                             NSAttributedStringKey.foregroundColor: textColor,
-                             NSAttributedStringKey.paragraphStyle: valueLabelStyle],
+                attributes: [
+                    NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: bubbleFontSize),
+                    NSAttributedStringKey.foregroundColor: textColor,
+                    NSAttributedStringKey.paragraphStyle: valueLabelStyle,
+                ],
                 context: nil).size
-            
+
             let bubbleSize = CGSize(width: valueLabelTextSize.width + PSRotaryKnob.bubblePadding.width,
                                     height: valueLabelTextSize.height + PSRotaryKnob.bubblePadding.height)
-            
+
             var bubbleOriginX = (lastTouch.x - bubbleSize.width / 2.0 - valueBubbleBorderWidth)
             if bubbleOriginX < 0.0 {
                 bubbleOriginX = valueBubbleBorderWidth
             } else if (bubbleOriginX + bubbleSize.width) > bounds.width {
                 bubbleOriginX = bounds.width - bubbleSize.width - valueBubbleBorderWidth
             }
-            
+
             var bubbleOriginY = (lastTouch.y - 3 * bubbleSize.height - valueBubbleBorderWidth)
             if bubbleOriginY < 0.0 {
                 bubbleOriginY = 0.0
             }
-            
+
             let bubbleRect = CGRect(x: bubbleOriginX,
                                     y: bubbleOriginY,
                                     width: bubbleSize.width,
@@ -402,7 +404,7 @@ public enum PSRotaryKnobStyle {
             bubblePath.lineWidth = valueBubbleBorderWidth
             knobBorderColorForTheme().setStroke()
             bubblePath.stroke()
-            
+
             context.saveGState()
             context.clip(to: valueLabelInset)
             NSString(string: currentValueText).draw(
@@ -410,13 +412,15 @@ public enum PSRotaryKnobStyle {
                            y: bubbleOriginY + PSRotaryKnob.bubblePadding.height / 2.0,
                            width: valueLabelTextSize.width,
                            height: valueLabelTextSize.height),
-                withAttributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: bubbleFontSize),
-                                 NSAttributedStringKey.foregroundColor: textColor,
-                                 NSAttributedStringKey.paragraphStyle: valueLabelStyle])
+                withAttributes: [
+                    NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: bubbleFontSize),
+                    NSAttributedStringKey.foregroundColor: textColor,
+                    NSAttributedStringKey.paragraphStyle: valueLabelStyle,
+            ])
             context.restoreGState()
         }
     }
-    
+
     func bezierPathWithPolygonInRect(_ rect: CGRect,
                                      numberOfSides: Int,
                                      curvature: Double,
@@ -425,10 +429,10 @@ public enum PSRotaryKnobStyle {
         guard numberOfSides > 2 else {
             return UIBezierPath(rect: rect)
         }
-        
+
         let path = UIBezierPath()
         path.move(to: startPoint)
-        for i in 0...numberOfSides {
+        for i in 0 ... numberOfSides {
             let angle = 2 * Double.pi * i / numberOfSides + offsetAngle
             let nextX = rect.midX + rect.width / 2.0 * CGFloat(cos(angle))
             let nextY = rect.midY + rect.height / 2.0 * CGFloat(sin(angle))

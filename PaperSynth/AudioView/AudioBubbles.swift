@@ -31,9 +31,10 @@ class AudioBubble: UICollectionViewCell {
         let knobsView = UIStackView()
         knobsView.frame = CGRect(x: 0, y: 36, width: 157, height: 107)
         knobsView.axis = .horizontal
-        knobsView.distribution = .fillProportionally
+        knobsView.distribution = .fillEqually
         knobsView.spacing = 1
         knobsView.alignment = .fill
+        knobsView.translatesAutoresizingMaskIntoConstraints = true
         knobsView.backgroundColor = .white
         return knobsView
     }()
