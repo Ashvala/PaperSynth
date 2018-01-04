@@ -262,6 +262,7 @@ public enum PSRotaryKnobStyle {
                  currentValueText: String(format: format, value))
     }
 
+    // swiftlint:disable function_body_length
     func drawKnob(currentValue _: CGFloat = 0,
                   initialValue _: CGFloat = 0,
                   propertyName: String = "Property Name",

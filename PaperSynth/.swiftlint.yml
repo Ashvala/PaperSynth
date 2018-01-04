@@ -1,0 +1,16 @@
+disabled_rules:
+  - force_cast
+  - force_try
+  - identifier_name
+  - file_header
+  - attributes
+  - cyclomatic_complexity
+  - type_name
+
+line_length:
+  warning: 290
+  ignores_function_declarations: true
+  ignores_comments: true
+
+function_body_length:
+  severity: warning

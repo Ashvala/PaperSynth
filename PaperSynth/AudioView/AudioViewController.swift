@@ -11,19 +11,20 @@ import AudioKitUI
 import Foundation
 import UIKit
 
-class AudioViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIViewControllerPreviewingDelegate {
+class AudioViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,
+    UIViewControllerPreviewingDelegate {
 
     var widgetList: [String]!
     @IBOutlet var synthStack: UILabel!
-    var obj_list: [AnyObject]!
+    var objList: [AnyObject]!
     var configured: Bool = false
-    let StackChainInstance: StackChain = StackChain()
+    let stackchainInstance: StackChain = StackChain()
 
     let cellIdentifier = "MyCell"
 
     func configure(widgetNames: [String]) {
         widgetList = widgetNames
-        obj_list = StackChainInstance.createObjects(widgetList: widgetList)
+        objList = stackchainInstance.createObjects(widgetList: widgetList)
         configured = true
     }
 
@@ -62,7 +63,7 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
             if traitCollection.forceTouchCapability == .available {
                 registerForPreviewing(with: self, sourceView: view)
             }
-            StackChainInstance.compileModel(NodesList: obj_list)
+            stackchainInstance.compileModel(nodesList: objList)
 
             view.addSubview(myCollectionView)
         }
@@ -81,119 +82,34 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
     // Needs to be refactored.
 
     func getKnobs(forObject: AnyObject) -> [PSRotaryKnob] {
+        
         var knobsView: [PSRotaryKnob] = []
-
-        let operatingObject = forObject
+        let operatingObject: AnyObject = forObject
+        
         if type(of: operatingObject) == AKOscillator.self {
+
             print("Creating oscillator!")
             let oscil = operatingObject as! AKOscillator
-
-            let freqKnob = PSRotaryKnob(
-                property: "Freq",
-                value: oscil.frequency,
-                range: 220.0 ... 2200.0,
-                format: "%f Hz") { sliderValue in
-                oscil.frequency = sliderValue
-            }
-
-            let ampKnob = PSRotaryKnob(
-                property: "Amp",
-                value: oscil.amplitude,
-                range: 0.0 ... 1.0,
-                format: "%f") { sliderValue in
-                oscil.amplitude = sliderValue
-            }
-
-            knobsView.append(freqKnob)
-            knobsView.append(ampKnob)
+            knobsView = stackchainInstance.generateKnobs(oscil: oscil)
 
         } else if type(of: operatingObject) == AKDelay.self {
 
             print("Creating Delay!")
-            let delayed = operatingObject as! AKDelay
+            let delay = operatingObject as! AKDelay
+            knobsView = stackchainInstance.generateKnobs(delay: delay)
 
-            let mixKnob = PSRotaryKnob(
-                property: "Mix",
-                value: delayed.dryWetMix,
-                range: 0.0 ... 1.0,
-                format: "%f Hz") { sliderValue in
-                delayed.dryWetMix = sliderValue
-            }
-
-            let timeKnob = PSRotaryKnob(
-                property: "Time",
-                value: delayed.time,
-                range: 1 ... 4,
-                format: "%f") { sliderValue in
-                delayed.time = sliderValue
-            }
-
-            let feedBackKnob = PSRotaryKnob(
-                property: "Fdbk",
-                value: delayed.feedback,
-                range: 0.0 ... 1.0,
-                format: "%f") { sliderValue in
-                delayed.feedback = sliderValue
-            }
-
-            knobsView.append(mixKnob)
-            knobsView.append(feedBackKnob)
-            knobsView.append(timeKnob)
 
         } else if type(of: operatingObject) == AKCostelloReverb.self {
+
             print("Creating Reverb!")
             let reverbObj = operatingObject as! AKCostelloReverb
-
-            let fdbkKnob = PSRotaryKnob(
-                property: "Fdbk",
-                value: reverbObj.feedback,
-                range: 0.0 ... 0.9,
-                format: "%f") { sliderValue in
-                reverbObj.feedback = sliderValue
-            }
-
-            let cutOffKnob = PSRotaryKnob(
-                property: "Cutoff",
-                value: reverbObj.cutoffFrequency,
-                range: 0.0 ... 0.9,
-                format: "%f") { sliderValue in
-                reverbObj.cutoffFrequency = sliderValue
-            }
-
-            knobsView.append(fdbkKnob)
-            knobsView.append(cutOffKnob)
+            knobsView = stackchainInstance.generateKnobs(reverb: reverbObj)
 
         } else if type(of: operatingObject) == AKEqualizerFilter.self {
+            
             print("Creating Reverb!")
             let eq = operatingObject as! AKEqualizerFilter
-
-            let freqKnob = PSRotaryKnob(
-                property: "Freq",
-                value: eq.centerFrequency,
-                range: 20.0 ... 2200.0,
-                format: "%f Hz") { sliderValue in
-                eq.centerFrequency = sliderValue
-            }
-
-            let timeKnob = PSRotaryKnob(
-                property: "Gain",
-                value: eq.gain,
-                range: 0.0 ... 1.0,
-                format: "%f") { sliderValue in
-                eq.gain = sliderValue
-            }
-
-            let feedBackKnob = PSRotaryKnob(
-                property: "q",
-                value: eq.bandwidth,
-                range: 0.0 ... 5.0,
-                format: "%f") { sliderValue in
-                eq.bandwidth = sliderValue
-            }
-
-            knobsView.append(freqKnob)
-            knobsView.append(feedBackKnob)
-            knobsView.append(timeKnob)
+            knobsView = stackchainInstance.generateKnobs(eq:eq)
         }
 
         return knobsView
@@ -201,17 +117,17 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath as IndexPath) as! AudioBubble
+        guard let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath as IndexPath) as? AudioBubble else{ return UICollectionViewCell() }
 
         myCell.backgroundColor = UIColor(white: 0, alpha: 0.5)
 
         myCell.contentView.isUserInteractionEnabled = true
 
         let bounds = myCell.bounds
-        myCell.Label.text = widgetList[indexPath.row]
+        myCell.label.text = widgetList[indexPath.row]
         myCell.layer.cornerRadius = bounds.width * 0.1
 
-        let knobs = (getKnobs(forObject: obj_list[indexPath.row]))
+        let knobs = (getKnobs(forObject: objList[indexPath.row]))
 
         knobs.forEach({
             myCell.stackData.addArrangedSubview($0)

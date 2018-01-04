@@ -5,8 +5,126 @@ import UIKit
 
 class StackChain {
 
-    func constructOscil() -> AKOscillator {
+    func generateKnobs(oscil: AKOscillator) -> [PSRotaryKnob] {
 
+        var knobs: [PSRotaryKnob] = []
+
+        let freqKnob = PSRotaryKnob(
+                property: "Freq",
+                value: oscil.frequency,
+                range: 220.0...2200.0,
+                format: "%f Hz") { sliderValue in
+            oscil.frequency = sliderValue
+        }
+
+        let ampKnob = PSRotaryKnob(
+                property: "Amp",
+                value: oscil.amplitude,
+                range: 0.0...1.0,
+                format: "%f") { sliderValue in
+            oscil.amplitude = sliderValue
+        }
+
+        knobs.append(freqKnob)
+        knobs.append(ampKnob)
+        return knobs
+    }
+
+    func generateKnobs(delay: AKDelay) -> [PSRotaryKnob] {
+        
+        var knobs: [PSRotaryKnob] = []
+        
+        let mixKnob = PSRotaryKnob(
+            property: "Mix",
+            value: delay.dryWetMix,
+            range: 0.0 ... 1.0,
+            format: "%f Hz") { sliderValue in
+                delay.dryWetMix = sliderValue
+        }
+        
+        let timeKnob = PSRotaryKnob(
+            property: "Time",
+            value: delay.time,
+            range: 1 ... 4,
+            format: "%f") { sliderValue in
+                delay.time = sliderValue
+        }
+        
+        let feedBackKnob = PSRotaryKnob(
+            property: "Fdbk",
+            value: delay.feedback,
+            range: 0.0 ... 1.0,
+            format: "%f") { sliderValue in
+                delay.feedback = sliderValue
+        }
+        
+        knobs.append(mixKnob)
+        knobs.append(timeKnob)
+        knobs.append(feedBackKnob)
+        return knobs
+    }
+    
+    func generateKnobs(reverb: AKCostelloReverb) -> [PSRotaryKnob] {
+        
+        var knobs: [PSRotaryKnob] = []
+        
+        let fdbkKnob = PSRotaryKnob(
+            property: "Fdbk",
+            value: reverb.feedback,
+            range: 0.0 ... 0.9,
+            format: "%f") { sliderValue in
+                reverb.feedback = sliderValue
+        }
+        
+        let cutOffKnob = PSRotaryKnob(
+            property: "Cutoff",
+            value: reverb.cutoffFrequency,
+            range: 0.0 ... 0.9,
+            format: "%f") { sliderValue in
+                reverb.cutoffFrequency = sliderValue
+        }
+        
+        knobs.append(cutOffKnob)
+        knobs.append(fdbkKnob)
+        
+        return knobs
+    }
+    func generateKnobs(eq: AKEqualizerFilter) -> [PSRotaryKnob] {
+        
+        var knobs: [PSRotaryKnob] = []
+        
+        let freqKnob = PSRotaryKnob(
+            property: "Freq",
+            value: eq.centerFrequency,
+            range: 20.0 ... 2200.0,
+            format: "%f Hz") { sliderValue in
+                eq.centerFrequency = sliderValue
+        }
+        
+        let timeKnob = PSRotaryKnob(
+            property: "Gain",
+            value: eq.gain,
+            range: 0.0 ... 1.0,
+            format: "%f") { sliderValue in
+                eq.gain = sliderValue
+        }
+        
+        let feedBackKnob = PSRotaryKnob(
+            property: "q",
+            value: eq.bandwidth,
+            range: 0.0 ... 5.0,
+            format: "%f") { sliderValue in
+                eq.bandwidth = sliderValue
+        }
+        
+        knobs.append(freqKnob)
+        knobs.append(timeKnob)
+        knobs.append(feedBackKnob)
+        
+        return knobs
+    }
+
+    func constructOscil() -> AKOscillator {
         let oscil = AKOscillator()
         oscil.frequency = 440.0
         oscil.amplitude = 1.0
@@ -48,7 +166,7 @@ class StackChain {
 
     func createObjects(widgetList: [String]) -> [AnyObject] {
         // From this point onwards, we assume that the first point in any list is just a node and everything else is an output.
-        var NodesList: [AnyObject] = []
+        var nodesList: [AnyObject] = []
         var osc_count = 0
         var adsr_count = 0
         var delay_count = 0
@@ -58,42 +176,42 @@ class StackChain {
         for i in widgetList {
             switch i {
             case "osc":
-                NodesList.append(constructOscil())
+                nodesList.append(constructOscil())
                 osc_count += 1
             case "adsr":
-                NodesList.append(constructADSR())
+                nodesList.append(constructADSR())
                 adsr_count += 1
             case "del":
-                NodesList.append(constructDelay())
+                nodesList.append(constructDelay())
                 delay_count += 1
             case "rev":
-                NodesList.append(constructReverb())
+                nodesList.append(constructReverb())
                 reverb_count += 1
             case "eq":
-                NodesList.append(constructParaEQ())
+                nodesList.append(constructParaEQ())
                 eq_count += 1
             case "mic":
-                NodesList.append(constructMic())
+                nodesList.append(constructMic())
                 mic_count += 1
             default:
                 print("Not appending this. Unrecognized keyword")
             }
         }
-        return NodesList
+        return nodesList
     }
 
-    func compileModel(NodesList: [AnyObject]) {
-        var obj_list = NodesList
-        obj_list.append(AKMixer())
-        for (index, element) in obj_list.enumerated() {
-            if index + 1 != obj_list.count {
+    func compileModel(nodesList: [AnyObject]) {
+        var objList = nodesList
+        objList.append(AKMixer())
+        for (index, element) in objList.enumerated() {
+            if index + 1 != objList.count {
                 print("connecting \(index) to \(index + 1)")
-                print("elements involved are: \(element), \(obj_list[index + 1])")
-                (element as! AKNode).setOutput(to: obj_list[index + 1] as! AKInput)
+                print("elements involved are: \(element), \(objList[index + 1])")
+                (element as! AKNode).setOutput(to: objList[index + 1] as! AKInput)
             }
         }
-        let generator = (obj_list[0] as! AKToggleable)
-        let f_mixer = (obj_list[obj_list.count - 1] as! AKMixer)
+        let generator = (objList[0] as! AKToggleable)
+        let f_mixer = (objList[objList.count - 1] as! AKMixer)
         f_mixer.volume = 0.8
         AKSettings.audioInputEnabled = true
         AKSettings.useBluetooth = true

@@ -11,10 +11,10 @@ import UIKit
 
 class Router {
 
-    let RootController: RootViewController
+    let rootController: RootViewController
 
     init() {
-        RootController = RootViewController()
+        rootController = RootViewController()
     }
 
     func showFirstViewController() {
@@ -22,13 +22,14 @@ class Router {
     }
 
     func showLandingPage() {
-        let landingView = UIStoryboard(name: String(describing: LandingViewController.self), bundle: nil).instantiateInitialViewController() as! LandingViewController
-        RootController.set(viewController: landingView)
+        guard let landingView = UIStoryboard(name: String(describing: LandingViewController.self), bundle: nil).instantiateInitialViewController() as? LandingViewController else{return}
+        rootController.set(viewController: landingView)
     }
 
     func showCompiledPage(widgets: [String]) {
-        let audioView = UIStoryboard(name: String(describing: AudioViewController.self), bundle: nil).instantiateInitialViewController() as! AudioViewController
+        guard let audioView = UIStoryboard(name: String(describing: AudioViewController.self), bundle: nil).instantiateInitialViewController() as? AudioViewController
+            else{return}
         audioView.configure(widgetNames: widgets)
-        RootController.set(viewController: audioView)
+        rootController.set(viewController: audioView)
     }
 }

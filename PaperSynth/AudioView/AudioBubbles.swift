@@ -17,7 +17,7 @@ import UIKit
 
 class AudioBubble: UICollectionViewCell {
 
-    var Label: UILabel = {
+    var label: UILabel = {
         let objLabel = UILabel(frame: CGRect(x: 17, y: 10, width: 123, height: 40))
         objLabel.font = UIFont(name: "AvenirNext-Bold", size: 14.0)
         objLabel.textColor = .white
@@ -41,7 +41,7 @@ class AudioBubble: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(Label)
+        addSubview(label)
         addSubview(stackData)
     }
 

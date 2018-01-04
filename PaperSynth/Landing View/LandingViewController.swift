@@ -140,7 +140,7 @@ class LandingViewController: UIViewController, UIImagePickerControllerDelegate, 
                 print("Components: \(components)")
                 let filteredComponents = components.filter { $0 != "" }
                 let parsedWords = filteredComponents.map {
-                    TextCleaner(text: $0).ReturnLevens()
+                    TextCleaner(text: $0).returnLevens()
                 }
                 print(parsedWords)
                 detectedText.text = parsedWords.joined(separator: " ")
@@ -352,7 +352,10 @@ extension LandingViewController: AVCaptureVideoDataOutputSampleBufferDelegate, A
             requestOptions = [.cameraIntrinsics: camData]
         }
     }
-
+    
+    
+    // Thanks, Apple.
+    // swiftlint:disable line_length
     public func photoOutput(_: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings _: AVCaptureResolvedPhotoSettings, bracketSettings _: AVCaptureBracketedStillImageSettings?, error: Error?) {
         print("yay?!?!?!")
         if let error = error {

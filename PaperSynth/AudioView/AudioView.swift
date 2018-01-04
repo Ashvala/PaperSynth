@@ -6,11 +6,11 @@ import UIKit
 class AudioView {
 
     var widgetList: [String]
-    var obj_list: [AnyObject]
+    var objList: [AnyObject]
 
     init(widgetNames: [String]) {
         widgetList = widgetNames
-        obj_list = StackChain().createObjects(widgetList: widgetList)
+        objList = StackChain().createObjects(widgetList: widgetList)
     }
 
     required init?(coder _: NSCoder) {
@@ -18,7 +18,7 @@ class AudioView {
     }
 
     func renderView() -> UIView {
-        StackChain().compileModel(NodesList: obj_list)
+        StackChain().compileModel(nodesList: objList)
         let view_size = UIScreen.main.bounds
         let view = UIView(frame: CGRect(x: 0, y: 0, width: view_size.width, height: view_size.height))
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
@@ -48,15 +48,15 @@ class AudioView {
         stackView.addArrangedSubview(titleLabel)
 
         // Oscillator
-        if type(of: obj_list[0]) == AKOscillator.self {
-//            let returnedView = AudioBubble().oscBubble(oscil: obj_list[0] as! AKOscillator)
+        if type(of: objList[0]) == AKOscillator.self {
+//            let returnedView = AudioBubble().oscBubble(oscil: objList[0] as! AKOscillator)
 //            returnedView.frame.size.width = 157
 //            returnedView.frame.size.height = 157
 //            stackView.addArrangedSubview(returnedView)
         }
 
         // Microphone
-        if type(of: obj_list[0]) == AKMicrophone.self {
+        if type(of: objList[0]) == AKMicrophone.self {
             let Label = UILabel()
             Label.text = "Microphone Input"
             Label.font = UIFont(name: "Avenir", size: 14.0)
