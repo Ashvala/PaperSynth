@@ -82,10 +82,10 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
     // Needs to be refactored.
 
     func getKnobs(forObject: AnyObject) -> [PSRotaryKnob] {
-        
+
         var knobsView: [PSRotaryKnob] = []
         let operatingObject: AnyObject = forObject
-        
+
         if type(of: operatingObject) == AKOscillator.self {
 
             print("Creating oscillator!")
@@ -98,7 +98,6 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
             let delay = operatingObject as! AKDelay
             knobsView = stackchainInstance.generateKnobs(delay: delay)
 
-
         } else if type(of: operatingObject) == AKCostelloReverb.self {
 
             print("Creating Reverb!")
@@ -106,10 +105,10 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
             knobsView = stackchainInstance.generateKnobs(reverb: reverbObj)
 
         } else if type(of: operatingObject) == AKEqualizerFilter.self {
-            
+
             print("Creating Reverb!")
             let eq = operatingObject as! AKEqualizerFilter
-            knobsView = stackchainInstance.generateKnobs(eq:eq)
+            knobsView = stackchainInstance.generateKnobs(eq: eq)
         }
 
         return knobsView
@@ -117,7 +116,7 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        guard let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath as IndexPath) as? AudioBubble else{ return UICollectionViewCell() }
+        guard let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath as IndexPath) as? AudioBubble else { return UICollectionViewCell() }
 
         myCell.backgroundColor = UIColor(white: 0, alpha: 0.5)
 

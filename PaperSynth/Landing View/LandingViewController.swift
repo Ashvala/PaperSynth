@@ -217,7 +217,7 @@ class LandingViewController: UIViewController, UIImagePickerControllerDelegate, 
                 if error != nil {
                     print("Got Error In Run Text Dectect Request :(")
                 } else {
-                    guard let results = request.results as? Array<VNTextObservation> else {
+                    guard let results = request.results as? [VNTextObservation] else {
                         fatalError("Unexpected result type from VNDetectTextRectanglesRequest")
                     }
                     if results.count == 0 {
@@ -352,7 +352,6 @@ extension LandingViewController: AVCaptureVideoDataOutputSampleBufferDelegate, A
             requestOptions = [.cameraIntrinsics: camData]
         }
     }
-    
     
     // Thanks, Apple.
     // swiftlint:disable line_length

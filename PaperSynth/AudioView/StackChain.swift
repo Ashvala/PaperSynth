@@ -10,18 +10,18 @@ class StackChain {
         var knobs: [PSRotaryKnob] = []
 
         let freqKnob = PSRotaryKnob(
-                property: "Freq",
-                value: oscil.frequency,
-                range: 220.0...2200.0,
-                format: "%f Hz") { sliderValue in
+            property: "Freq",
+            value: oscil.frequency,
+            range: 220.0 ... 2200.0,
+            format: "%f Hz") { sliderValue in
             oscil.frequency = sliderValue
         }
 
         let ampKnob = PSRotaryKnob(
-                property: "Amp",
-                value: oscil.amplitude,
-                range: 0.0...1.0,
-                format: "%f") { sliderValue in
+            property: "Amp",
+            value: oscil.amplitude,
+            range: 0.0 ... 1.0,
+            format: "%f") { sliderValue in
             oscil.amplitude = sliderValue
         }
 
@@ -31,96 +31,96 @@ class StackChain {
     }
 
     func generateKnobs(delay: AKDelay) -> [PSRotaryKnob] {
-        
         var knobs: [PSRotaryKnob] = []
-        
+
         let mixKnob = PSRotaryKnob(
             property: "Mix",
             value: delay.dryWetMix,
             range: 0.0 ... 1.0,
             format: "%f Hz") { sliderValue in
-                delay.dryWetMix = sliderValue
+            delay.dryWetMix = sliderValue
         }
-        
+
         let timeKnob = PSRotaryKnob(
             property: "Time",
             value: delay.time,
             range: 1 ... 4,
             format: "%f") { sliderValue in
-                delay.time = sliderValue
+            delay.time = sliderValue
         }
-        
+
         let feedBackKnob = PSRotaryKnob(
             property: "Fdbk",
             value: delay.feedback,
             range: 0.0 ... 1.0,
             format: "%f") { sliderValue in
-                delay.feedback = sliderValue
+            delay.feedback = sliderValue
         }
-        
+
         knobs.append(mixKnob)
         knobs.append(timeKnob)
         knobs.append(feedBackKnob)
         return knobs
     }
-    
+
     func generateKnobs(reverb: AKCostelloReverb) -> [PSRotaryKnob] {
-        
+
         var knobs: [PSRotaryKnob] = []
-        
+
         let fdbkKnob = PSRotaryKnob(
             property: "Fdbk",
             value: reverb.feedback,
             range: 0.0 ... 0.9,
             format: "%f") { sliderValue in
-                reverb.feedback = sliderValue
+            reverb.feedback = sliderValue
         }
-        
+
         let cutOffKnob = PSRotaryKnob(
             property: "Cutoff",
             value: reverb.cutoffFrequency,
             range: 0.0 ... 0.9,
             format: "%f") { sliderValue in
-                reverb.cutoffFrequency = sliderValue
+            reverb.cutoffFrequency = sliderValue
         }
-        
+
         knobs.append(cutOffKnob)
         knobs.append(fdbkKnob)
-        
+
         return knobs
     }
+
     func generateKnobs(eq: AKEqualizerFilter) -> [PSRotaryKnob] {
-        
+
         var knobs: [PSRotaryKnob] = []
-        
+
         let freqKnob = PSRotaryKnob(
             property: "Freq",
             value: eq.centerFrequency,
             range: 20.0 ... 2200.0,
             format: "%f Hz") { sliderValue in
-                eq.centerFrequency = sliderValue
+            eq.centerFrequency = sliderValue
         }
-        
+
         let timeKnob = PSRotaryKnob(
             property: "Gain",
             value: eq.gain,
             range: 0.0 ... 1.0,
             format: "%f") { sliderValue in
-                eq.gain = sliderValue
+            eq.gain = sliderValue
         }
-        
+
         let feedBackKnob = PSRotaryKnob(
             property: "q",
             value: eq.bandwidth,
             range: 0.0 ... 5.0,
             format: "%f") { sliderValue in
-                eq.bandwidth = sliderValue
+            eq.bandwidth = sliderValue
         }
-        
+
         knobs.append(freqKnob)
         knobs.append(timeKnob)
         knobs.append(feedBackKnob)
-        
+
         return knobs
     }
 
