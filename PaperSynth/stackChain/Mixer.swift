@@ -17,7 +17,13 @@ class SCMixer: SCUnit {
         mixer = AKMixer()
         mixer.volume = 0.66
     }
-
+    
+    /**
+     This function gets the AudioKit node object inside of a class.
+     
+     - returns
+     `AKNode`
+     */
     func getNode() -> AKNode {
         return mixer as AKNode
     }

@@ -12,9 +12,17 @@ import Foundation
 /// Roughly the AKEqualizerFilter Class. 
 class SCEqualizer: SCUnit {
     let eq: AKEqualizerFilter
+    
     required init() {
         eq = AKEqualizerFilter()
     }
+    
+    /**
+     This function gets the AudioKit node object inside of a class.
+     
+     - returns
+     `AKNode`
+     */
 
     func getNode() -> AKNode {
         return eq

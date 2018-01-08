@@ -17,7 +17,13 @@ class SCDelay: SCUnit {
         delay = AKDelay()
         delay.dryWetMix = 0.66
     }
-
+    
+    /**
+     This function gets the AudioKit node object inside of a class.
+     
+     - returns
+     `AKNode`
+     */
     func getNode() -> AKNode {
         return delay as AKNode
     }

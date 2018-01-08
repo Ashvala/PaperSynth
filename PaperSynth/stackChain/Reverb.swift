@@ -15,11 +15,26 @@ class SCReverb: SCUnit {
     required init() {
         reverb = AKCostelloReverb()
     }
-
+    
+    /**
+     This function gets the AudioKit node object inside of a class.
+     
+     - returns
+     `AKNode`
+     */
+    
     func getNode() -> AKNode {
         return reverb
     }
-
+    
+    /**
+     This method creates the rotary knobs required for this stackChain Unit
+     
+     - returns
+         2 knobs: `fdbkKnob` and `cutOffKnob`.
+     
+         `fdbkKnob` handles the feedback from the reverbarator and the `cutoffKnob` handles the low pass cutoff frequency.
+     */
     func getUI() -> [PSRotaryKnob] {
 
         var knobs: [PSRotaryKnob] = []

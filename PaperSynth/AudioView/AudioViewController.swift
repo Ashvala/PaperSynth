@@ -14,10 +14,15 @@ import UIKit
 class AudioViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,
     UIViewControllerPreviewingDelegate {
 
+    // MARK: Mutables
+    
     var widgetList: [String]!
     @IBOutlet var synthStack: UILabel!
     var objList: [stackChainUnit]!
     var configured: Bool = false
+    
+    // MARK: Immutables
+    
     let stackchainInstance: StackChain = StackChain()
 
     let cellIdentifier = "MyCell"
@@ -29,6 +34,7 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
         configured = true
     }
 
+    // MARK: Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -80,7 +86,7 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
         // Dispose of any resources that can be recreated.
     }
 
-   
+    // MARK: CollectionView delegate methods
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         guard let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath as IndexPath) as? AudioBubble else { return UICollectionViewCell() }
@@ -118,6 +124,7 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
         return false
     }
 
+    // MARK: Preview Context delegate methods	
     func previewingContext(_: UIViewControllerPreviewing, viewControllerForLocation _: CGPoint) -> UIViewController? {
 
         print("FORCEEEE")

@@ -17,11 +17,25 @@ class SCMic: SCUnit {
         mic = AKMicrophone()
         mic.volume = 0.5
     }
-
+    
+    /**
+     This function gets the AudioKit node object inside of a class.
+     
+     - returns
+     `AKNode`
+     */
     func getNode() -> AKNode {
         return mic as AKNode
     }
 
+    /**
+     This method creates the rotary knobs required for this stackChain Unit
+     
+     - returns
+         1 knob: `volumeKnob`.
+     
+         `volumeKnob` deals with the volume on the input from the microphone..
+     */
     func getUI() -> [PSRotaryKnob] {
         var knobs: [PSRotaryKnob] = []
 

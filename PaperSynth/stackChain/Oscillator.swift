@@ -19,10 +19,25 @@ class SCOscil: SCUnit {
         oscil.frequency = 440.0
         oscil.amplitude = 0.5
     }
-
+    
+    /**
+     This method gets the AudioKit node object inside of a class.
+     
+     - returns
+     `AKNode`
+     */
     func getNode() -> AKNode {
         return oscil as AKNode
     }
+    
+    /**
+     This method creates the rotary knobs required for this stackChain Unit
+     
+     - returns
+         2 knobs: `freqKnob` and `ampKnob`.
+         
+         `freqKnob` handles the frequency of the oscillator and the `ampKnob` handles the amplitude.
+     */
 
     func getUI() -> [PSRotaryKnob] {
         var knobs: [PSRotaryKnob] = []
