@@ -3,7 +3,7 @@
 
 ![Imgur](https://thumbs.gfycat.com/BareCompleteGreatargus-size_restricted.gif)
 
-PaperSynth is a project that aims to read keywords you've written on a piece of paper and covert it into synthesizers you can play on the phone.
+PaperSynth is a project that aims to read keywords you've written on a piece of paper and convert it into synthesizers you can play on the phone.
 
 It uses a convolutional neural network model to do handwriting recognition in photos.
 
