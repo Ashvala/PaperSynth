@@ -12,9 +12,13 @@ import Foundation
 class SCMic: SCUnit {
 
     var mic: AKMicrophone
-    init() {
+    required init() {
         mic = AKMicrophone()
         mic.volume = 0.5
+    }
+
+    func getNode() -> AKNode {
+        return mic as AKNode
     }
 
     func getUI() -> [PSRotaryKnob] {

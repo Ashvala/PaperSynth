@@ -13,14 +13,14 @@ import Foundation
 class SCOscil: SCUnit {
     let oscil: AKOscillator
 
-    init() {
+    required init() {
         oscil = AKOscillator()
         oscil.frequency = 440.0
         oscil.amplitude = 0.5
     }
 
-    func getUnit() -> AKOscillator {
-        return oscil
+    func getNode() -> AKNode {
+        return oscil as AKNode
     }
 
     func getUI() -> [PSRotaryKnob] {

@@ -26,6 +26,8 @@ enum Types {
     case mic
     case delay
     case mixer
+    case reverb
+    case eq
     func getObject() -> SCUnit {
         switch self {
         case .oscil:
@@ -36,6 +38,10 @@ enum Types {
             return SCDelay()
         case .mixer:
             return SCMixer()
+        case .reverb:
+            return SCReverb()
+        case .eq:
+            return SCEqualizer()
         }
     }
 }
@@ -44,14 +50,13 @@ struct stackChainUnit {
 
     var name: String
     var type: Types
-    var unitClass: SCUnit!
+    var unit: SCUnit!
     var canInput: Bool
 
     init(name: String, type: Types, canInput: Bool) {
         self.name = name
         self.type = type
-        self.unitClass = self.type.getObject()
         self.canInput = canInput
+        unit = self.type.getObject()
     }
-
 }

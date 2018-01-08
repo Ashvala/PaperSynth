@@ -28,6 +28,7 @@
 		C23FD0111FDC0ACE00972238 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23FD00B1FDC021B00972238 /* AudioKit.framework */; };
 		C23FD0121FDC0ACE00972238 /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C23FD00B1FDC021B00972238 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C2600B381FFBD70B003E46E3 /* PaperSynthUIKnob.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2600B371FFBD70B003E46E3 /* PaperSynthUIKnob.swift */; };
+		C2B23E99200386470071E975 /* Equalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B23E98200386470071E975 /* Equalizer.swift */; };
 		C2D13B811FDDB75B00574DF1 /* AudioKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */; };
 		C2D13B821FDDB76600574DF1 /* AudioKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */; };
 		C2D13B831FDDB76600574DF1 /* AudioKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -38,6 +39,7 @@
 		C2F1AC881FFE520800867169 /* Mixer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F1AC871FFE520800867169 /* Mixer.swift */; };
 		C2F1AC8A1FFE584A00867169 /* Microphone.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F1AC891FFE584A00867169 /* Microphone.swift */; };
 		C2F1AC8C1FFE586F00867169 /* StackChainUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F1AC8B1FFE586F00867169 /* StackChainUnit.swift */; };
+		C2FB64092003744A0052689A /* Reverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FB64082003744A0052689A /* Reverb.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +101,7 @@
 		C23FD0051FDBF3EB00972238 /* Levenshtein.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Levenshtein.swift; sourceTree = "<group>"; };
 		C23FD00B1FDC021B00972238 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKit.framework; sourceTree = "<group>"; };
 		C2600B371FFBD70B003E46E3 /* PaperSynthUIKnob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperSynthUIKnob.swift; sourceTree = "<group>"; };
+		C2B23E98200386470071E975 /* Equalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equalizer.swift; sourceTree = "<group>"; };
 		C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKitUI.framework; sourceTree = "<group>"; };
 		C2E224FC1FFB9C630050B370 /* AudioViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AudioViewController.storyboard; sourceTree = "<group>"; };
 		C2F1AC811FFE4E9500867169 /* Oscillator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Oscillator.swift; sourceTree = "<group>"; };
@@ -106,6 +109,7 @@
 		C2F1AC871FFE520800867169 /* Mixer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mixer.swift; sourceTree = "<group>"; };
 		C2F1AC891FFE584A00867169 /* Microphone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Microphone.swift; sourceTree = "<group>"; };
 		C2F1AC8B1FFE586F00867169 /* StackChainUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackChainUnit.swift; sourceTree = "<group>"; };
+		C2FB64082003744A0052689A /* Reverb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reverb.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,9 +254,11 @@
 			children = (
 				C2F1AC811FFE4E9500867169 /* Oscillator.swift */,
 				C2F1AC891FFE584A00867169 /* Microphone.swift */,
+				C2FB64082003744A0052689A /* Reverb.swift */,
 				C2F1AC8B1FFE586F00867169 /* StackChainUnit.swift */,
 				C2F1AC851FFE513A00867169 /* Delay.swift */,
 				C2F1AC871FFE520800867169 /* Mixer.swift */,
+				C2B23E98200386470071E975 /* Equalizer.swift */,
 			);
 			name = Units;
 			sourceTree = "<group>";
@@ -444,8 +450,10 @@
 				C2600B381FFBD70B003E46E3 /* PaperSynthUIKnob.swift in Sources */,
 				C206AB8B1FF511EE008EE364 /* AudioViewController.swift in Sources */,
 				C23FCFFE1FDAC33C00972238 /* ImageUtils.swift in Sources */,
+				C2FB64092003744A0052689A /* Reverb.swift in Sources */,
 				C2F1AC881FFE520800867169 /* Mixer.swift in Sources */,
 				C2F1AC821FFE4E9500867169 /* Oscillator.swift in Sources */,
+				C2B23E99200386470071E975 /* Equalizer.swift in Sources */,
 				C2F1AC861FFE513A00867169 /* Delay.swift in Sources */,
 				C206AB8D1FF513E4008EE364 /* Router.swift in Sources */,
 				C206AB9A1FF64A8A008EE364 /* AudioBubbles.swift in Sources */,

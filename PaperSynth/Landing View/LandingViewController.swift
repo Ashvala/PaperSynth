@@ -46,10 +46,6 @@ class LandingViewController: UIViewController, UIImagePickerControllerDelegate, 
         super.viewDidLoad()
         startLiveVideo()
         loadModel()
-
-        let p = stackChainUnit(name: "osc", type: .oscil)
-        print(p.unit)
-
         // set last image:
         let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]

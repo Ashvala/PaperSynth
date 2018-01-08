@@ -12,13 +12,13 @@ import Foundation
 class SCDelay: SCUnit {
     let delay: AKDelay
 
-    init() {
+    required init() {
         delay = AKDelay()
         delay.dryWetMix = 0.66
     }
 
-    func getUnit() -> AKDelay {
-        return delay
+    func getNode() -> AKNode {
+        return delay as AKNode
     }
 
     func getUI() -> [PSRotaryKnob] {

@@ -12,13 +12,13 @@ import Foundation
 class SCMixer: SCUnit {
     let mixer: AKMixer
 
-    init() {
+    required init() {
         mixer = AKMixer()
         mixer.volume = 0.66
     }
 
-    func getUnit() -> AKMixer {
-        return mixer
+    func getNode() -> AKNode {
+        return mixer as AKNode
     }
 
     func getUI() -> [PSRotaryKnob] {
