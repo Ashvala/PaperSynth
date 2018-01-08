@@ -6,45 +6,44 @@
 //  Copyright © 2018 Ashvala Vinay. All rights reserved.
 //
 
-import Foundation
 import AudioKit
 import AudioKitUI
+import Foundation
 
-class PSOscil {
+class SCOscil: SCUnit {
     let oscil: AKOscillator
-    
+
     init() {
-        self.oscil = AKOscillator()
-        self.oscil.frequency = 440.0
-        self.oscil.amplitude = 0.5
+        oscil = AKOscillator()
+        oscil.frequency = 440.0
+        oscil.amplitude = 0.5
     }
-    
-    func getUnit()-> AKOscillator{
-        return self.oscil
+
+    func getUnit() -> AKOscillator {
+        return oscil
     }
-    
+
     func getUI() -> [PSRotaryKnob] {
         var knobs: [PSRotaryKnob] = []
-        
+
         let freqKnob = PSRotaryKnob(
             property: "Freq",
             value: oscil.frequency,
             range: 220.0 ... 2200.0,
             format: "%f Hz") { sliderValue in
-                self.oscil.frequency = sliderValue
+            self.oscil.frequency = sliderValue
         }
-        
+
         let ampKnob = PSRotaryKnob(
             property: "Amp",
-            value: self.oscil.amplitude,
+            value: oscil.amplitude,
             range: 0.0 ... 1.0,
             format: "%f") { sliderValue in
-                self.oscil.amplitude = sliderValue
+            self.oscil.amplitude = sliderValue
         }
-        
+
         knobs.append(freqKnob)
         knobs.append(ampKnob)
         return knobs
     }
-    
 }

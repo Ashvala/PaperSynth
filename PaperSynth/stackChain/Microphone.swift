@@ -1,5 +1,5 @@
 //
-//  PSMixer.swift
+//  Microphone.swift
 //  PaperSynth
 //
 //  Created by Ashvala Vinay on 1/4/18.
@@ -9,29 +9,24 @@
 import AudioKit
 import Foundation
 
-class SCMixer: SCUnit {
-    let mixer: AKMixer
+class SCMic: SCUnit {
 
+    var mic: AKMicrophone
     init() {
-        mixer = AKMixer()
-        mixer.volume = 0.66
-    }
-
-    func getUnit() -> AKMixer {
-        return mixer
+        mic = AKMicrophone()
+        mic.volume = 0.5
     }
 
     func getUI() -> [PSRotaryKnob] {
-        var knobs = [PSRotaryKnob]()
+        var knobs: [PSRotaryKnob] = []
 
         let volumeKnob = PSRotaryKnob(
             property: "Vol",
-            value: mixer.volume,
+            value: mic.volume,
             range: 0.0 ... 1.0,
             format: "%f") { sliderValue in
-            self.mixer.volume = sliderValue
+            self.mic.volume = sliderValue
         }
-
         knobs.append(volumeKnob)
         return knobs
     }

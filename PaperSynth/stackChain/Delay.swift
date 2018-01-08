@@ -6,48 +6,48 @@
 //  Copyright © 2018 Ashvala Vinay. All rights reserved.
 //
 
-import Foundation
 import AudioKit
+import Foundation
 
-class PSDelay{
+class SCDelay: SCUnit {
     let delay: AKDelay
-    
-    init(){
-        self.delay = AKDelay()
-        self.delay.dryWetMix = 0.66
+
+    init() {
+        delay = AKDelay()
+        delay.dryWetMix = 0.66
     }
-    
-    func getUnit()-> AKDelay{
-        return self.delay
+
+    func getUnit() -> AKDelay {
+        return delay
     }
-    
-    func getUI()->[PSRotaryKnob]{
+
+    func getUI() -> [PSRotaryKnob] {
         var knobs: [PSRotaryKnob] = []
-        
+
         let mixKnob = PSRotaryKnob(
             property: "Mix",
             value: delay.dryWetMix,
             range: 0.0 ... 1.0,
             format: "%f Hz") { sliderValue in
-                self.delay.dryWetMix = sliderValue
+            self.delay.dryWetMix = sliderValue
         }
-        
+
         let timeKnob = PSRotaryKnob(
             property: "Time",
             value: delay.time,
             range: 1 ... 4,
             format: "%f") { sliderValue in
-                self.delay.time = sliderValue
+            self.delay.time = sliderValue
         }
-        
+
         let feedBackKnob = PSRotaryKnob(
             property: "Fdbk",
             value: delay.feedback,
             range: 0.0 ... 1.0,
             format: "%f") { sliderValue in
-                self.delay.feedback = sliderValue
+            self.delay.feedback = sliderValue
         }
-        
+
         knobs.append(mixKnob)
         knobs.append(timeKnob)
         knobs.append(feedBackKnob)

@@ -22,16 +22,15 @@ class Router {
     }
 
     func showLandingPage() {
-        guard let landingView = UIStoryboard(name: String(describing: LandingViewController.self), bundle: nil).instantiateInitialViewController() as? LandingViewController else
-        {
+        guard let landingView = UIStoryboard(name: String(describing: LandingViewController.self), bundle: nil).instantiateInitialViewController() as? LandingViewController else {
             return
         }
         rootController.set(viewController: landingView)
     }
 
     func showCompiledPage(widgets: [String]) {
-        
-        guard let audioView = UIStoryboard(name: String(describing: AudioViewController.self), bundle: nil).instantiateInitialViewController() as? AudioViewController else{
+
+        guard let audioView = UIStoryboard(name: String(describing: AudioViewController.self), bundle: nil).instantiateInitialViewController() as? AudioViewController else {
             return
         }
         audioView.configure(widgetNames: widgets)

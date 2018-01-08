@@ -36,6 +36,8 @@
 		C2F1AC841FFE510500867169 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23FD00B1FDC021B00972238 /* AudioKit.framework */; };
 		C2F1AC861FFE513A00867169 /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F1AC851FFE513A00867169 /* Delay.swift */; };
 		C2F1AC881FFE520800867169 /* Mixer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F1AC871FFE520800867169 /* Mixer.swift */; };
+		C2F1AC8A1FFE584A00867169 /* Microphone.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F1AC891FFE584A00867169 /* Microphone.swift */; };
+		C2F1AC8C1FFE586F00867169 /* StackChainUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F1AC8B1FFE586F00867169 /* StackChainUnit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +104,8 @@
 		C2F1AC811FFE4E9500867169 /* Oscillator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Oscillator.swift; sourceTree = "<group>"; };
 		C2F1AC851FFE513A00867169 /* Delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delay.swift; sourceTree = "<group>"; };
 		C2F1AC871FFE520800867169 /* Mixer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mixer.swift; sourceTree = "<group>"; };
+		C2F1AC891FFE584A00867169 /* Microphone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Microphone.swift; sourceTree = "<group>"; };
+		C2F1AC8B1FFE586F00867169 /* StackChainUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackChainUnit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +249,8 @@
 			isa = PBXGroup;
 			children = (
 				C2F1AC811FFE4E9500867169 /* Oscillator.swift */,
+				C2F1AC891FFE584A00867169 /* Microphone.swift */,
+				C2F1AC8B1FFE586F00867169 /* StackChainUnit.swift */,
 				C2F1AC851FFE513A00867169 /* Delay.swift */,
 				C2F1AC871FFE520800867169 /* Mixer.swift */,
 			);
@@ -432,6 +438,7 @@
 				C206AB981FF6440C008EE364 /* StackChain.swift in Sources */,
 				C23FD0001FDAC36F00972238 /* chars74k5.mlmodel in Sources */,
 				C23FCFD01FDAC31400972238 /* AppDelegate.swift in Sources */,
+				C2F1AC8C1FFE586F00867169 /* StackChainUnit.swift in Sources */,
 				C206AB921FF514B3008EE364 /* RootView.swift in Sources */,
 				C23FD0041FDBE7F900972238 /* TextCleaner.swift in Sources */,
 				C2600B381FFBD70B003E46E3 /* PaperSynthUIKnob.swift in Sources */,
@@ -442,6 +449,7 @@
 				C2F1AC861FFE513A00867169 /* Delay.swift in Sources */,
 				C206AB8D1FF513E4008EE364 /* Router.swift in Sources */,
 				C206AB9A1FF64A8A008EE364 /* AudioBubbles.swift in Sources */,
+				C2F1AC8A1FFE584A00867169 /* Microphone.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
