@@ -16,12 +16,13 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
 
     var widgetList: [String]!
     @IBOutlet var synthStack: UILabel!
-    var objList: [AnyObject]!
+    var objList: [stackChainUnit]!
     var configured: Bool = false
     let stackchainInstance: StackChain = StackChain()
 
     let cellIdentifier = "MyCell"
 
+    /// configure the audioview here.
     func configure(widgetNames: [String]) {
         widgetList = widgetNames
         objList = stackchainInstance.createObjects(widgetList: widgetList)
@@ -79,41 +80,7 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
         // Dispose of any resources that can be recreated.
     }
 
-    // Needs to be refactored.
-
-    func getKnobs(forObject: AnyObject) -> [PSRotaryKnob] {
-
-        var knobsView: [PSRotaryKnob] = []
-        let operatingObject: AnyObject = forObject
-
-        if type(of: operatingObject) == AKOscillator.self {
-
-            print("Creating oscillator!")
-            let oscil = operatingObject as! AKOscillator
-            knobsView = stackchainInstance.generateKnobs(oscil: oscil)
-
-        } else if type(of: operatingObject) == AKDelay.self {
-
-            print("Creating Delay!")
-            let delay = operatingObject as! AKDelay
-            knobsView = stackchainInstance.generateKnobs(delay: delay)
-
-        } else if type(of: operatingObject) == AKCostelloReverb.self {
-
-            print("Creating Reverb!")
-            let reverbObj = operatingObject as! AKCostelloReverb
-            knobsView = stackchainInstance.generateKnobs(reverb: reverbObj)
-
-        } else if type(of: operatingObject) == AKEqualizerFilter.self {
-
-            print("Creating Reverb!")
-            let eq = operatingObject as! AKEqualizerFilter
-            knobsView = stackchainInstance.generateKnobs(eq: eq)
-        }
-
-        return knobsView
-    }
-
+   
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         guard let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath as IndexPath) as? AudioBubble else { return UICollectionViewCell() }
@@ -125,8 +92,9 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
         let bounds = myCell.bounds
         myCell.label.text = widgetList[indexPath.row]
         myCell.layer.cornerRadius = bounds.width * 0.1
-
-        let knobs = (getKnobs(forObject: objList[indexPath.row]))
+        print(indexPath.row)
+        
+        let knobs = objList[indexPath.row].unit.getUI()
 
         knobs.forEach({
             myCell.stackData.addArrangedSubview($0)

@@ -46,7 +46,6 @@ class LandingViewController: UIViewController, UIImagePickerControllerDelegate, 
         super.viewDidLoad()
         startLiveVideo()
         loadModel()
-
         // set last image:
         let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
@@ -352,7 +351,7 @@ extension LandingViewController: AVCaptureVideoDataOutputSampleBufferDelegate, A
             requestOptions = [.cameraIntrinsics: camData]
         }
     }
-    
+
     // Thanks, Apple.
     // swiftlint:disable line_length
     public func photoOutput(_: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings _: AVCaptureResolvedPhotoSettings, bracketSettings _: AVCaptureBracketedStillImageSettings?, error: Error?) {
