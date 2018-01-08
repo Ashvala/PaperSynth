@@ -9,6 +9,7 @@
 import AudioKit
 import Foundation
 
+/// Roughly the AKMicrophone Class.
 class SCMic: SCUnit {
 
     var mic: AKMicrophone

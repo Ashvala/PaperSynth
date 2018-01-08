@@ -9,6 +9,7 @@
 import AudioKit
 import Foundation
 
+/// Roughly the AKMixer Class. 
 class SCMixer: SCUnit {
     let mixer: AKMixer
 

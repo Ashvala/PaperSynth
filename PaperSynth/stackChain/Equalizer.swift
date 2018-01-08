@@ -9,6 +9,7 @@
 import AudioKit
 import Foundation
 
+/// Roughly the AKEqualizerFilter Class. 
 class SCEqualizer: SCUnit {
     let eq: AKEqualizerFilter
     required init() {

@@ -9,6 +9,7 @@
 import AudioKit
 import Foundation
 
+/// Roughly the AKDelay Class. 
 class SCDelay: SCUnit {
     let delay: AKDelay
 

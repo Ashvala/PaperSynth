@@ -22,6 +22,7 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
 
     let cellIdentifier = "MyCell"
 
+    /// configure the audioview here.
     func configure(widgetNames: [String]) {
         widgetList = widgetNames
         objList = stackchainInstance.createObjects(widgetList: widgetList)

@@ -9,6 +9,7 @@
 import AudioKit
 import Foundation
 
+/// Roughly the AKCostelloReverb Class. 
 class SCReverb: SCUnit {
     var reverb: AKCostelloReverb
     required init() {

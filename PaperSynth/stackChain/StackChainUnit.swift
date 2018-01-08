@@ -9,18 +9,14 @@
 import AudioKit
 import Foundation
 
+/// A simple stackchain unit should do the following: get a UI, have an initializer, and return the AKNode.
 protocol SCUnit {
     func getUI() -> [PSRotaryKnob]
     init()
     func getNode() -> AKNode
 }
 
-extension SCUnit {
-    func entity() -> Self {
-        return Self()
-    }
-}
-
+/// All available types go here. So, if you want to create a new unit, you add it here and create the binding. 
 enum Types {
     case oscil
     case mic
@@ -45,6 +41,8 @@ enum Types {
         }
     }
 }
+
+/// A simple aliasing struct. Going forward, the name field and canInput fields will come in handy.
 
 struct stackChainUnit {
 

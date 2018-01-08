@@ -5,6 +5,11 @@ import UIKit
 
 class StackChain {
 
+    /**
+     
+     This method creates a set of stackChain units from a set of strings.
+     
+     */
     func createObjects(widgetList: [String]) -> [stackChainUnit] {
         // From this point onwards, we assume that the first point in any list is just a node and everything else is an output.
         var nodesList: [stackChainUnit] = []
@@ -29,6 +34,12 @@ class StackChain {
         }
         return nodesList
     }
+    
+    /**
+ 
+     This method compiles a set of stackChainUnits into something that can be played via AudioKit
+     
+     */
 
     func compileModel(nodesList: [stackChainUnit]) {
         var objList = nodesList

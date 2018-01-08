@@ -10,6 +10,7 @@ import AudioKit
 import AudioKitUI
 import Foundation
 
+/// Roughly the AKOscillator Class. 
 class SCOscil: SCUnit {
     let oscil: AKOscillator
 
