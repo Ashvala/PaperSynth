@@ -17,6 +17,7 @@ class StackChain {
         a list of stackChainUnits
      */
     func createObjects(widgetList: [String]) -> [stackChainUnit] {
+        print("widgetsList: \(widgetList)")
         // From this point onwards, we assume that the first point in any list is just a node and everything else is an output.
         var nodesList: [stackChainUnit] = []
 
@@ -26,14 +27,6 @@ class StackChain {
                 nodesList.append(stackChainUnit(name: "osc", type: .oscil, canInput: false))
             case "del":
                 nodesList.append(stackChainUnit(name: "delay", type: .delay, canInput: true))
-            case "rev":
-                nodesList.append(stackChainUnit(name: "reverb", type: .reverb, canInput: true))
-            case "mic":
-                nodesList.append(stackChainUnit(name: "mic", type: .mic, canInput: false))
-            case "mixer":
-                nodesList.append(stackChainUnit(name: "mic", type: .mixer, canInput: true))
-            case "eq":
-                nodesList.append(stackChainUnit(name: "eq", type: .eq, canInput: true))
             default:
                 print("Not appending this. Unrecognized keyword")
             }
@@ -49,23 +42,60 @@ class StackChain {
         All the stackChain nodes you will be connecting
      */
 
-    func compileModel(nodesList: [stackChainUnit]) {
-        var objList = nodesList
-        objList.append(stackChainUnit(name: "mixer", type: .mixer, canInput: false))
+    func compileModel(nodesList: [stackChainUnit]) -> Mixer {
+        let objList = nodesList
+        print("\(objList.count) objects in the list")
+        let mixer = Mixer()
+        var myElements: [Node] = []
         for (index, element) in objList.enumerated() {
             if index + 1 != objList.count {
+                var currNode: Node
+                var nextNode: Node
                 print("connecting \(index) to \(index + 1)")
                 print("elements involved are: \(element), \(objList[index + 1])")
-                (element.unit.getNode()).setOutput(to: objList[index + 1].unit.getNode() as! AKInput)
+                // get node type
+                let nodeType = element.getType()
+                let nextNodeType = objList[index + 1].getType()
+                // check if current node needs input
+                if element.canInput {
+                    // if it does, get the node from the previous element
+                    currNode = myElements[myElements.count - 1]
+                } else {
+                    // if it doesn't, create a new node
+                    currNode = makeNode(data: "\(nodeType)")
+                }
+                // check if next node needs input
+                if objList[index + 1].canInput {
+                    // if it does, create a new node
+                    
+                    nextNode = makeNode(data: "\(nextNodeType)", inputNode: currNode)
+                } else {
+                    // if it doesn't, create a new node
+                    nextNode = makeNode(data: "\(nodeType)")
+                }
+                
+                // check if current node is oscil and set default values
+                if nodeType == .oscil {
+                    currNode.parameters[0].value = 880.0
+                }
+                // check if next node is oscil and set default values
+                if nextNodeType == .oscil {
+                    nextNode.parameters[0].value = 880.0
+                }
+                // add both nodes to myElements
+                myElements.append(currNode)
+                myElements.append(nextNode)
             }
         }
-        let generator = (objList[0].unit.getNode() as! AKToggleable)
-        let f_mixer = (objList[objList.count - 1].unit.getNode() as! AKMixer)
-        f_mixer.volume = 0.8
-        AKSettings.audioInputEnabled = true
-        AKSettings.useBluetooth = true
-        AudioKit.output = f_mixer
-        AudioKit.start()
-        generator.start()
+        // take final node in myElements and connect it to the mixer
+        let finalNode = myElements[myElements.count - 1]
+        mixer.addInput(finalNode)
+        // iterate through myElements and set each node to play
+        for element in myElements {
+            element.play()
+        }
+        mixer.play()
+        return mixer
     }
+    
 }

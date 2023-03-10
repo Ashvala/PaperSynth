@@ -36,6 +36,7 @@ class LandingViewController: UIViewController, UIImagePickerControllerDelegate, 
     var model: VNCoreMLModel!
     var textMetadata = [Int: [Int: String]]()
     var showing = false
+    var textCandidates = [String]()
 
     // MARK: Immutables
 
@@ -45,7 +46,6 @@ class LandingViewController: UIViewController, UIImagePickerControllerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         startLiveVideo()
-        loadModel()
         // set last image:
         let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
@@ -75,14 +75,7 @@ class LandingViewController: UIViewController, UIImagePickerControllerDelegate, 
         view.addGestureRecognizer(twoFingerTapRecognizer)
     }
 
-    /**
-     Load a core ML Model
-     */
-
-    private func loadModel() {
-        model = try? VNCoreMLModel(for: chars74k5().model)
-    }
-
+    
     /**
 
      Configure session!
@@ -207,44 +200,79 @@ class LandingViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
 
     // MARK: text detection
+    struct CandidateString: Identifiable{
+        var id: UUID
+        var string: String
+        var confidence: Float
+        var position: CGRect
+    }
 
-    func detectText(image: UIImage) {
-        let convertedImage = image |> adjustColors |> convertToGrayscale
-        let handler = VNImageRequestHandler(cgImage: convertedImage.cgImage!)
-        let request: VNDetectTextRectanglesRequest =
-            VNDetectTextRectanglesRequest(completionHandler: { [unowned self] request, error in
-                if error != nil {
-                    print("Got Error In Run Text Dectect Request :(")
-                } else {
-                    guard let results = request.results as? [VNTextObservation] else {
-                        fatalError("Unexpected result type from VNDetectTextRectanglesRequest")
-                    }
-                    if results.count == 0 {
-                        self.handleEmptyResults()
-                        return
-                    }
-                    var numberOfWords = 0
-                    for textObservation in results {
-                        var numberOfCharacters = 0
-                        for rectangleObservation in textObservation.characterBoxes! {
-                            let croppedImage = crop(image: image, rectangle: rectangleObservation)
-                            if let croppedImage = croppedImage {
-                                let processedImage = preProcess(image: croppedImage)
-                                self.classifyImage(image: processedImage,
-                                                   wordNumber: numberOfWords,
-                                                   characterNumber: numberOfCharacters)
-                                numberOfCharacters += 1
-                            }
-                        }
-                        numberOfWords += 1
-                    }
-                }
-            })
-        request.reportCharacterBoxes = true
+    func extractTextFromImage(image: CGImage) -> [CandidateString] {
+        // cast image to CGImage
+        var bestCandidates = [CandidateString]()
+        let requestHandler = VNImageRequestHandler(cgImage: image, options: [:])
+        let request = VNRecognizeTextRequest { (request, error) in
+            guard let observations = request.results as? [VNRecognizedTextObservation] else { fatalError("unexpected result type from VNRecognizeTextRequest") }
+            let maximumRecognitionCandidates = 1
+            for observation in observations {
+                guard let bestCandidate = observation.topCandidates(maximumRecognitionCandidates).first else { continue }
+                print("Found this text: \(bestCandidate.string)")
+                let bestString = bestCandidate.string
+                // draw bounding box around the text
+                let boundingBox = observation.boundingBox
+                let rect = boundingBox.applying(CGAffineTransform(scaleX: CGFloat(image.width), y: CGFloat(image.height)))
+                print("Found this bounding box: \(rect)")
+                let candidate = CandidateString(
+                    id: UUID(),
+                    string: bestString, confidence: bestCandidate.confidence, position: rect)
+                bestCandidates.append(candidate)
+            }
+        }
+        request.recognitionLevel = .accurate
+        request.recognitionLanguages = ["en_US"]
+        request.usesLanguageCorrection = true
         do {
-            try handler.perform([request])
+            try requestHandler.perform([request])
         } catch {
             print(error)
+        }
+        print(bestCandidates)
+        return bestCandidates
+    }
+
+    func detectText(image: UIImage) {
+        var bestCandidates = [CandidateString]()
+        let cgimg = image.cgImage!
+        let requestHandler = VNImageRequestHandler(cgImage: cgimg, options: [:])
+        let request = VNRecognizeTextRequest { (request, error) in
+            guard let observations = request.results as? [VNRecognizedTextObservation] else { fatalError("unexpected result type from VNRecognizeTextRequest") }
+            let maximumRecognitionCandidates = 1
+            for observation in observations {
+                guard let bestCandidate = observation.topCandidates(maximumRecognitionCandidates).first else { continue }
+                let bestString = bestCandidate.string
+                // draw bounding box around the text
+                let boundingBox = observation.boundingBox
+                let rect = boundingBox.applying(CGAffineTransform(scaleX: CGFloat(cgimg.width), y: CGFloat(cgimg.height)))
+                let candidate = CandidateString(
+                    id: UUID(),
+                    string: bestString, confidence: bestCandidate.confidence, position: rect)
+                bestCandidates.append(candidate)
+            }
+        }
+        request.recognitionLevel = .accurate
+        request.recognitionLanguages = ["en_US"]
+        request.usesLanguageCorrection = true
+        do {
+            try requestHandler.perform([request])
+        } catch {
+            print(error)
+        }
+        if bestCandidates.isEmpty{
+            self.handleEmptyResults()
+        }else{
+            // add only the strings from best candidates
+            self.textCandidates = bestCandidates.map { $0.string }
+            self.showDetectedText()
         }
     }
 
@@ -254,85 +282,46 @@ class LandingViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
     }
 
-    func classifyImage(image: UIImage, wordNumber: Int, characterNumber: Int) {
-        let request = VNCoreMLRequest(model: model) { [weak self] request, _ in
-            guard let results = request.results as? [VNClassificationObservation],
-                let topResult = results.first else {
-                fatalError("Unexpected result type from VNCoreMLRequest")
-            }
-            let result = topResult.identifier
-            print(result)
-            let classificationInfo: [String: Any] = [
-                "wordNumber": wordNumber,
-                "characterNumber": characterNumber,
-                "class": result,
-            ]
-            self?.handleResult(classificationInfo)
-        }
-        guard let ciImage = CIImage(image: image) else {
-            fatalError("Could not convert UIImage to CIImage :(")
-        }
-        let handler = VNImageRequestHandler(ciImage: ciImage)
-        DispatchQueue.global(qos: .userInteractive).async {
-            do {
-                try handler.perform([request])
-            } catch {
-                print(error)
-            }
-        }
-    }
+//    func classifyImage(image: UIImage, wordNumber: Int, characterNumber: Int) {
+//        let request = VNCoreMLRequest(model: model) { [weak self] request, _ in
+//            guard let results = request.results as? [VNClassificationObservation],
+//                let topResult = results.first else {
+//                fatalError("Unexpected result type from VNCoreMLRequest")
+//            }
+//            let result = topResult.identifier
+//            print(result)
+//            let classificationInfo: [String: Any] = [
+//                "wordNumber": wordNumber,
+//                "characterNumber": characterNumber,
+//                "class": result,
+//            ]
+//            self?.handleResult(classificationInfo)
+//        }
+//        guard let ciImage = CIImage(image: image) else {
+//            fatalError("Could not convert UIImage to CIImage :(")
+//        }
+//        let handler = VNImageRequestHandler(ciImage: ciImage)
+//        DispatchQueue.global(qos: .userInteractive).async {
+//            do {
+//                try handler.perform([request])
+//            } catch {
+//                print(error)
+//            }
+//        }
+//    }
 
-    func handleResult(_ result: [String: Any]) {
-        objc_sync_enter(self)
-        guard let wordNumber = result["wordNumber"] as? Int else {
-            return
-        }
-        guard let characterNumber = result["characterNumber"] as? Int else {
-            return
-        }
-        guard let characterClass = result["class"] as? String else {
-            return
-        }
-        if textMetadata[wordNumber] == nil {
-            let tmp: [Int: String] = [characterNumber: characterClass]
-            textMetadata[wordNumber] = tmp
-        } else {
-            var tmp = textMetadata[wordNumber]!
-            tmp[characterNumber] = characterClass
-            textMetadata[wordNumber] = tmp
-        }
-        objc_sync_exit(self)
-        DispatchQueue.main.async {
-            self.showDetectedText()
-        }
-    }
 
     func showDetectedText() {
-        var result: String = ""
-        if textMetadata.isEmpty {
-            detectedText.text = "The image does not contain any text."
-            return
-        }
-        let sortedKeys = textMetadata.keys.sorted()
-        for sortedKey in sortedKeys {
-            result += word(fromDictionary: textMetadata[sortedKey]!) + " "
-        }
-        detectedText.text = result
-    }
-
-    func word(fromDictionary dictionary: [Int: String]) -> String {
-        let sortedKeys = dictionary.keys.sorted()
-        var word: String = ""
-        for sortedKey in sortedKeys {
-            let char: String = dictionary[sortedKey]!
-            word += char
-        }
-        return word
+        // use textCandidates and string 'em up together
+        let text = textCandidates.joined(separator: " ")
+        DispatchQueue.main.async {
+            self.detectedText.text = text
+        }       
     }
 
     private func clearOldData() {
         detectedText.text = ""
-        textMetadata = [:]
+        textCandidates = []
     }
 }
 

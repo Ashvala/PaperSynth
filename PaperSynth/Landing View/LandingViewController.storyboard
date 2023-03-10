@@ -1,37 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13770" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TkL-JM-EEZ">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TkL-JM-EEZ">
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13770"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="AvenirNext.ttc">
-            <string>AvenirNext-Regular</string>
-        </array>
-        <array key="Menlo.ttc">
-            <string>Menlo-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--LandingViewController-->
         <scene sceneID="AOg-bh-gJR">
             <objects>
                 <viewController title="LandingViewController" id="TkL-JM-EEZ" customClass="LandingViewController" customModule="PaperSynth" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gwW-b6-FiC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1ti-YE-KdM">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="428" height="892"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JDw-XU-nCV">
-                                <rect key="frame" x="16" y="552" width="70" height="99"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JDw-XU-nCV">
+                                <rect key="frame" x="16" y="768" width="102" height="108"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="19"/>
                                 <state key="normal">
@@ -42,17 +32,17 @@
                                     <action selector="galleryImageClicked:" destination="TkL-JM-EEZ" eventType="touchUpInside" id="B7A-OY-HdV"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ylb-ef-Mol" userLabel="GalleryImage">
-                                <rect key="frame" x="21" y="557" width="60" height="90"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ylb-ef-Mol" userLabel="GalleryImage">
+                                <rect key="frame" x="16" y="784" width="119" height="100"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKw-tB-OV3">
-                                <rect key="frame" x="16" y="477" width="343" height="67"/>
+                                <rect key="frame" x="16" y="504" width="396" height="299"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cv5-MD-cnn">
-                                <rect key="frame" x="155" y="569" width="65" height="65"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cv5-MD-cnn">
+                                <rect key="frame" x="155" y="802" width="118" height="65"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.1810079225" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="LJK-xx-KQo"/>
@@ -67,6 +57,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="ewZ-nt-ehY"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="JDw-XU-nCV" firstAttribute="leading" secondItem="ewZ-nt-ehY" secondAttribute="leading" constant="16" id="102-yB-7OT"/>
@@ -89,7 +80,6 @@
                             <constraint firstItem="1ti-YE-KdM" firstAttribute="bottom" secondItem="ewZ-nt-ehY" secondAttribute="bottom" id="smG-Jm-Cio"/>
                             <constraint firstItem="ZKw-tB-OV3" firstAttribute="top" secondItem="ewZ-nt-ehY" secondAttribute="top" constant="457" id="zmQ-id-PSV"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ewZ-nt-ehY"/>
                     </view>
                     <connections>
                         <outlet property="detectedText" destination="ZKw-tB-OV3" id="S7E-1c-Ust"/>
@@ -100,7 +90,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N6D-vp-wvX" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
+            <point key="canvasLocation" x="135.98130841121494" y="133.47732181425488"/>
         </scene>
     </scenes>
     <resources>

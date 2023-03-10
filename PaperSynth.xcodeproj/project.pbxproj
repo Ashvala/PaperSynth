@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,9 @@
 		C206AB941FF516B2008EE364 /* LandingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C206AB931FF516B2008EE364 /* LandingViewController.storyboard */; };
 		C206AB981FF6440C008EE364 /* StackChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206AB971FF6440C008EE364 /* StackChain.swift */; };
 		C206AB9A1FF64A8A008EE364 /* AudioBubbles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206AB991FF64A8A008EE364 /* AudioBubbles.swift */; };
+		C20F1FD628F8CC8F0064BFA4 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = C20F1FD528F8CC8F0064BFA4 /* AudioKit */; };
+		C20F1FD928F8CD000064BFA4 /* AudioKitUI in Frameworks */ = {isa = PBXBuildFile; productRef = C20F1FD828F8CD000064BFA4 /* AudioKitUI */; };
+		C22AD1F32985A62400E7128F /* Mixer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22AD1F22985A62400E7128F /* Mixer.swift */; };
 		C23FCFD01FDAC31400972238 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FCFCF1FDAC31400972238 /* AppDelegate.swift */; };
 		C23FCFD21FDAC31400972238 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FCFD11FDAC31400972238 /* LandingViewController.swift */; };
 		C23FCFD51FDAC31400972238 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C23FCFD31FDAC31400972238 /* Main.storyboard */; };
@@ -25,21 +28,12 @@
 		C23FD0021FDAC43700972238 /* placeholder-image4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C23FD0011FDAC43700972238 /* placeholder-image4.jpg */; };
 		C23FD0041FDBE7F900972238 /* TextCleaner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FD0031FDBE7F900972238 /* TextCleaner.swift */; };
 		C23FD0061FDBF3EB00972238 /* Levenshtein.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FD0051FDBF3EB00972238 /* Levenshtein.swift */; };
-		C23FD0111FDC0ACE00972238 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23FD00B1FDC021B00972238 /* AudioKit.framework */; };
-		C23FD0121FDC0ACE00972238 /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C23FD00B1FDC021B00972238 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C2600B381FFBD70B003E46E3 /* PaperSynthUIKnob.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2600B371FFBD70B003E46E3 /* PaperSynthUIKnob.swift */; };
-		C2B23E99200386470071E975 /* Equalizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B23E98200386470071E975 /* Equalizer.swift */; };
-		C2D13B811FDDB75B00574DF1 /* AudioKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */; };
-		C2D13B821FDDB76600574DF1 /* AudioKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */; };
-		C2D13B831FDDB76600574DF1 /* AudioKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C25B9C3F290C1D3700914396 /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = C25B9C3E290C1D3700914396 /* SoundpipeAudioKit */; };
+		C2BAF3B72977CA6B004A3CFF /* Oscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F1AC811FFE4E9500867169 /* Oscillator.swift */; };
+		C2BAF3C22977CC6E004A3CFF /* StackChainUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BAF3C12977CC6E004A3CFF /* StackChainUnit.swift */; };
 		C2E224FD1FFB9C630050B370 /* AudioViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2E224FC1FFB9C630050B370 /* AudioViewController.storyboard */; };
-		C2F1AC821FFE4E9500867169 /* Oscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F1AC811FFE4E9500867169 /* Oscillator.swift */; };
-		C2F1AC841FFE510500867169 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23FD00B1FDC021B00972238 /* AudioKit.framework */; };
-		C2F1AC861FFE513A00867169 /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F1AC851FFE513A00867169 /* Delay.swift */; };
-		C2F1AC881FFE520800867169 /* Mixer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F1AC871FFE520800867169 /* Mixer.swift */; };
-		C2F1AC8A1FFE584A00867169 /* Microphone.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F1AC891FFE584A00867169 /* Microphone.swift */; };
-		C2F1AC8C1FFE586F00867169 /* StackChainUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F1AC8B1FFE586F00867169 /* StackChainUnit.swift */; };
-		C2FB64092003744A0052689A /* Reverb.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FB64082003744A0052689A /* Reverb.swift */; };
+		D56A62E9F69CABAD74714E42 /* defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56A610E234E6E48C9211D47 /* defaults.swift */; };
+		D56A674D2E1DF100A72FEB6E /* GenericNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56A6BB6A1121C305AA9F2CC /* GenericNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,8 +60,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C2D13B831FDDB76600574DF1 /* AudioKitUI.framework in Embed Frameworks */,
-				C23FD0121FDC0ACE00972238 /* AudioKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -81,6 +73,7 @@
 		C206AB931FF516B2008EE364 /* LandingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LandingViewController.storyboard; sourceTree = "<group>"; };
 		C206AB971FF6440C008EE364 /* StackChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackChain.swift; sourceTree = "<group>"; };
 		C206AB991FF64A8A008EE364 /* AudioBubbles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBubbles.swift; sourceTree = "<group>"; };
+		C22AD1F22985A62400E7128F /* Mixer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mixer.swift; sourceTree = "<group>"; };
 		C23FCFCC1FDAC31400972238 /* PaperSynth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperSynth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23FCFCF1FDAC31400972238 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C23FCFD11FDAC31400972238 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
@@ -99,17 +92,11 @@
 		C23FD0011FDAC43700972238 /* placeholder-image4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "placeholder-image4.jpg"; sourceTree = "<group>"; };
 		C23FD0031FDBE7F900972238 /* TextCleaner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCleaner.swift; sourceTree = "<group>"; };
 		C23FD0051FDBF3EB00972238 /* Levenshtein.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Levenshtein.swift; sourceTree = "<group>"; };
-		C23FD00B1FDC021B00972238 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKit.framework; sourceTree = "<group>"; };
-		C2600B371FFBD70B003E46E3 /* PaperSynthUIKnob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperSynthUIKnob.swift; sourceTree = "<group>"; };
-		C2B23E98200386470071E975 /* Equalizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equalizer.swift; sourceTree = "<group>"; };
-		C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioKitUI.framework; sourceTree = "<group>"; };
+		C2BAF3C12977CC6E004A3CFF /* StackChainUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackChainUnit.swift; sourceTree = "<group>"; };
 		C2E224FC1FFB9C630050B370 /* AudioViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AudioViewController.storyboard; sourceTree = "<group>"; };
 		C2F1AC811FFE4E9500867169 /* Oscillator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Oscillator.swift; sourceTree = "<group>"; };
-		C2F1AC851FFE513A00867169 /* Delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delay.swift; sourceTree = "<group>"; };
-		C2F1AC871FFE520800867169 /* Mixer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mixer.swift; sourceTree = "<group>"; };
-		C2F1AC891FFE584A00867169 /* Microphone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Microphone.swift; sourceTree = "<group>"; };
-		C2F1AC8B1FFE586F00867169 /* StackChainUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackChainUnit.swift; sourceTree = "<group>"; };
-		C2FB64082003744A0052689A /* Reverb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reverb.swift; sourceTree = "<group>"; };
+		D56A610E234E6E48C9211D47 /* defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = defaults.swift; sourceTree = "<group>"; };
+		D56A6BB6A1121C305AA9F2CC /* GenericNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,9 +104,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2D13B821FDDB76600574DF1 /* AudioKitUI.framework in Frameworks */,
-				C2D13B811FDDB75B00574DF1 /* AudioKitUI.framework in Frameworks */,
-				C23FD0111FDC0ACE00972238 /* AudioKit.framework in Frameworks */,
+				C20F1FD928F8CD000064BFA4 /* AudioKitUI in Frameworks */,
+				C20F1FD628F8CC8F0064BFA4 /* AudioKit in Frameworks */,
+				C25B9C3F290C1D3700914396 /* SoundpipeAudioKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,7 +114,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2F1AC841FFE510500867169 /* AudioKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +154,7 @@
 				C206AB991FF64A8A008EE364 /* AudioBubbles.swift */,
 				C206AB8A1FF511EE008EE364 /* AudioViewController.swift */,
 				C2E224FC1FFB9C630050B370 /* AudioViewController.storyboard */,
+				D56A610E234E6E48C9211D47 /* defaults.swift */,
 			);
 			path = AudioView;
 			sourceTree = "<group>";
@@ -175,8 +162,6 @@
 		C23FCFC31FDAC31400972238 = {
 			isa = PBXGroup;
 			children = (
-				C2D13B801FDDB75B00574DF1 /* AudioKitUI.framework */,
-				C23FD00B1FDC021B00972238 /* AudioKit.framework */,
 				C23FCFCE1FDAC31400972238 /* PaperSynth */,
 				C23FCFE31FDAC31400972238 /* PaperSynthTests */,
 				C23FCFEE1FDAC31400972238 /* PaperSynthUITests */,
@@ -237,6 +222,7 @@
 				C2F1AC801FFE4E8600867169 /* Units */,
 				C2F1AC7F1FFE443300867169 /* UI */,
 				C206AB971FF6440C008EE364 /* StackChain.swift */,
+				D56A6BB6A1121C305AA9F2CC /* GenericNode.swift */,
 			);
 			path = stackChain;
 			sourceTree = "<group>";
@@ -244,7 +230,6 @@
 		C2F1AC7F1FFE443300867169 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				C2600B371FFBD70B003E46E3 /* PaperSynthUIKnob.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -253,12 +238,8 @@
 			isa = PBXGroup;
 			children = (
 				C2F1AC811FFE4E9500867169 /* Oscillator.swift */,
-				C2F1AC891FFE584A00867169 /* Microphone.swift */,
-				C2FB64082003744A0052689A /* Reverb.swift */,
-				C2F1AC8B1FFE586F00867169 /* StackChainUnit.swift */,
-				C2F1AC851FFE513A00867169 /* Delay.swift */,
-				C2F1AC871FFE520800867169 /* Mixer.swift */,
-				C2B23E98200386470071E975 /* Equalizer.swift */,
+				C2BAF3C12977CC6E004A3CFF /* StackChainUnit.swift */,
+				C22AD1F22985A62400E7128F /* Mixer.swift */,
 			);
 			name = Units;
 			sourceTree = "<group>";
@@ -281,7 +262,6 @@
 				C23FCFC91FDAC31400972238 /* Frameworks */,
 				C23FCFCA1FDAC31400972238 /* Resources */,
 				C23FD0131FDC0ACE00972238 /* Embed Frameworks */,
-				C23FD00D1FDC0A8700972238 /* ShellScript */,
 				C25751A01FFE266800C2F564 /* ShellScript */,
 			);
 			buildRules = (
@@ -289,6 +269,11 @@
 			dependencies = (
 			);
 			name = PaperSynth;
+			packageProductDependencies = (
+				C20F1FD528F8CC8F0064BFA4 /* AudioKit */,
+				C20F1FD828F8CD000064BFA4 /* AudioKitUI */,
+				C25B9C3E290C1D3700914396 /* SoundpipeAudioKit */,
+			);
 			productName = PaperSynth;
 			productReference = C23FCFCC1FDAC31400972238 /* PaperSynth.app */;
 			productType = "com.apple.product-type.application";
@@ -336,11 +321,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1400;
 				ORGANIZATIONNAME = "Ashvala Vinay";
 				TargetAttributes = {
 					C23FCFCB1FDAC31400972238 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = "";
 						ProvisioningStyle = Automatic;
 					};
 					C23FCFDF1FDAC31400972238 = {
@@ -364,6 +350,11 @@
 				Base,
 			);
 			mainGroup = C23FCFC31FDAC31400972238;
+			packageReferences = (
+				C20F1FD428F8CC8E0064BFA4 /* XCRemoteSwiftPackageReference "AudioKit" */,
+				C20F1FD728F8CD000064BFA4 /* XCRemoteSwiftPackageReference "AudioKitUI" */,
+				C25B9C3D290C1D3700914396 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */,
+			);
 			productRefGroup = C23FCFCD1FDAC31400972238 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -406,19 +397,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		C23FD00D1FDC0A8700972238 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/AudioKit.framework/fix-framework.sh";
-		};
 		C25751A01FFE266800C2F564 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -430,7 +408,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -440,24 +418,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				C23FCFD21FDAC31400972238 /* LandingViewController.swift in Sources */,
+				C22AD1F32985A62400E7128F /* Mixer.swift in Sources */,
 				C23FD0061FDBF3EB00972238 /* Levenshtein.swift in Sources */,
 				C206AB981FF6440C008EE364 /* StackChain.swift in Sources */,
 				C23FD0001FDAC36F00972238 /* chars74k5.mlmodel in Sources */,
 				C23FCFD01FDAC31400972238 /* AppDelegate.swift in Sources */,
-				C2F1AC8C1FFE586F00867169 /* StackChainUnit.swift in Sources */,
 				C206AB921FF514B3008EE364 /* RootView.swift in Sources */,
 				C23FD0041FDBE7F900972238 /* TextCleaner.swift in Sources */,
-				C2600B381FFBD70B003E46E3 /* PaperSynthUIKnob.swift in Sources */,
 				C206AB8B1FF511EE008EE364 /* AudioViewController.swift in Sources */,
 				C23FCFFE1FDAC33C00972238 /* ImageUtils.swift in Sources */,
-				C2FB64092003744A0052689A /* Reverb.swift in Sources */,
-				C2F1AC881FFE520800867169 /* Mixer.swift in Sources */,
-				C2F1AC821FFE4E9500867169 /* Oscillator.swift in Sources */,
-				C2B23E99200386470071E975 /* Equalizer.swift in Sources */,
-				C2F1AC861FFE513A00867169 /* Delay.swift in Sources */,
+				C2BAF3B72977CA6B004A3CFF /* Oscillator.swift in Sources */,
 				C206AB8D1FF513E4008EE364 /* Router.swift in Sources */,
 				C206AB9A1FF64A8A008EE364 /* AudioBubbles.swift in Sources */,
-				C2F1AC8A1FFE584A00867169 /* Microphone.swift in Sources */,
+				C2BAF3C22977CC6E004A3CFF /* StackChainUnit.swift in Sources */,
+				D56A674D2E1DF100A72FEB6E /* GenericNode.swift in Sources */,
+				D56A62E9F69CABAD74714E42 /* defaults.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,6 +501,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -533,8 +509,10 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -560,7 +538,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -583,6 +561,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -590,8 +569,10 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -611,10 +592,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -630,7 +612,11 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = PaperSynth/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.LinearizeLabs.PaperSynth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -649,7 +635,11 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = PaperSynth/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.LinearizeLabs.PaperSynth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -669,7 +659,11 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = PaperSynthTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.LinearizeLabs.PaperSynthTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -690,7 +684,11 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = PaperSynthTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.LinearizeLabs.PaperSynthTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -706,7 +704,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G5Q3E798ZG;
 				INFOPLIST_FILE = PaperSynthUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.LinearizeLabs.PaperSynthUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -722,7 +724,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G5Q3E798ZG;
 				INFOPLIST_FILE = PaperSynthUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.LinearizeLabs.PaperSynthUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -771,6 +777,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C20F1FD428F8CC8E0064BFA4 /* XCRemoteSwiftPackageReference "AudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		C20F1FD728F8CD000064BFA4 /* XCRemoteSwiftPackageReference "AudioKitUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKitUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.4;
+			};
+		};
+		C25B9C3D290C1D3700914396 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/SoundpipeAudioKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C20F1FD528F8CC8F0064BFA4 /* AudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C20F1FD428F8CC8E0064BFA4 /* XCRemoteSwiftPackageReference "AudioKit" */;
+			productName = AudioKit;
+		};
+		C20F1FD828F8CD000064BFA4 /* AudioKitUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C20F1FD728F8CD000064BFA4 /* XCRemoteSwiftPackageReference "AudioKitUI" */;
+			productName = AudioKitUI;
+		};
+		C25B9C3E290C1D3700914396 /* SoundpipeAudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C25B9C3D290C1D3700914396 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */;
+			productName = SoundpipeAudioKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C23FCFC41FDAC31400972238 /* Project object */;
 }

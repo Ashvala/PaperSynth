@@ -9,6 +9,8 @@
 
 import Foundation
 import UIKit
+import CoreImage
+import CoreImage.CIFilterBuiltins
 import Vision
 
 precedencegroup ForwardPipe {
@@ -185,3 +187,128 @@ func preProcess(image: UIImage) -> UIImage {
     let grayScaleImage = convertToGrayscale(image: resizedImage)
     return grayScaleImage
 }
+
+func extractContoursFromImage(image:UIImage) -> UIImage{
+    // use VNDetectContoursRequest
+    // convert image to monochrome
+    let context = CIContext()
+    let sourceImage = image.cgImage!
+    let inputImage = CIImage.init(cgImage: sourceImage)
+    // make input image monochrome
+    let preProcessed = preProcessImage(image: image)
+    let finalInput = preProcessed.cgImage!
+    let requestHandler = VNImageRequestHandler(cgImage: finalInput, options: [:])
+    let request: VNDetectContoursRequest = {
+        let req = VNDetectContoursRequest()
+        req.contrastAdjustment = 1.0
+        req.detectsDarkOnLight = true
+        req.maximumImageDimension = 512
+        req.contrastPivot = nil
+      return req
+    }()
+    do {
+        try requestHandler.perform([request])
+        // get contours
+        let contours = request.results!
+        print(contours[0].contourCount)
+        // filter contours
+
+        return drawContours(contoursObservation: contours[0], sourceImage: image.cgImage!)
+        
+    } catch {
+        print(error)
+    }
+    return image
+}
+
+func preProcessImage(image: UIImage) -> UIImage{
+    let context = CIContext()
+    let sourceImage = image.cgImage!
+    let inputImage = CIImage.init(cgImage: sourceImage)
+    // make input image monochrome
+    let blackAndWhite = CustomFilter()
+    let noiseReductionFilter = CIFilter.gaussianBlur()
+    noiseReductionFilter.radius = 0.5
+    noiseReductionFilter.inputImage = inputImage
+    blackAndWhite.inputImage = noiseReductionFilter.outputImage!
+    let filteredImage = blackAndWhite.outputImage!
+    let noiseReduced = noiseReduction(inputImage: filteredImage)
+//    let gauss = gaussianBlur(inputImage: noiseReduced!)
+    let finalInput = context.createCGImage(noiseReduced!, from: noiseReduced!.extent)!
+    return UIImage(cgImage: finalInput)
+}
+
+func drawContours(contoursObservation: VNContoursObservation, sourceImage: CGImage) -> UIImage {
+    let size = CGSize(width: sourceImage.width, height: sourceImage.height)
+    let renderer = UIGraphicsImageRenderer(size: size)
+    
+    let renderedImage = renderer.image { (context) in
+    let renderingContext = context.cgContext
+
+    let flipVertical = CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: size.height)
+    renderingContext.concatenate(flipVertical)
+
+    renderingContext.draw(sourceImage, in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+    
+    renderingContext.scaleBy(x: size.width, y: size.height)
+    renderingContext.setLineWidth(5.0 / CGFloat(size.width))
+    let redUIColor = UIColor.red
+    renderingContext.setStrokeColor(redUIColor.cgColor)
+    renderingContext.addPath(contoursObservation.normalizedPath)
+    renderingContext.strokePath()
+    }
+    
+    return renderedImage
+}
+
+func gaussianBlur(inputImage: CIImage) -> CIImage? {
+    let gaussianBlurFilter = CIFilter.gaussianBlur()
+    gaussianBlurFilter.inputImage = inputImage
+    gaussianBlurFilter.radius = 10
+    return gaussianBlurFilter.outputImage
+}
+
+func noiseReduction(inputImage: CIImage) -> CIImage? {
+    let noiseReductionfilter = CIFilter.noiseReduction()
+    noiseReductionfilter.inputImage = inputImage
+    noiseReductionfilter.noiseLevel = 0.2
+    noiseReductionfilter.sharpness = 0.4
+    return noiseReductionfilter.outputImage
+}
+
+
+class CustomFilter: CIFilter {
+    var inputImage: CIImage?
+    
+    override public var outputImage: CIImage! {
+        get {
+            if let inputImage = self.inputImage {
+                let args = [inputImage as AnyObject]
+                
+                let callback: CIKernelROICallback = {
+                (index, rect) in
+                    return rect.insetBy(dx: -1, dy: -1)
+                }
+                
+                return createCustomKernel().apply(extent: inputImage.extent, roiCallback: callback, arguments: args)
+            } else {
+                return nil
+            }
+        }
+    }
+
+    
+    func createCustomKernel() -> CIKernel {
+            return CIColorKernel(source:
+                "kernel vec4 replaceWithBlackOrWhite(__sample s) {" +
+                    "if (s.r > 0.25 && s.g > 0.25 && s.b > 0.25) {" +
+                    "    return vec4(0.0,0.0,0.0,1.0);" +
+                    "} else {" +
+                    "    return vec4(1.0,1.0,1.0,1.0);" +
+                    "}" +
+                "}"
+                )!
+           
+        }
+}
+

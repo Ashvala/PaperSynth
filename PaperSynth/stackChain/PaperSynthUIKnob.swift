@@ -15,7 +15,7 @@ public enum PSRotaryKnobStyle {
     case polygon(numberOfSides: Int, curvature: Double)
 }
 
-@IBDesignable open class PSRotaryKnob: AKView {
+@IBDesignable open class PSRotaryKnob: View {
 
     // Default margin size
     static var marginSize: CGFloat = 10.0
@@ -122,7 +122,7 @@ public enum PSRotaryKnobStyle {
                 range: ClosedRange<Double> = 0 ... 1,
                 taper: Double = 1,
                 format: String = "%0.3f",
-                color: AKColor = UIColor(red: 51 / 255.0, green: 51 / 255.0, blue: 51 / 255.0, alpha: 0),
+                color: UIColor = UIColor(red: 51 / 255.0, green: 51 / 255.0, blue: 51 / 255.0, alpha: 0),
                 frame: CGRect = CGRect(x: 0, y: 0, width: 150, height: 170),
                 callback: @escaping (_ x: Double) -> Void) {
         self.value = value

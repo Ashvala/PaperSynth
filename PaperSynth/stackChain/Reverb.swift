@@ -7,13 +7,14 @@
 //
 
 import AudioKit
+import SoundpipeAudioKit
 import Foundation
 
 /// Roughly the AKCostelloReverb Class. 
 class SCReverb: SCUnit {
-    var reverb: AKCostelloReverb
+    var reverb: CostelloReverb
     required init() {
-        reverb = AKCostelloReverb()
+        reverb = CostelloReverb(none)
     }
     
     /**
@@ -23,7 +24,7 @@ class SCReverb: SCUnit {
      `AKNode`
      */
     
-    func getNode() -> AKNode {
+    func getNode() -> Node {
         return reverb
     }
     

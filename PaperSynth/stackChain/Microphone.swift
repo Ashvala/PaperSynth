@@ -12,7 +12,7 @@ import Foundation
 /// Roughly the AKMicrophone Class.
 class SCMic: SCUnit {
 
-    var mic: AKMicrophone
+    var mic: Microphone
     required init() {
         mic = AKMicrophone()
         mic.volume = 0.5

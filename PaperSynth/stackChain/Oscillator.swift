@@ -8,14 +8,15 @@
 
 import AudioKit
 import AudioKitUI
+import SoundpipeAudioKit
 import Foundation
 
 /// Roughly the AKOscillator Class. 
-class SCOscil: SCUnit {
-    let oscil: AKOscillator
+class SCOscil {
+    let oscil: Oscillator
 
     required init() {
-        oscil = AKOscillator()
+        oscil = Oscillator()
         oscil.frequency = 440.0
         oscil.amplitude = 0.5
     }
@@ -26,8 +27,8 @@ class SCOscil: SCUnit {
      - returns
      `AKNode`
      */
-    func getNode() -> AKNode {
-        return oscil as AKNode
+    func getNode() -> Node {
+        return oscil as Node
     }
     
     /**
@@ -39,27 +40,27 @@ class SCOscil: SCUnit {
          `freqKnob` handles the frequency of the oscillator and the `ampKnob` handles the amplitude.
      */
 
-    func getUI() -> [PSRotaryKnob] {
-        var knobs: [PSRotaryKnob] = []
-
-        let freqKnob = PSRotaryKnob(
-            property: "Freq",
-            value: oscil.frequency,
-            range: 220.0 ... 2200.0,
-            format: "%f Hz") { sliderValue in
-            self.oscil.frequency = sliderValue
-        }
-
-        let ampKnob = PSRotaryKnob(
-            property: "Amp",
-            value: oscil.amplitude,
-            range: 0.0 ... 1.0,
-            format: "%f") { sliderValue in
-            self.oscil.amplitude = sliderValue
-        }
-
-        knobs.append(freqKnob)
-        knobs.append(ampKnob)
-        return knobs
-    }
+//    func getUI() -> [PSRotaryKnob] {
+//        var knobs: [PSRotaryKnob] = []
+//
+//        let freqKnob = PSRotaryKnob(
+//            property: "Freq",
+//            value: Double(oscil.frequency),
+//            range: 220.0 ... 2200.0,
+//            format: "%f Hz") { sliderValue in
+//                self.oscil.frequency = AUValue(sliderValue)
+//        }
+//
+//        let ampKnob = PSRotaryKnob(
+//            property: "Amp",
+//            value: Double(oscil.amplitude),
+//            range: 0.0 ... 1.0,
+//            format: "%f") { sliderValue in
+//                self.oscil.amplitude = AUValue(sliderValue)
+//        }
+//
+//        knobs.append(freqKnob)
+//        knobs.append(ampKnob)
+//        return knobs
+//    }
 }

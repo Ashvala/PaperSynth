@@ -24,6 +24,7 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
     // MARK: Immutables
     
     let stackchainInstance: StackChain = StackChain()
+    let engine = AudioEngine()
 
     let cellIdentifier = "MyCell"
 
@@ -37,7 +38,7 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
     // MARK: Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       
         // Do any additional setup after loading the view.
         if configured == false {
             fatalError("Please Configure first!")
@@ -70,7 +71,13 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
             if traitCollection.forceTouchCapability == .available {
                 registerForPreviewing(with: self, sourceView: view)
             }
-            stackchainInstance.compileModel(nodesList: objList)
+            let mixer = stackchainInstance.compileModel(nodesList: objList)
+            engine.output = mixer
+            do {
+                try engine.start()
+            } catch {
+                print("Error starting engine")
+            }
 
             view.addSubview(myCollectionView)
         }
@@ -100,11 +107,11 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
         myCell.layer.cornerRadius = bounds.width * 0.1
         print(indexPath.row)
         
-        let knobs = objList[indexPath.row].unit.getUI()
-
-        knobs.forEach({
-            myCell.stackData.addArrangedSubview($0)
-        })
+//        let knobs = objList[indexPath.row].unit.getUI()
+//
+//        knobs.forEach({
+//            myCell.stackData.addArrangedSubview($0)
+//        })
         return myCell
     }
 
