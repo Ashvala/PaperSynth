@@ -10,3 +10,7 @@ import Foundation
 // oscil
 let oscilDefaultFreq = 440.0
 let oscilDefaultAmp = 0.5
+
+// define which knobs to show for each node using displayName
+
+// oscil

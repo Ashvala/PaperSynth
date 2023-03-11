@@ -15,7 +15,7 @@
 		C206AB9A1FF64A8A008EE364 /* AudioBubbles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206AB991FF64A8A008EE364 /* AudioBubbles.swift */; };
 		C20F1FD628F8CC8F0064BFA4 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = C20F1FD528F8CC8F0064BFA4 /* AudioKit */; };
 		C20F1FD928F8CD000064BFA4 /* AudioKitUI in Frameworks */ = {isa = PBXBuildFile; productRef = C20F1FD828F8CD000064BFA4 /* AudioKitUI */; };
-		C221A3CC29BC0ECD004EE7A3 /* myKnob.swift in Sources */ = {isa = PBXBuildFile; fileRef = C221A3CB29BC0ECD004EE7A3 /* myKnob.swift */; };
+		C221A3CC29BC0ECD004EE7A3 /* myKnobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C221A3CB29BC0ECD004EE7A3 /* myKnobs.swift */; };
 		C22AD1F32985A62400E7128F /* Mixer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22AD1F22985A62400E7128F /* Mixer.swift */; };
 		C23FCFD01FDAC31400972238 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FCFCF1FDAC31400972238 /* AppDelegate.swift */; };
 		C23FCFD21FDAC31400972238 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FCFD11FDAC31400972238 /* LandingViewController.swift */; };
@@ -75,7 +75,7 @@
 		C206AB931FF516B2008EE364 /* LandingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LandingViewController.storyboard; sourceTree = "<group>"; };
 		C206AB971FF6440C008EE364 /* StackChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackChain.swift; sourceTree = "<group>"; };
 		C206AB991FF64A8A008EE364 /* AudioBubbles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBubbles.swift; sourceTree = "<group>"; };
-		C221A3CB29BC0ECD004EE7A3 /* myKnob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myKnob.swift; sourceTree = "<group>"; };
+		C221A3CB29BC0ECD004EE7A3 /* myKnobs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myKnobs.swift; sourceTree = "<group>"; };
 		C22AD1F22985A62400E7128F /* Mixer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mixer.swift; sourceTree = "<group>"; };
 		C23FCFCC1FDAC31400972238 /* PaperSynth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperSynth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23FCFCF1FDAC31400972238 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -234,7 +234,7 @@
 		C2F1AC7F1FFE443300867169 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				C221A3CB29BC0ECD004EE7A3 /* myKnob.swift */,
+				C221A3CB29BC0ECD004EE7A3 /* myKnobs.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -425,7 +425,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C23FCFD21FDAC31400972238 /* LandingViewController.swift in Sources */,
-				C221A3CC29BC0ECD004EE7A3 /* myKnob.swift in Sources */,
+				C221A3CC29BC0ECD004EE7A3 /* myKnobs.swift in Sources */,
 				C22AD1F32985A62400E7128F /* Mixer.swift in Sources */,
 				C23FD0061FDBF3EB00972238 /* Levenshtein.swift in Sources */,
 				C206AB981FF6440C008EE364 /* StackChain.swift in Sources */,

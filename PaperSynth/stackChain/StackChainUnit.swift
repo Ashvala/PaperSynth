@@ -39,14 +39,17 @@ enum Effects:String{
     case delay
     case hpfilter
     case lpfilter
+    case reverb
     func getObject(inputNode:Node) -> Node{
         switch self{
             case .delay:
                 return Delay(inputNode)
-        case .hpfilter:
-                return HighPassFilter(inputNode)
-        case .lpfilter:
-                return LowPassFilter(inputNode)
+            case .hpfilter:
+                    return HighPassFilter(inputNode)
+            case .lpfilter:
+                    return LowPassFilter(inputNode)
+            case .reverb:
+                return CostelloReverb(inputNode)
         }
     }
 }
@@ -59,6 +62,7 @@ enum NodeType{
     case delay
     case hpfilter
     case lpfilter
+    case reverb
     func getObject(inputNode:Node? = nil) -> Node{
         switch self{
             case .oscil:
@@ -75,6 +79,8 @@ enum NodeType{
                 return HighPassFilter(inputNode!)
             case .lpfilter:
                 return LowPassFilter(inputNode!)
+            case .reverb:
+                return CostelloReverb(inputNode!)
         }
     }
 
@@ -110,15 +116,15 @@ func extractParams(node: Node?) -> [Parameter]{
     return params
 }
 
-class stackChainUnit{
+class stackChainUnit: ObservableObject{
     
-    public let name: String
-    public let type: NodeType
-    private var inputNode: Node?
+    @Published public var name: String
+    @Published public var type: NodeType
+    @Published private var inputNode: Node?
     public let canInput: Bool
     public let canOutput: Bool
-    public var node: Node?
-    public var parameters: [Parameter] = [Parameter]()
+    @Published public var node: Node?
+    @Published public var parameters: [Parameter] = [Parameter]()
     
     
     init(name: String, type: NodeType, inputNode: Node? = nil, canInput: Bool = false, canOutput: Bool = true){
@@ -160,6 +166,7 @@ class stackChainUnit{
     }
 
     func getParams() -> [Parameter]{
+        print(self.parameters)
         return self.parameters
     }
 

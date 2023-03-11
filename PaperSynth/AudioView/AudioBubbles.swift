@@ -20,7 +20,7 @@ class AudioBubble: UICollectionViewCell {
 
 //    lazy var host: UIHostingController = { return UIHostingController(rootView: myKnob(params: [Parameter]())) }()
     
-    private(set) var host: UIHostingController<myKnob>?
+    private(set) var host: UIHostingController<myKnobs>?
     var label: UILabel = {
         let objLabel = UILabel(frame: CGRect(x: 17, y: 10, width: 123, height: 40))
         objLabel.font = UIFont(name: "AvenirNext-Bold", size: 14.0)
@@ -36,19 +36,20 @@ class AudioBubble: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(label)
-        
+//        setupView()
     }
     
-    public func embed(in parent:UIViewController, withParams params: [Parameter]){
+    public func embed(in parent:UIViewController, withParams params: [Parameter], withNode node: Node){
         if let host = self.host{
-            host.rootView = myKnob(params: params)
+            host.rootView = myKnobs(params: params, node: node)
+            host.view.frame = CGRect(x: 0, y: 46, width: 157, height: 107)
             host.view.layoutIfNeeded()
         } else {
-            let host = UIHostingController(rootView: myKnob(params: params))
+            let host = UIHostingController(rootView: myKnobs(params: params, node:node))
             parent.addChildViewController(host)
             host.didMove(toParent: parent)
             
-            host.view.frame = self.contentView.bounds
+            host.view.frame = CGRect(x: 0, y: 46, width: 170, height: 107)
             self.contentView.addSubview(host.view)
             self.host = host
         }
@@ -66,7 +67,7 @@ class AudioBubble: UICollectionViewCell {
     
     private func setupView(){
         host?.view.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(host!.view)
+        contentView.addSubview((host?.view)!)
         NSLayoutConstraint.activate([
                     host!.view.topAnchor.constraint(equalTo: contentView.topAnchor),
                     host!.view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),

@@ -58,7 +58,7 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
             // Create the collection view
             let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
             layout.sectionInset = UIEdgeInsets(top: 60, left: 10, bottom: 10, right: 10)
-            layout.itemSize = CGSize(width: 157, height: 157)
+            layout.itemSize = CGSize(width: 170, height: 170)
             let myCollectionView: UICollectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
             myCollectionView.delaysContentTouches = false
             myCollectionView.dataSource = self
@@ -111,7 +111,7 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         let knobs = objList[indexPath.row]
         print(knobs.name)
-        myCell.embed(in: self, withParams: knobs.getParams())
+        myCell.embed(in: self, withParams: knobs.getParams(), withNode: knobs.node!)
 
         return myCell
     }

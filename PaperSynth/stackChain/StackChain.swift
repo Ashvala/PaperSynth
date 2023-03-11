@@ -27,6 +27,12 @@ class StackChain {
                 nodesList.append(stackChainUnit(name: "osc", type: .oscil, canInput: false))
             case "del":
                 nodesList.append(stackChainUnit(name: "delay", type: .delay, canInput: true))
+            case "rev":
+                nodesList.append(stackChainUnit(name: "reverb", type: .reverb, canInput: true))
+            case "lpf":
+                nodesList.append(stackChainUnit(name: "eq", type: .lpfilter, canInput: true))
+            case "fm":
+                nodesList.append(stackChainUnit(name: "fm", type:.fmoscil, canInput: false))
             default:
                 print("Not appending this. Unrecognized keyword")
             }
