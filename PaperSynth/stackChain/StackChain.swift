@@ -82,9 +82,15 @@ class StackChain {
                 if nextNodeType == .oscil {
                     nextNode.parameters[0].value = 880.0
                 }
+
+                // set the nodes in the stackChainUnits
+                element.setNode(settingNode: currNode)
+                objList[index + 1].setNode(settingNode: nextNode)
+
                 // add both nodes to myElements
                 myElements.append(currNode)
-                myElements.append(nextNode)
+                myElements.append(nextNode)    
+                // setNode in             
             }
         }
         // take final node in myElements and connect it to the mixer

@@ -10,6 +10,7 @@ import AudioKit
 import AudioKitUI
 import Foundation
 import UIKit
+import SwiftUI
 
 /**
  The AudioBubble class handles construction of the control center-esque bubbles for controls
@@ -17,6 +18,9 @@ import UIKit
 
 class AudioBubble: UICollectionViewCell {
 
+//    lazy var host: UIHostingController = { return UIHostingController(rootView: myKnob(params: [Parameter]())) }()
+    
+    private(set) var host: UIHostingController<myKnob>?
     var label: UILabel = {
         let objLabel = UILabel(frame: CGRect(x: 17, y: 10, width: 123, height: 40))
         objLabel.font = UIFont(name: "AvenirNext-Bold", size: 14.0)
@@ -27,22 +31,48 @@ class AudioBubble: UICollectionViewCell {
         return objLabel
     }()
 
-    var stackData: UIStackView = {
-        let knobsView = UIStackView()
-        knobsView.frame = CGRect(x: 0, y: 36, width: 157, height: 107)
-        knobsView.axis = .horizontal
-        knobsView.distribution = .fillEqually
-        knobsView.spacing = 1
-        knobsView.alignment = .fill
-        knobsView.translatesAutoresizingMaskIntoConstraints = true
-        knobsView.backgroundColor = .white
-        return knobsView
-    }()
+    
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(label)
-        addSubview(stackData)
+        
+    }
+    
+    public func embed(in parent:UIViewController, withParams params: [Parameter]){
+        if let host = self.host{
+            host.rootView = myKnob(params: params)
+            host.view.layoutIfNeeded()
+        } else {
+            let host = UIHostingController(rootView: myKnob(params: params))
+            parent.addChildViewController(host)
+            host.didMove(toParent: parent)
+            
+            host.view.frame = self.contentView.bounds
+            self.contentView.addSubview(host.view)
+            self.host = host
+        }
+        
+    }
+    
+    deinit {
+        host?.willMove(toParent: nil)
+        host?.view.removeFromSuperview()
+        host?.removeFromParentViewController()
+        host = nil
+        print("Cleaned up!")
+    }
+    
+    
+    private func setupView(){
+        host?.view.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(host!.view)
+        NSLayoutConstraint.activate([
+                    host!.view.topAnchor.constraint(equalTo: contentView.topAnchor),
+                    host!.view.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+                    host!.view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+                    host!.view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+        ])
     }
 
     required init?(coder _: NSCoder) {

@@ -15,6 +15,7 @@
 		C206AB9A1FF64A8A008EE364 /* AudioBubbles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C206AB991FF64A8A008EE364 /* AudioBubbles.swift */; };
 		C20F1FD628F8CC8F0064BFA4 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = C20F1FD528F8CC8F0064BFA4 /* AudioKit */; };
 		C20F1FD928F8CD000064BFA4 /* AudioKitUI in Frameworks */ = {isa = PBXBuildFile; productRef = C20F1FD828F8CD000064BFA4 /* AudioKitUI */; };
+		C221A3CC29BC0ECD004EE7A3 /* myKnob.swift in Sources */ = {isa = PBXBuildFile; fileRef = C221A3CB29BC0ECD004EE7A3 /* myKnob.swift */; };
 		C22AD1F32985A62400E7128F /* Mixer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22AD1F22985A62400E7128F /* Mixer.swift */; };
 		C23FCFD01FDAC31400972238 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FCFCF1FDAC31400972238 /* AppDelegate.swift */; };
 		C23FCFD21FDAC31400972238 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23FCFD11FDAC31400972238 /* LandingViewController.swift */; };
@@ -32,6 +33,7 @@
 		C2BAF3B72977CA6B004A3CFF /* Oscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F1AC811FFE4E9500867169 /* Oscillator.swift */; };
 		C2BAF3C22977CC6E004A3CFF /* StackChainUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BAF3C12977CC6E004A3CFF /* StackChainUnit.swift */; };
 		C2E224FD1FFB9C630050B370 /* AudioViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2E224FC1FFB9C630050B370 /* AudioViewController.storyboard */; };
+		C2EE7D3E29BAE39C00A85C68 /* Controls in Frameworks */ = {isa = PBXBuildFile; productRef = C2EE7D3D29BAE39C00A85C68 /* Controls */; };
 		D56A62E9F69CABAD74714E42 /* defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56A610E234E6E48C9211D47 /* defaults.swift */; };
 		D56A674D2E1DF100A72FEB6E /* GenericNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56A6BB6A1121C305AA9F2CC /* GenericNode.swift */; };
 /* End PBXBuildFile section */
@@ -73,6 +75,7 @@
 		C206AB931FF516B2008EE364 /* LandingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LandingViewController.storyboard; sourceTree = "<group>"; };
 		C206AB971FF6440C008EE364 /* StackChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackChain.swift; sourceTree = "<group>"; };
 		C206AB991FF64A8A008EE364 /* AudioBubbles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBubbles.swift; sourceTree = "<group>"; };
+		C221A3CB29BC0ECD004EE7A3 /* myKnob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myKnob.swift; sourceTree = "<group>"; };
 		C22AD1F22985A62400E7128F /* Mixer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mixer.swift; sourceTree = "<group>"; };
 		C23FCFCC1FDAC31400972238 /* PaperSynth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaperSynth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C23FCFCF1FDAC31400972238 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2EE7D3E29BAE39C00A85C68 /* Controls in Frameworks */,
 				C20F1FD928F8CD000064BFA4 /* AudioKitUI in Frameworks */,
 				C20F1FD628F8CC8F0064BFA4 /* AudioKit in Frameworks */,
 				C25B9C3F290C1D3700914396 /* SoundpipeAudioKit in Frameworks */,
@@ -230,6 +234,7 @@
 		C2F1AC7F1FFE443300867169 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				C221A3CB29BC0ECD004EE7A3 /* myKnob.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -273,6 +278,7 @@
 				C20F1FD528F8CC8F0064BFA4 /* AudioKit */,
 				C20F1FD828F8CD000064BFA4 /* AudioKitUI */,
 				C25B9C3E290C1D3700914396 /* SoundpipeAudioKit */,
+				C2EE7D3D29BAE39C00A85C68 /* Controls */,
 			);
 			productName = PaperSynth;
 			productReference = C23FCFCC1FDAC31400972238 /* PaperSynth.app */;
@@ -354,6 +360,7 @@
 				C20F1FD428F8CC8E0064BFA4 /* XCRemoteSwiftPackageReference "AudioKit" */,
 				C20F1FD728F8CD000064BFA4 /* XCRemoteSwiftPackageReference "AudioKitUI" */,
 				C25B9C3D290C1D3700914396 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */,
+				C2EE7D3C29BAE39C00A85C68 /* XCRemoteSwiftPackageReference "Controls" */,
 			);
 			productRefGroup = C23FCFCD1FDAC31400972238 /* Products */;
 			projectDirPath = "";
@@ -418,6 +425,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C23FCFD21FDAC31400972238 /* LandingViewController.swift in Sources */,
+				C221A3CC29BC0ECD004EE7A3 /* myKnob.swift in Sources */,
 				C22AD1F32985A62400E7128F /* Mixer.swift in Sources */,
 				C23FD0061FDBF3EB00972238 /* Levenshtein.swift in Sources */,
 				C206AB981FF6440C008EE364 /* StackChain.swift in Sources */,
@@ -803,6 +811,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		C2EE7D3C29BAE39C00A85C68 /* XCRemoteSwiftPackageReference "Controls" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/Controls.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -820,6 +836,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C25B9C3D290C1D3700914396 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */;
 			productName = SoundpipeAudioKit;
+		};
+		C2EE7D3D29BAE39C00A85C68 /* Controls */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C2EE7D3C29BAE39C00A85C68 /* XCRemoteSwiftPackageReference "Controls" */;
+			productName = Controls;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

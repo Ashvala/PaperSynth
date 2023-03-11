@@ -10,6 +10,7 @@ import AudioKit
 import AudioKitUI
 import Foundation
 import UIKit
+import SwiftUI
 
 class AudioViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,
     UIViewControllerPreviewingDelegate {
@@ -86,6 +87,7 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
     override func viewDidAppear(_: Bool) {
         super.viewWillAppear(true)
         print("view appeared!")
+        print("Got Object List \(objList)")
     }
 
     override func didReceiveMemoryWarning() {
@@ -107,11 +109,10 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
         myCell.layer.cornerRadius = bounds.width * 0.1
         print(indexPath.row)
         
-//        let knobs = objList[indexPath.row].unit.getUI()
-//
-//        knobs.forEach({
-//            myCell.stackData.addArrangedSubview($0)
-//        })
+        let knobs = objList[indexPath.row]
+        print(knobs.name)
+        myCell.embed(in: self, withParams: knobs.getParams())
+
         return myCell
     }
 
@@ -133,8 +134,6 @@ class AudioViewController: UIViewController, UICollectionViewDataSource, UIColle
 
     // MARK: Preview Context delegate methods	
     func previewingContext(_: UIViewControllerPreviewing, viewControllerForLocation _: CGPoint) -> UIViewController? {
-
-        print("FORCEEEE")
         return UIViewController()
     }
 

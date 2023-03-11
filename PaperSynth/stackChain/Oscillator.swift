@@ -10,15 +10,36 @@ import AudioKit
 import AudioKitUI
 import SoundpipeAudioKit
 import Foundation
+import Controls
+import SwiftUI
 
 /// Roughly the AKOscillator Class. 
-class SCOscil {
-    let oscil: Oscillator
+class Oscil {
+    public let oscil: Oscillator
+    public var freq:Float
+    public var amp: Float
+    
 
-    required init() {
-        oscil = Oscillator()
-        oscil.frequency = 440.0
-        oscil.amplitude = 0.5
+    init(initializedNode:Oscillator) {
+        oscil = initializedNode
+        freq = 880.0
+        amp = 0.5
+    }
+    
+    func makeBindingFreq(_ freq:Float) -> Binding<Float> {
+        let frequency = self.freq
+        return .init(
+            get: {self.freq},
+            set: {self.freq = $0}
+        )
+    }
+    
+    func makeBindingAmp(_ Amp:Float) -> Binding<Float> {
+        let amplitude = self.amp
+        return .init(
+            get: {self.amp},
+            set: {self.amp = $0}
+        )
     }
     
     /**
@@ -40,27 +61,9 @@ class SCOscil {
          `freqKnob` handles the frequency of the oscillator and the `ampKnob` handles the amplitude.
      */
 
-//    func getUI() -> [PSRotaryKnob] {
-//        var knobs: [PSRotaryKnob] = []
-//
-//        let freqKnob = PSRotaryKnob(
-//            property: "Freq",
-//            value: Double(oscil.frequency),
-//            range: 220.0 ... 2200.0,
-//            format: "%f Hz") { sliderValue in
-//                self.oscil.frequency = AUValue(sliderValue)
-//        }
-//
-//        let ampKnob = PSRotaryKnob(
-//            property: "Amp",
-//            value: Double(oscil.amplitude),
-//            range: 0.0 ... 1.0,
-//            format: "%f") { sliderValue in
-//                self.oscil.amplitude = AUValue(sliderValue)
-//        }
-//
-//        knobs.append(freqKnob)
-//        knobs.append(ampKnob)
-//        return knobs
-//    }
+    func getUI() -> [ArcKnob] {
+        let freqKnob = ArcKnob("Freq", value: makeBindingFreq(freq), range: 0.0...20000.0)
+        let ampKnob = ArcKnob("Amp", value: makeBindingAmp(amp), range: 0.0...1.0)
+        return [freqKnob, ampKnob]
+    }
 }

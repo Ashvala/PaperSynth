@@ -9,6 +9,10 @@
 import AudioKit
 import Foundation
 import SoundpipeAudioKit
+import Controls
+import UIKit
+import SwiftUI
+
 
 
 /// All available types go here. So, if you want to create a new unit, you add it here and create the binding. 
@@ -92,33 +96,38 @@ func makeNode(data: String, inputNode: Node? = nil) -> Node{
 
 struct Parameter {
     let parameter: NodeParameter
-    var value: AUValue
+    var value: Float
     let displayName: String
 }
 
 
 
-func extractParams(node: Node) -> [Parameter]{
+func extractParams(node: Node?) -> [Parameter]{
     var params: [Parameter] = []
-    for param in node.parameters{
-        params.append(Parameter(parameter: param, value: param.value, displayName: param.parameter.displayName))
+    for param in (node as Node!).parameters{
+        params.append(Parameter(parameter: param, value: Float(param.value), displayName: param.parameter.displayName))
     }
     return params
 }
 
 class stackChainUnit{
+    
     public let name: String
     public let type: NodeType
     private var inputNode: Node?
     public let canInput: Bool
     public let canOutput: Bool
-
+    public var node: Node?
+    public var parameters: [Parameter] = [Parameter]()
+    
+    
     init(name: String, type: NodeType, inputNode: Node? = nil, canInput: Bool = false, canOutput: Bool = true){
         self.name = name
         self.type = type
         self.inputNode = inputNode
         self.canInput = canInput
         self.canOutput = canOutput
+        
     }
 
     func getName() -> String{
@@ -137,9 +146,26 @@ class stackChainUnit{
         self.inputNode = inputNode
     }
 
+    func setNode(settingNode: Node){
+        self.node = settingNode
+        self.parameters = extractParams(node: settingNode)
+    }
 
+    func makeBindingParams(param: Parameter) -> Binding<Float> {
+        var value = param.value
+        return .init(
+            get: {value},
+            set: {value = $0}
+        )
+    }
 
+    func getParams() -> [Parameter]{
+        return self.parameters
+    }
+
+        
 }
+
 
 
 

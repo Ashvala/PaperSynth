@@ -15,7 +15,7 @@ public enum PSRotaryKnobStyle {
     case polygon(numberOfSides: Int, curvature: Double)
 }
 
-@IBDesignable open class PSRotaryKnob: View {
+@IBDesignable open class PSRotaryKnob: UIView {
 
     // Default margin size
     static var marginSize: CGFloat = 10.0
